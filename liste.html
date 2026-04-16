@@ -88,6 +88,8 @@
         * {
             font-family: 'Manrope', sans-serif;
         }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         @keyframes bounce-subtle {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-3px); }
@@ -105,7 +107,7 @@
     </style>
 </head>
 
-<body class="bg-surface text-on-surface min-h-screen pb-40">
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen pb-32">
     <!-- TopAppBar -->
     <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(44,47,48,0.08)]">
         <div class="flex justify-between items-center px-6 py-3.5 w-full">
@@ -131,20 +133,19 @@
         </div>
     </header>
 
-    <main class="px-6 pt-24 space-y-8">
+    <main class="px-6 pt-24 space-y-8 max-w-md mx-auto">
         <!-- Search Section -->
         <section class="space-y-6">
-            <h2 class="text-2xl font-headline font-extrabold text-on-surface tracking-tight leading-tight">Nouvelle
-                Liste</h2>
+            <h1 class="font-headline font-black text-4xl text-on-surface tracking-tighter leading-tight">Nouvelle Liste</h1>
             <div class="relative group">
-                <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-on-surface-variant">
-                    <span class="material-symbols-outlined">search</span>
+                <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-primary/50 group-focus-within:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-[20px] font-black">search</span>
                 </div>
                 <input
-                    class="w-full pl-12 pr-14 py-5 bg-surface-container-highest border-none rounded-lg text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 transition-all font-body text-md shadow-sm"
+                    class="w-full pl-14 pr-14 py-4 bg-white/40 backdrop-blur-sm border border-slate-200/50 rounded-2xl text-on-surface placeholder:text-outline/30 focus:ring-4 focus:ring-primary/5 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm font-body"
                     placeholder="Ajouter un article..." type="text">
                 <button
-                    class="absolute inset-y-0 right-4 flex items-center text-primary hover:text-primary-dim transition-colors"
+                    class="absolute inset-y-0 right-5 flex items-center text-primary hover:text-primary-dim transition-colors"
                     onclick="alert('Microphone active - Parlez en darija ou francais')">
                     <span class="material-symbols-outlined">mic</span>
                 </button>
@@ -170,29 +171,44 @@
                     <span>Thon</span>
                     <span class="material-symbols-outlined text-xs">add</span>
                 </button>
+                <button onclick="addItem('Huile')"
+                    class="px-5 py-2.5 bg-white text-on-surface-variant rounded-xl text-xs font-black border border-slate-200 hover:bg-primary/5 hover:text-primary transition-all flex items-center gap-2 uppercase tracking-widest shadow-sm">
+                    <span>Huile</span>
+                    <span class="material-symbols-outlined text-xs">add</span>
+                </button>
+                <button onclick="addItem('Riz')"
+                    class="px-5 py-2.5 bg-white text-on-surface-variant rounded-xl text-xs font-black border border-slate-200 hover:bg-primary/5 hover:text-primary transition-all flex items-center gap-2 uppercase tracking-widest shadow-sm">
+                    <span>Riz</span>
+                    <span class="material-symbols-outlined text-xs">add</span>
+                </button>
+                <button onclick="addItem('Œufs')"
+                    class="px-5 py-2.5 bg-white text-on-surface-variant rounded-xl text-xs font-black border border-slate-200 hover:bg-primary/5 hover:text-primary transition-all flex items-center gap-2 uppercase tracking-widest shadow-sm">
+                    <span>Œufs</span>
+                    <span class="material-symbols-outlined text-xs">add</span>
+                </button>
             </div>
         </section>
 
         <!-- Current List -->
         <section class="space-y-4">
             <div class="flex justify-between items-end">
-                <h3 class="text-lg font-headline font-bold">Articles (<span id="item-count">3</span>)</h3>
+                <h3 class="text-lg font-headline font-black tracking-tight">Articles (<span id="item-count">3</span>)</h3>
                 <button onclick="clearAll()"
-                    class="text-sm font-bold uppercase tracking-widest text-outline hover:text-error transition-colors">Effacer
+                    class="text-[10px] font-black uppercase tracking-widest text-outline hover:text-error transition-colors">Effacer
                     tout</button>
             </div>
             <div id="item-list" class="space-y-3">
                 <!-- Item 1 -->
                 <div
-                    class="flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                    class="flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300 border border-white">
                     <div class="flex items-center gap-4">
                         <div
-                            class="w-12 h-12 bg-surface-container-low rounded-md flex items-center justify-center text-primary">
+                            class="w-12 h-12 bg-surface-container-low rounded-xl flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined">egg</span>
                         </div>
                         <div>
-                            <p class="font-bold text-on-surface font-body">Oeufs Frais (12)</p>
-                            <p class="text-xs text-outline font-label uppercase tracking-wider">Cremerie</p>
+                            <p class="font-black text-on-surface font-body">Oeufs Frais (12)</p>
+                            <p class="text-[10px] text-on-surface-variant font-black uppercase tracking-widest">Cremerie</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4 bg-surface-container rounded-full px-3 py-1.5">
@@ -200,7 +216,7 @@
                             class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
                             <span class="material-symbols-outlined text-sm">remove</span>
                         </button>
-                        <span class="font-bold text-on-surface font-body w-4 text-center qty">1</span>
+                        <span class="font-black text-on-surface font-body w-4 text-center qty">1</span>
                         <button onclick="updateQty(this, 1)"
                             class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-primary">
                             <span class="material-symbols-outlined text-sm">add</span>
@@ -209,15 +225,15 @@
                 </div>
                 <!-- Item 2 -->
                 <div
-                    class="flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                    class="flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300 border border-white">
                     <div class="flex items-center gap-4">
                         <div
-                            class="w-12 h-12 bg-surface-container-low rounded-md flex items-center justify-center text-primary">
+                            class="w-12 h-12 bg-surface-container-low rounded-xl flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined">water_full</span>
                         </div>
                         <div>
-                            <p class="font-bold text-on-surface font-body">Eau Minerale 1.5L</p>
-                            <p class="text-xs text-outline font-label uppercase tracking-wider">Boissons</p>
+                            <p class="font-black text-on-surface font-body">Eau Minerale 1.5L</p>
+                            <p class="text-[10px] text-on-surface-variant font-black uppercase tracking-widest">Boissons</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4 bg-surface-container rounded-full px-3 py-1.5">
@@ -225,7 +241,7 @@
                             class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
                             <span class="material-symbols-outlined text-sm">remove</span>
                         </button>
-                        <span class="font-bold text-on-surface font-body w-4 text-center qty">6</span>
+                        <span class="font-black text-on-surface font-body w-4 text-center qty">6</span>
                         <button onclick="updateQty(this, 1)"
                             class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-primary">
                             <span class="material-symbols-outlined text-sm">add</span>
@@ -234,15 +250,15 @@
                 </div>
                 <!-- Item 3 -->
                 <div
-                    class="flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                    class="flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300 border border-white">
                     <div class="flex items-center gap-4">
                         <div
-                            class="w-12 h-12 bg-surface-container-low rounded-md flex items-center justify-center text-primary">
+                            class="w-12 h-12 bg-surface-container-low rounded-xl flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined">bakery_dining</span>
                         </div>
                         <div>
-                            <p class="font-bold text-on-surface font-body">Pain Complet</p>
-                            <p class="text-xs text-outline font-label uppercase tracking-wider">Boulangerie</p>
+                            <p class="font-black text-on-surface font-body">Pain Complet</p>
+                            <p class="text-[10px] text-on-surface-variant font-black uppercase tracking-widest">Boulangerie</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4 bg-surface-container rounded-full px-3 py-1.5">
@@ -250,7 +266,7 @@
                             class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
                             <span class="material-symbols-outlined text-sm">remove</span>
                         </button>
-                        <span class="font-bold text-on-surface font-body w-4 text-center qty">2</span>
+                        <span class="font-black text-on-surface font-body w-4 text-center qty">2</span>
                         <button onclick="updateQty(this, 1)"
                             class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-primary">
                             <span class="material-symbols-outlined text-sm">add</span>
@@ -263,17 +279,17 @@
         <!-- Insights -->
         <section class="grid grid-cols-2 gap-4">
             <div
-                class="bg-primary p-6 rounded-lg text-white flex flex-col justify-between h-32 relative overflow-hidden">
+                class="bg-primary p-6 rounded-2xl text-white flex flex-col justify-between h-32 relative overflow-hidden shadow-xl shadow-primary/20">
                 <span class="material-symbols-outlined opacity-20 absolute -right-4 -bottom-4 text-8xl">savings</span>
-                <span class="text-xs uppercase tracking-widest opacity-80 font-label">Estimation</span>
-                <span class="text-2xl font-bold font-headline">245 <span class="text-lg">DH</span></span>
+                <span class="text-[10px] uppercase tracking-widest opacity-80 font-black">Estimation</span>
+                <span class="text-2xl font-black font-headline">245 <span class="text-lg">DH</span></span>
             </div>
             <div
-                class="bg-secondary-container p-6 rounded-lg text-on-secondary-container flex flex-col justify-between h-32 relative overflow-hidden">
+                class="bg-secondary-container p-6 rounded-2xl text-on-secondary-container flex flex-col justify-between h-32 relative overflow-hidden shadow-xl shadow-secondary/10">
                 <span
                     class="material-symbols-outlined opacity-20 absolute -right-4 -bottom-4 text-8xl">auto_awesome</span>
-                <span class="text-xs uppercase tracking-widest opacity-80 font-label">Précision IA</span>
-                <span class="text-2xl font-bold font-headline">94%</span>
+                <span class="text-[10px] uppercase tracking-widest opacity-80 font-black">Précision IA</span>
+                <span class="text-2xl font-black font-headline">94%</span>
             </div>
         </section>
     </main>
@@ -347,22 +363,22 @@
 
             const list = document.getElementById('item-list');
             const newItem = document.createElement('div');
-            newItem.className = 'flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300 animate-pulse';
+            newItem.className = 'flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300 animate-pulse border border-white';
             newItem.innerHTML = `
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-surface-container-low rounded-md flex items-center justify-center text-primary">
+                    <div class="w-12 h-12 bg-surface-container-low rounded-xl flex items-center justify-center text-primary">
                         <span class="material-symbols-outlined">shopping_basket</span>
                     </div>
                     <div>
-                        <p class="font-bold text-on-surface font-body">${name}</p>
-                        <p class="text-xs text-outline font-label uppercase tracking-wider">General</p>
+                        <p class="font-black text-on-surface font-body">${name}</p>
+                        <p class="text-[10px] text-on-surface-variant font-black uppercase tracking-widest">General</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4 bg-surface-container rounded-full px-3 py-1.5">
                     <button onclick="updateQty(this, -1)" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
-                    <span class="font-bold text-on-surface font-body w-4 text-center qty">1</span>
+                    <span class="font-black text-on-surface font-body w-4 text-center qty">1</span>
                     <button onclick="updateQty(this, 1)" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-primary">
                         <span class="material-symbols-outlined text-sm">add</span>
                     </button>
@@ -370,7 +386,6 @@
             `;
             list.appendChild(newItem);
             setTimeout(() => newItem.classList.remove('animate-pulse'), 500);
-            l
         }
 
         function clearAll() {

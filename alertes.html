@@ -84,6 +84,8 @@
         * {
             font-family: 'Manrope', sans-serif;
         }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         @keyframes bounce-subtle {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-3px); }
@@ -98,9 +100,19 @@
         .nav-item:active {
             transform: scale(0.9);
         }
+        /* Sub-view Transitions */
+        .sub-view {
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+        }
+        .sub-view.active {
+            transform: translateY(0);
+            visibility: visible;
+        }
     </style>
 </head>
-<body class="text-on-surface" style="background: linear-gradient(135deg, #f5f6f7 0%, #eef2ff 100%); min-height: 100vh;">
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen pb-32">
     <!-- TopAppBar -->
     <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(44,47,48,0.08)]">
         <div class="flex justify-between items-center px-6 py-3.5 w-full">
@@ -119,7 +131,7 @@
         </div>
     </header>
 
-    <main class="px-6 pt-24 pb-32">
+    <main class="px-6 pt-24 pb-32 max-w-md mx-auto">
         <!-- Page Title -->
         <section class="mb-12">
             <h1 class="font-headline font-black text-4xl leading-tight tracking-tighter text-on-surface mb-3">
@@ -144,13 +156,13 @@
         <!-- Notification Feed -->
         <div class="space-y-6">
             <!-- Price Drop Alert -->
-            <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_20px_40px_rgba(44,47,48,0.06)] relative overflow-hidden group hover:shadow-lg transition-shadow border border-white/40">
+            <div onclick="openPriceDetails('Huile d\'Olive Extra Vierge', '1L', '64', '75', '15%')" class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_20px_40px_rgba(44,47,48,0.06)] relative overflow-hidden group hover:shadow-lg transition-shadow border border-white/40 cursor-pointer active:scale-[0.99]">
                 <div class="absolute top-0 right-0 p-5">
                     <span class="text-[0.6875rem] font-label font-bold uppercase tracking-widest text-outline-variant opacity-70">09:30</span>
                 </div>
                 <div class="flex gap-5">
                     <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center border border-emerald-100 shadow-inner">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center border border-emerald-100 shadow-inner group-hover:bg-emerald-600 group-hover:text-white transition-all">
                             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
                         </div>
                     </div>
@@ -160,7 +172,7 @@
                         <div class="mt-4 flex items-center gap-3">
                             <span class="text-3xl font-headline font-black text-on-surface">64 <span class="text-lg">DH</span></span>
                             <span class="text-sm line-through text-outline-variant">75 DH</span>
-                            <a href="carte.html" class="ml-auto bg-primary text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-95 transition-all">Voir</a>
+                            <div class="ml-auto bg-primary text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest shadow-lg shadow-primary/20">Détails</div>
                         </div>
                     </div>
                 </div>
@@ -256,7 +268,7 @@
 
     <!-- Floating Dock Navigation -->
     <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-6 pt-2 pointer-events-none">
-        <div class="max-w-md mx-auto bg-white/95 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_25px_50_rgba(0,0,0,0.15)] border border-white/50 flex justify-around items-end px-2 py-4 pointer-events-auto relative">
+        <div class="max-w-md mx-auto bg-white/95 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.2)] border border-white/50 flex justify-around items-end px-2 py-4 pointer-events-auto relative">
             
             <!-- Home -->
             <a href="dashboard.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
@@ -296,9 +308,104 @@
         </div>
     </nav>
 
+    <!-- Success Overlay -->
+    <div id="success-view" class="sub-view fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center p-8 text-center hidden">
+        <div class="w-24 h-24 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
+            <span class="material-symbols-outlined text-5xl font-black">done_all</span>
+        </div>
+        <h2 class="font-headline font-black text-3xl tracking-tighter mb-2">Tout est lu !</h2>
+        <p class="text-on-surface-variant text-sm mb-12">Votre flux de notifications est maintenant propre. On vous prévient dès qu'un nouveau deal apparaît !</p>
+        <button onclick="closeSubView('success-view')" class="w-full bg-primary text-on-primary font-black py-5.5 rounded-full shadow-xl shadow-primary/20 active:scale-95 transition-all uppercase tracking-widest text-xs">
+            Retour aux alertes
+        </button>
+    </div>
+
+    <!-- Price Detail Sub-view -->
+    <div id="price-view" class="sub-view fixed inset-0 z-[200] bg-surface flex flex-col hidden">
+        <header class="bg-white/90 backdrop-blur-xl px-6 py-6 flex items-center gap-4 border-b border-slate-100">
+            <button onclick="closeSubView('price-view')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 text-on-surface-variant active:scale-95 transition-all">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <h2 class="font-headline font-black text-xl tracking-tighter">Détails de l'Alerte</h2>
+        </header>
+        <main class="flex-grow overflow-y-auto p-6 space-y-8 no-scrollbar bg-slate-50">
+            <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 id="alert-product" class="font-headline font-black text-2xl tracking-tighter">Huile d'Olive</h3>
+                        <p id="alert-info" class="text-xs text-on-surface-variant font-bold uppercase tracking-widest opacity-60">Format 1L</p>
+                    </div>
+                    <div class="bg-emerald-50 px-3 py-1 rounded-full text-emerald-600 font-black text-[10px] uppercase tracking-widest border border-emerald-100">
+                        Baisse de <span id="alert-perc">15%</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-end gap-3 mb-8">
+                    <span id="alert-curr" class="text-4xl font-headline font-black text-on-surface tracking-tighter">64 <span class="text-lg">DH</span></span>
+                    <span id="alert-old" class="text-sm line-through text-on-surface-variant opacity-40 mb-1.5">75 DH</span>
+                </div>
+
+                <!-- Mock Price Graph -->
+                <div class="space-y-4">
+                    <p class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant opacity-60">Historique des 30 derniers jours</p>
+                    <div class="h-32 flex items-end gap-2 pt-4">
+                        <div class="flex-1 bg-slate-100 h-[80%] rounded-t-sm"></div>
+                        <div class="flex-1 bg-slate-100 h-[75%] rounded-t-sm"></div>
+                        <div class="flex-1 bg-slate-100 h-[85%] rounded-t-sm"></div>
+                        <div class="flex-1 bg-slate-200 h-[90%] rounded-t-sm"></div>
+                        <div class="flex-1 bg-primary/20 h-[60%] rounded-t-sm"></div>
+                        <div class="flex-1 bg-primary h-[45%] rounded-t-sm"></div>
+                        <div class="flex-1 bg-emerald-500 h-[35%] rounded-t-sm shadow-[0_0_15px_rgba(16,185,129,0.3)]"></div>
+                    </div>
+                    <div class="flex justify-between text-[8px] font-black text-on-surface-variant opacity-40 uppercase tracking-widest">
+                        <span>Il y a 30j</span>
+                        <span>Aujourd'hui</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-primary/5 p-6 rounded-2xl border border-primary/10 flex items-center gap-4">
+                <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <span class="material-symbols-outlined">lightbulb</span>
+                </div>
+                <div class="flex-grow">
+                    <p class="font-black text-xs uppercase tracking-widest text-primary">Conseil Hawta</p>
+                    <p class="text-xs text-on-surface-variant mt-0.5">C'est le moment idéal pour acheter. Le prix est au plus bas depuis 6 mois !</p>
+                </div>
+            </div>
+
+            <div class="pt-4">
+                <a href="carte.html" class="w-full bg-primary text-on-primary font-black py-5.5 rounded-full shadow-xl shadow-primary/20 active:scale-95 transition-all text-sm uppercase tracking-widest flex items-center justify-center gap-3">
+                    <span class="material-symbols-outlined">directions</span>
+                    VOIR L'ITINÉRAIRE
+                </a>
+            </div>
+        </main>
+    </div>
+
     <script>
         function markAllRead() {
-            alert('Toutes les notifications ont été marquées comme lues !');
+            const view = document.getElementById('success-view');
+            view.classList.remove('hidden');
+            setTimeout(() => view.classList.add('active'), 10);
+        }
+
+        function openPriceDetails(product, info, curr, old, perc) {
+            const view = document.getElementById('price-view');
+            document.getElementById('alert-product').textContent = product;
+            document.getElementById('alert-info').textContent = 'Format ' + info;
+            document.getElementById('alert-curr').innerHTML = `${curr} <span class="text-lg">DH</span>`;
+            document.getElementById('alert-old').textContent = `${old} DH`;
+            document.getElementById('alert-perc').textContent = perc;
+
+            view.classList.remove('hidden');
+            setTimeout(() => view.classList.add('active'), 10);
+        }
+
+        function closeSubView(id) {
+            const view = document.getElementById(id);
+            view.classList.remove('active');
+            setTimeout(() => view.classList.add('hidden'), 400);
         }
     </script>
 </body>

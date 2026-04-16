@@ -84,6 +84,8 @@
         * {
             font-family: 'Manrope', sans-serif;
         }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         @keyframes bounce-subtle {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-3px); }
@@ -98,9 +100,19 @@
         .nav-item:active {
             transform: scale(0.9);
         }
+        /* Sub-view Transitions */
+        .sub-view {
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+        }
+        .sub-view.active {
+            transform: translateY(0);
+            visibility: visible;
+        }
     </style>
 </head>
-<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen pb-32">
     <!-- TopAppBar -->
     <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(44,47,48,0.08)]">
         <div class="flex justify-between items-center px-6 py-3.5 w-full">
@@ -120,7 +132,7 @@
         </div>
     </header>
 
-    <main class="pt-24 pb-32 px-6">
+    <main class="pt-24 pb-32 px-6 max-w-md mx-auto">
         <!-- Hero Stats -->
         <!-- Hero Stats -->
         <section class="mb-10">
@@ -166,14 +178,14 @@
                 <button class="text-primary text-xs font-black uppercase tracking-widest hover:underline">Tout voir</button>
             </div>
             <div class="grid grid-cols-2 gap-4">
-                <div class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/40 flex flex-col items-center text-center hover:shadow-2xl transition-all border border-white cursor-pointer active:scale-95 group">
+                <div onclick="openBadgeDetails('Roi du Souk', 'shopping_bag', 'secondary', 'Un expert des négociations au Souk Msala. Vous connaissez tous les bons plans !')" class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/40 flex flex-col items-center text-center hover:shadow-2xl transition-all border border-white cursor-pointer active:scale-95 group">
                     <div class="w-16 h-16 bg-secondary-container/20 rounded-2xl flex items-center justify-center mb-4 shadow-inner border border-secondary-container/10 group-hover:bg-secondary-container/40 transition-colors">
                         <span class="material-symbols-outlined text-on-secondary-container text-4xl font-black" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
                     </div>
                     <p class="font-black text-[11px] uppercase tracking-widest leading-tight mb-1">Roi du Souk Msala</p>
                     <span class="text-[9px] text-primary font-black uppercase tracking-widest opacity-60">Niveau 4</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/40 flex flex-col items-center text-center hover:shadow-2xl transition-all border border-white cursor-pointer active:scale-95 group">
+                <div onclick="openBadgeDetails('Chasseur Éclair', 'bolt', 'primary', 'Plus rapide que son ombre pour trouver les promos dès leur sortie !')" class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/40 flex flex-col items-center text-center hover:shadow-2xl transition-all border border-white cursor-pointer active:scale-95 group">
                     <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-4 shadow-inner border border-blue-100 group-hover:bg-blue-100 transition-colors">
                         <span class="material-symbols-outlined text-primary text-4xl font-black" style="font-variation-settings: 'FILL' 1;">bolt</span>
                     </div>
@@ -209,7 +221,7 @@
                 </div>
                 <div class="space-y-4">
                     <!-- Leader 1 -->
-                    <div class="bg-white p-5 rounded-2xl flex items-center justify-between shadow-lg shadow-slate-200/40 border border-slate-50 hover:shadow-xl transition-all">
+                    <div onclick="openMemberProfile('Sarah Bendris', 'Expert Tanger', '28,450', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face')" class="bg-white p-5 rounded-2xl flex items-center justify-between shadow-lg shadow-slate-200/40 border border-slate-50 hover:shadow-xl transition-all cursor-pointer active:scale-95">
                         <div class="flex items-center gap-4">
                             <div class="relative">
                                 <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-secondary-fixed shadow-md">
@@ -230,7 +242,7 @@
                         </div>
                     </div>
                     <!-- Leader 2 -->
-                    <div class="bg-white p-5 rounded-2xl flex items-center justify-between shadow-lg shadow-slate-200/40 border border-slate-50 hover:shadow-xl transition-all">
+                    <div onclick="openMemberProfile('Mehdi Alami', 'Dénicheur Casa', '26,120', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face')" class="bg-white p-5 rounded-2xl flex items-center justify-between shadow-lg shadow-slate-200/40 border border-slate-50 hover:shadow-xl transition-all cursor-pointer active:scale-95">
                         <div class="flex items-center gap-4">
                             <div class="relative">
                                 <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-slate-100 shadow-md">
@@ -314,17 +326,17 @@
                         </div>
                     </div>
                 </div>
-                <a href="scanner.html" class="block w-full py-5.5 bg-primary text-on-primary text-center rounded-full font-black shadow-xl shadow-primary/20 active:scale-95 transition-all flex items-center justify-center gap-3 hover:opacity-95 uppercase tracking-widest text-sm">
+                <button onclick="openPostForm()" class="block w-full py-5.5 bg-primary text-on-primary text-center rounded-full font-black shadow-xl shadow-primary/20 active:scale-95 transition-all flex items-center justify-center gap-3 hover:opacity-95 uppercase tracking-widest text-sm">
                     <span class="material-symbols-outlined font-black">add_circle</span>
                     Partager un deal
-                </a>
+                </button>
             </section>
         </div>
     </main>
 
     <!-- Floating Dock Navigation -->
     <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-6 pt-2 pointer-events-none">
-        <div class="max-w-md mx-auto bg-white/95 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_25px_50_rgba(0,0,0,0.15)] border border-white/50 flex justify-around items-end px-2 py-4 pointer-events-auto relative">
+        <div class="max-w-md mx-auto bg-white/95 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.2)] border border-white/50 flex justify-around items-end px-2 py-4 pointer-events-auto relative">
             
             <!-- Home -->
             <a href="dashboard.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
@@ -364,9 +376,114 @@
         </div>
     </nav>
 
+    <!-- Member Profile Sub-view -->
+    <div id="member-view" class="sub-view fixed inset-0 z-[200] bg-surface flex flex-col hidden">
+        <header class="bg-white/90 backdrop-blur-xl px-6 py-6 flex items-center gap-4 border-b border-slate-100">
+            <button onclick="closeSubView('member-view')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 text-on-surface-variant active:scale-95 transition-all">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <h2 class="font-headline font-black text-xl tracking-tighter">Profil Membre</h2>
+        </header>
+        <main class="flex-grow overflow-y-auto no-scrollbar bg-slate-50 flex flex-col items-center">
+            <div class="w-full bg-white px-8 pb-10 pt-10 flex flex-col items-center border-b border-slate-100 shadow-sm">
+                <div class="w-32 h-32 rounded-[2.5rem] overflow-hidden border-4 border-primary/20 shadow-2xl mb-6">
+                    <img id="member-img" class="w-full h-full object-cover" src="">
+                </div>
+                <h3 id="member-name" class="font-headline font-black text-3xl tracking-tighter mb-1"></h3>
+                <p id="member-rank" class="text-primary font-black uppercase tracking-[0.2em] text-[10px] mb-8"></p>
+                
+                <div class="grid grid-cols-2 gap-4 w-full">
+                    <div class="bg-slate-50 p-5 rounded-2xl flex flex-col items-center">
+                        <p class="font-black text-xl text-on-surface tracking-tighter mb-0.5" id="member-points"></p>
+                        <p class="text-[9px] font-black uppercase text-on-surface-variant opacity-60">Points</p>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl flex flex-col items-center">
+                        <p class="font-black text-xl text-on-surface tracking-tighter mb-0.5">142</p>
+                        <p class="text-[9px] font-black uppercase text-on-surface-variant opacity-60">Deals</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-8 w-full space-y-6">
+                <h4 class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant">Dernière activité</h4>
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-md">
+                    <p class="text-sm font-bold text-on-surface">A partagé une promo Flash !</p>
+                    <p class="text-xs text-on-surface-variant mt-1 italic">"Le poulet à 32DH au Souk Msala, foncez !"</p>
+                </div>
+                <button class="w-full bg-primary text-on-primary font-black py-5.5 rounded-full shadow-xl shadow-primary/20 active:scale-95 transition-all uppercase tracking-widest text-xs">
+                    Suivre le chasseur
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Post Deal Sub-view (Form) -->
+    <div id="post-view" class="sub-view fixed inset-0 z-[200] bg-surface flex flex-col hidden">
+        <header class="bg-white/90 backdrop-blur-xl px-6 py-6 flex items-center justify-between border-b border-slate-100">
+            <div class="flex items-center gap-4">
+                <button onclick="closeSubView('post-view')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 text-on-surface-variant active:scale-95 transition-all">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+                <h2 class="font-headline font-black text-xl tracking-tighter">Nouveau Deal</h2>
+            </div>
+            <button onclick="closeSubView('post-view')" class="text-primary font-black text-xs uppercase tracking-widest">Publier</button>
+        </header>
+        <main class="flex-grow p-8 space-y-8 bg-white overflow-y-auto no-scrollbar pb-32">
+            <div class="space-y-6">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant ml-1">Produit</label>
+                    <input type="text" placeholder="Ex: Huile d'Argan 1L" class="w-full bg-slate-50 border-none rounded-2xl py-5 px-6 font-bold text-on-surface placeholder:text-slate-300 focus:ring-2 focus:ring-primary/20 transition-all">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant ml-1">Prix Promo</label>
+                        <input type="number" placeholder="DH" class="w-full bg-slate-50 border-none rounded-2xl py-5 px-6 font-bold text-on-surface placeholder:text-slate-300 focus:ring-2 focus:ring-primary/20 transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant ml-1">Prix Normal</label>
+                        <input type="number" placeholder="DH" class="w-full bg-slate-50 border-none rounded-2xl py-5 px-6 font-bold text-on-surface placeholder:text-slate-300 focus:ring-2 focus:ring-primary/20 transition-all">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant ml-1">Lieu / Magasin</label>
+                    <input type="text" placeholder="Ex: Souk Msala" class="w-full bg-slate-50 border-none rounded-2xl py-5 px-6 font-bold text-on-surface placeholder:text-slate-300 focus:ring-2 focus:ring-primary/20 transition-all">
+                </div>
+                <button class="w-full h-32 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center gap-2 text-slate-400 hover:text-primary hover:border-primary transition-all active:scale-95">
+                    <span class="material-symbols-outlined text-3xl">add_a_photo</span>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Ajouter une photo</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Badge Detail Sub-view (Reused pattern) -->
+    <div id="badge-view" class="sub-view fixed inset-0 z-[200] bg-surface flex flex-col hidden">
+        <header class="bg-white/90 backdrop-blur-xl px-6 py-6 flex items-center gap-4 border-b border-slate-100">
+            <button onclick="closeSubView('badge-view')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 text-on-surface-variant active:scale-95 transition-all">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h2 class="font-headline font-black text-xl tracking-tighter">Détails du Badge</h2>
+        </header>
+        <main class="flex-grow flex flex-col items-center justify-center p-8 text-center bg-slate-50 space-y-8">
+            <div id="badge-icon-container" class="w-40 h-40 rounded-[2.5rem] bg-primary/10 flex items-center justify-center text-primary shadow-2xl relative overflow-hidden transition-all duration-500">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                <span id="badge-icon" class="material-symbols-outlined text-8xl font-black relative z-10" style="font-variation-settings: 'FILL' 1;">explore</span>
+            </div>
+            <div class="space-y-2">
+                <h3 id="badge-title" class="font-headline font-black text-4xl tracking-tight"></h3>
+                <p class="text-primary font-black uppercase tracking-[0.2em] text-[10px]">Part de votre collection</p>
+            </div>
+            <p id="badge-description" class="text-on-surface-variant leading-relaxed text-sm max-w-xs"></p>
+            <div class="w-full pt-8">
+                <button onclick="closeSubView('badge-view')" class="w-full bg-primary text-on-primary font-black py-5.5 rounded-full shadow-xl shadow-primary/20 active:scale-95 transition-all text-sm uppercase tracking-widest">
+                    FERMER
+                </button>
+            </div>
+        </main>
+    </div>
+
     <script>
         function switchTab(tab) {
-            // Update buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('bg-primary', 'text-white', 'shadow-md');
                 btn.classList.add('text-on-surface-variant');
@@ -374,11 +491,52 @@
             document.getElementById('tab-' + tab).classList.add('bg-primary', 'text-white', 'shadow-md');
             document.getElementById('tab-' + tab).classList.remove('text-on-surface-variant');
 
-            // Show/hide content
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.add('hidden');
             });
             document.getElementById('content-' + tab).classList.remove('hidden');
+        }
+
+        function openMemberProfile(name, rank, points, img) {
+            const view = document.getElementById('member-view');
+            document.getElementById('member-name').textContent = name;
+            document.getElementById('member-rank').textContent = rank;
+            document.getElementById('member-points').textContent = points;
+            document.getElementById('member-img').src = img;
+            view.classList.remove('hidden');
+            setTimeout(() => view.classList.add('active'), 10);
+        }
+
+        function openPostForm() {
+            const view = document.getElementById('post-view');
+            view.classList.remove('hidden');
+            setTimeout(() => view.classList.add('active'), 10);
+        }
+
+        function openBadgeDetails(title, icon, colorClass, description) {
+            const view = document.getElementById('badge-view');
+            const container = document.getElementById('badge-icon-container');
+            const iconElem = document.getElementById('badge-icon');
+            const titleElem = document.getElementById('badge-title');
+            const descElem = document.getElementById('badge-description');
+
+            container.className = 'w-40 h-40 rounded-[2.5rem] flex items-center justify-center shadow-2xl relative overflow-hidden transition-all duration-500';
+            if (colorClass === 'primary') container.classList.add('bg-primary/10', 'text-primary');
+            else if (colorClass === 'secondary') container.classList.add('bg-secondary/10', 'text-secondary');
+            else if (colorClass === 'emerald') container.classList.add('bg-emerald-50', 'text-emerald-600');
+
+            titleElem.textContent = title;
+            iconElem.textContent = icon;
+            descElem.textContent = description;
+
+            view.classList.remove('hidden');
+            setTimeout(() => view.classList.add('active'), 10);
+        }
+
+        function closeSubView(id) {
+            const view = document.getElementById(id);
+            view.classList.remove('active');
+            setTimeout(() => view.classList.add('hidden'), 300);
         }
     </script>
 </body>

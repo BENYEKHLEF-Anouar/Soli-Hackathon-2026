@@ -1,114 +1,835 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion | Hawta.ma</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        secondary: "#695c00",
-                        "inverse-on-surface": "#9b9d9e",
-                        "surface-dim": "#d1d5d7",
-                        primary: "#004edc",
-                        "on-error-container": "#510017",
-                        "surface-container-high": "#e0e3e4",
-                        "tertiary-fixed": "#ffffff",
-                        surface: "#f5f6f7",
-                        outline: "#757778",
-                        "on-surface": "#2c2f30",
-                        error: "#b41340",
-                        "on-primary-fixed-variant": "#002572",
-                        "on-primary": "#f1f2ff",
-                        "tertiary-dim": "#504f4f",
-                        "surface-bright": "#f5f6f7",
-                        "inverse-primary": "#658aff",
-                        "outline-variant": "#abadae",
-                        "on-secondary-container": "#5c5000",
-                        "error-dim": "#a70138",
-                        "on-tertiary-container": "#636262",
-                        "secondary-fixed": "#f9e04c",
-                        "on-secondary-fixed": "#473e00",
-                        "on-primary-container": "#001c5e",
-                        "surface-container-highest": "#dadddf",
-                        "surface-tint": "#004edc",
-                        "primary-fixed": "#7e9cff",
-                        "surface-container-low": "#eff1f2",
-                        "tertiary-fixed-dim": "#f3f0ef",
-                        "secondary-container": "#f9e04c",
-                        "on-secondary": "#fff3c0",
-                        "surface-container-lowest": "#ffffff",
-                        "inverse-surface": "#0c0f10",
-                        tertiary: "#5c5b5b",
-                        "on-surface-variant": "#595c5d",
-                        "surface-variant": "#dadddf",
-                        "on-tertiary": "#f5f2f1",
-                        "secondary-dim": "#5b5000",
-                        "primary-container": "#7e9cff",
-                        "secondary-fixed-dim": "#ead23f",
-                        "on-error": "#ffefef",
-                        "error-container": "#f74b6d",
-                        "tertiary-container": "#ffffff",
-                        "on-background": "#2c2f30",
-                        "primary-dim": "#0043c1",
-                        "on-primary-fixed": "#000000",
-                        "background": "#f5f6f7",
-                        "on-secondary-fixed-variant": "#675a00",
-                        "surface-container": "#e6e8ea"
-                    },
-                    borderRadius: {
-                        DEFAULT: "1rem",
-                        lg: "2rem",
-                        xl: "3rem",
-                        full: "9999px"
-                    },
-                    fontFamily: {
-                        headline: ["Manrope"],
-                        body: ["Manrope"],
-                        label: ["Manrope"],
-                        sans: ["Manrope"]
-                    },
-                    spacing: {
-                        '4.5': '1.125rem',
-                        '5.5': '1.375rem',
-                    }
-                }
-            }
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #004edc;
+            --primary-dim: #0043c1;
+            --primary-light: #e8eeff;
+            --primary-glow: rgba(0, 78, 220, 0.12);
+            --on-primary: #f1f2ff;
+            --secondary: #695c00;
+            --secondary-fixed: #f9e04c;
+            --surface: #f4f5f7;
+            --surface-card: rgba(255,255,255,0.82);
+            --surface-input: rgba(255,255,255,0.60);
+            --on-surface: #1c1f21;
+            --on-surface-muted: #575a5c;
+            --on-surface-faint: #8a8d8f;
+            --border: rgba(0,0,0,0.07);
+            --border-focus: rgba(0, 78, 220, 0.35);
+            --shadow-card: 0 24px 64px rgba(0,78,220,0.10), 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-btn: 0 8px 24px rgba(0,78,220,0.28);
+            --radius-card: 28px;
+            --radius-input: 14px;
+            --radius-btn: 100px;
+            --radius-icon: 16px;
         }
-        function simulateLogin(event) {
-            event.preventDefault();
-            document.getElementById('location-modal').classList.remove('hidden');
-            document.getElementById('location-modal').classList.add('flex');
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--surface);
+            color: var(--on-surface);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.25rem;
+            overflow-x: hidden;
+        }
+
+        /* ─── Background ─── */
+        .bg-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bg-layer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 15% 20%, rgba(0,78,220,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 85% 75%, rgba(0,78,220,0.05) 0%, transparent 70%),
+                #f4f5f7;
+        }
+        .bg-basket {
+            position: absolute;
+            font-variation-settings: 'FILL' 1;
+            color: rgba(0,78,220,0.04);
+            user-select: none;
+        }
+        .bg-basket:nth-child(1)  { font-size: 200px; top: -40px; left: -40px; transform: rotate(-20deg); }
+        .bg-basket:nth-child(2)  { font-size: 120px; top: 20%; right: 5%; transform: rotate(15deg); color: rgba(0,78,220,0.03); }
+        .bg-basket:nth-child(3)  { font-size: 160px; bottom: 10%; left: 8%; transform: rotate(35deg); }
+        .bg-basket:nth-child(4)  { font-size: 90px;  bottom: 20%; right: 12%; transform: rotate(-30deg); color: rgba(0,78,220,0.03); }
+        .bg-basket:nth-child(5)  { font-size: 70px;  top: 50%; left: 40%; transform: rotate(60deg); color: rgba(0,78,220,0.025); }
+
+        /* ─── Main Layout ─── */
+        .main {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        /* ─── Brand Header ─── */
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+        .brand-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 22px;
+            background: white;
+            box-shadow: 0 2px 16px rgba(0,78,220,0.14), 0 0 0 1px rgba(0,78,220,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-icon .material-symbols-outlined {
+            font-size: 34px;
+            color: var(--primary);
+            font-variation-settings: 'FILL' 1;
+        }
+        .brand-name {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--on-surface);
+            letter-spacing: -1.5px;
+            line-height: 1;
+        }
+        .brand-sub {
+            font-size: 9.5px;
+            font-weight: 800;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(0,78,220,0.5);
+            margin-top: 2px;
+        }
+
+        /* ─── Card ─── */
+        .card {
+            width: 100%;
+            background: var(--surface-card);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border-radius: var(--radius-card);
+            border: 1px solid rgba(255,255,255,0.9);
+            box-shadow: var(--shadow-card);
+            padding: 40px 36px 36px;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .card-title {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            color: var(--on-surface);
+            margin-bottom: 6px;
+        }
+        .card-subtitle {
+            font-size: 13px;
+            color: var(--on-surface-muted);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* ─── Form ─── */
+        .form { display: flex; flex-direction: column; gap: 20px; }
+
+        .field { display: flex; flex-direction: column; gap: 7px; }
+
+        .field-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .label {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--on-surface-faint);
+        }
+
+        .forgot {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            text-decoration: none;
+            transition: opacity 0.15s;
+        }
+        .forgot:hover { opacity: 0.7; }
+
+        .input-wrap {
+            position: relative;
+        }
+        .input-icon {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 16px;
+            display: flex;
+            align-items: center;
+            pointer-events: none;
+            color: var(--on-surface-faint);
+            transition: color 0.2s;
+        }
+        .input-icon .material-symbols-outlined {
+            font-size: 18px;
+            font-variation-settings: 'FILL' 0, 'wght' 400;
+        }
+        .input-wrap:focus-within .input-icon { color: var(--primary); }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            background: var(--surface-input);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-input);
+            padding: 13px 16px 13px 46px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--on-surface);
+            outline: none;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+        }
+        input::placeholder { color: var(--on-surface-faint); font-weight: 400; }
+        input:focus {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0,78,220,0.08);
+        }
+
+        /* ─── Buttons ─── */
+        .btn-primary {
+            margin-top: 8px;
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: 11.5px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: var(--radius-btn);
+            padding: 15px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-btn);
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+        .btn-primary:hover { background: var(--primary-dim); box-shadow: 0 10px 28px rgba(0,78,220,0.32); }
+        .btn-primary:active { transform: scale(0.98); box-shadow: 0 4px 12px rgba(0,78,220,0.2); }
+        .btn-primary .material-symbols-outlined {
+            font-size: 17px;
+            font-variation-settings: 'FILL' 0, 'wght' 600;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 28px 0 0;
+            color: var(--on-surface-faint);
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .btn-secondary {
+            width: 100%;
+            background: transparent;
+            border: 1.5px solid rgba(0,78,220,0.18);
+            color: var(--primary);
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: 11.5px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: 14px;
+            padding: 14px 24px;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+        }
+        .btn-secondary:hover { background: var(--primary-light); border-color: rgba(0,78,220,0.3); }
+        .btn-secondary:active { transform: scale(0.98); }
+
+        .footer-text {
+            text-align: center;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--on-surface-faint);
+            margin-top: 24px;
+        }
+
+        /* ─── Version tag ─── */
+        .version-tag {
+            margin-top: 24px;
+            text-align: center;
+        }
+        .version-tag p {
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.2);
+        }
+
+        /* ─── Floating stats (desktop) ─── */
+        .floating-stats {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 20;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+        }
+        @media (min-width: 1024px) { .floating-stats { display: flex; } }
+
+        .stat-card {
+            background: var(--surface-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.9);
+            border-radius: 20px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 280px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+        .stat-card:hover { transform: translateY(-2px); }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .stat-icon .material-symbols-outlined {
+            font-size: 22px;
+            font-variation-settings: 'FILL' 1;
+        }
+        .stat-icon.yellow { background: #fef3c0; color: #92680a; }
+        .stat-icon.blue { background: var(--primary-light); color: var(--primary); }
+
+        .stat-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--on-surface-faint);
+            margin-bottom: 3px;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--on-surface);
+            line-height: 1;
+        }
+        .stat-value span { font-size: 12px; font-weight: 600; color: var(--on-surface-muted); }
+        .stat-value-sm {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--on-surface);
+        }
+
+        /* ─── Overlay base ─── */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(15,20,30,0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .overlay.active { display: flex; }
+
+        .modal {
+            background: var(--surface-card);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255,255,255,0.9);
+            border-radius: 28px;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.18);
+            width: 100%;
+            max-width: 360px;
+            padding: 36px 32px;
+            animation: popIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.93) translateY(8px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* ─── Location modal ─── */
+        .loc-icon-wrap {
+            width: 72px;
+            height: 72px;
+            background: var(--primary-light);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .loc-icon-wrap .material-symbols-outlined {
+            font-size: 32px;
+            color: var(--primary);
+            font-variation-settings: 'FILL' 1;
+            animation: bob 1.8s ease-in-out infinite;
+        }
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        /* ─── Tour modal ─── */
+        .tour-modal {
+            max-width: 420px;
+            padding: 0;
+            overflow: hidden;
+            border-radius: 32px;
+        }
+        .tour-slides-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+        .tour-slides {
+            display: flex;
+            transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .tour-slide {
+            width: 100%;
+            flex-shrink: 0;
+            padding: 44px 40px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0;
+        }
+        .tour-slide-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .tour-slide-icon .material-symbols-outlined {
+            font-size: 36px;
+            font-variation-settings: 'FILL' 1;
+        }
+        .tour-slide-icon.blue { background: var(--primary-light); color: var(--primary); }
+
+        .tour-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+        .tour-grid-cell {
+            aspect-ratio: 1;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .tour-grid-cell.green { background: #ecfdf5; color: #087c4e; }
+        .tour-grid-cell.yellow { background: #fffbeb; color: #92680a; }
+        .tour-grid-cell .material-symbols-outlined { font-size: 22px; }
+        .tour-grid-cell span.label { font-size: 8.5px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; }
+
+        .tour-pulse-wrap {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            margin-bottom: 24px;
+        }
+        .tour-pulse-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: rgba(0,78,220,0.15);
+            animation: pulse 2s ease-out infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .tour-pulse-core {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tour-pulse-core .material-symbols-outlined {
+            font-size: 34px;
+            color: white;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .tour-h {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--on-surface);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .tour-p {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--on-surface-muted);
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .tour-footer {
+            padding: 0 40px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .tour-dots {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .tour-dot {
+            height: 6px;
+            border-radius: 99px;
+            background: rgba(0,78,220,0.15);
+            width: 6px;
+            transition: width 0.3s, background 0.3s;
+        }
+        .tour-dot.active { background: var(--primary); width: 20px; }
+
+        .tour-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: 11.5px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 100px;
+            padding: 15px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-btn);
+            transition: background 0.2s, transform 0.15s;
+        }
+        .tour-btn:hover { background: var(--primary-dim); }
+        .tour-btn:active { transform: scale(0.98); }
+        .tour-btn .material-symbols-outlined {
+            font-size: 17px;
+            font-variation-settings: 'FILL' 0, 'wght' 600;
+        }
+
+        .tour-skip {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--on-surface-faint);
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+        .tour-skip:hover { opacity: 1; }
+
+        /* ─── Shared modal text helpers ─── */
+        .modal-title {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -0.4px;
+            color: var(--on-surface);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .modal-body {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--on-surface-muted);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+        .modal-actions { display: flex; flex-direction: column; gap: 10px; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background -->
+    <div class="bg-layer">
+        <span class="material-symbols-outlined bg-basket">shopping_basket</span>
+        <span class="material-symbols-outlined bg-basket">shopping_basket</span>
+        <span class="material-symbols-outlined bg-basket">shopping_basket</span>
+        <span class="material-symbols-outlined bg-basket">shopping_basket</span>
+        <span class="material-symbols-outlined bg-basket">shopping_basket</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main" style="position:relative;z-index:1;">
+
+        <!-- Brand -->
+        <div class="brand">
+            <div class="brand-icon">
+                <span class="material-symbols-outlined">shopping_basket</span>
+            </div>
+            <div style="text-align:center;">
+                <div class="brand-name">Hawta.ma</div>
+                <div class="brand-sub">Tanger Smart Groceries</div>
+            </div>
+        </div>
+
+        <!-- Login Card -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Connexion</h2>
+                <p class="card-subtitle">Prêt pour les meilleures affaires du jour ?</p>
+            </div>
+
+            <form class="form" onsubmit="simulateLogin(event)">
+                <!-- Email -->
+                <div class="field">
+                    <label class="label" for="email">Adresse Email</label>
+                    <div class="input-wrap">
+                        <div class="input-icon">
+                            <span class="material-symbols-outlined">mail</span>
+                        </div>
+                        <input type="email" id="email" placeholder="nom@exemple.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="field">
+                    <div class="field-row">
+                        <label class="label" for="password">Mot de passe</label>
+                        <a href="#" class="forgot">Oublié ?</a>
+                    </div>
+                    <div class="input-wrap">
+                        <div class="input-icon">
+                            <span class="material-symbols-outlined">lock</span>
+                        </div>
+                        <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Se connecter
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </form>
+
+            <div class="divider">ou</div>
+
+            <button class="btn-secondary" onclick="void(0)">Créer un compte</button>
+
+            <p class="footer-text">Nouveau sur Hawta ? Rejoignez des milliers de Tangérois.</p>
+        </div>
+
+        <div class="version-tag">
+            <p>v1.0.2 · Fait avec ❤️ pour Tanger</p>
+        </div>
+    </main>
+
+    <!-- Floating Stats -->
+    <div class="floating-stats">
+        <div class="stat-card">
+            <div class="stat-icon yellow">
+                <span class="material-symbols-outlined">trending_down</span>
+            </div>
+            <div>
+                <p class="stat-label">Économie Moyenne</p>
+                <p class="stat-value">-24% <span>/ mois</span></p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon blue">
+                <span class="material-symbols-outlined">verified_user</span>
+            </div>
+            <div>
+                <p class="stat-label">Données Sécurisées</p>
+                <p class="stat-value-sm">Chiffrement AES-256</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Modal -->
+    <div id="location-modal" class="overlay">
+        <div class="modal">
+            <div class="loc-icon-wrap">
+                <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <h3 class="modal-title">Partager votre position ?</h3>
+            <p class="modal-body">Hawta.ma accède à votre position pour identifier les meilleurs prix dans les souks et commerces de <strong>Tanger</strong> autour de vous.</p>
+            <div class="modal-actions">
+                <button class="btn-primary" onclick="confirmLocation()">
+                    Autoriser l'accès
+                    <span class="material-symbols-outlined">location_on</span>
+                </button>
+                <button class="btn-secondary" onclick="closeLocationModal()">Plus tard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Onboarding Tour -->
+    <div id="onboarding-tour" class="overlay">
+        <div class="modal tour-modal">
+            <div class="tour-slides-wrap">
+                <div class="tour-slides" id="tour-slides">
+                    <!-- Slide 1 -->
+                    <div class="tour-slide">
+                        <div class="tour-slide-icon blue">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                        </div>
+                        <h3 class="tour-h">L'IA au service de votre budget</h3>
+                        <p class="tour-p">Hawta analyse Tanger en temps réel pour vous offrir le meilleur de chaque souk et supermarché.</p>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="tour-slide">
+                        <div class="tour-grid">
+                            <div class="tour-grid-cell green">
+                                <span class="material-symbols-outlined">payments</span>
+                                <span class="label">Prix</span>
+                            </div>
+                            <div class="tour-grid-cell yellow">
+                                <span class="material-symbols-outlined">bolt</span>
+                                <span class="label">Vitesse</span>
+                            </div>
+                        </div>
+                        <h3 class="tour-h">Budget ou Rapidité ?</h3>
+                        <p class="tour-p">Prix imbattable ou rapidité maximum ? L'IA Hawta calcule le meilleur compromis pour vous.</p>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="tour-slide">
+                        <div class="tour-pulse-wrap">
+                            <div class="tour-pulse-ring"></div>
+                            <div class="tour-pulse-core">
+                                <span class="material-symbols-outlined">verified</span>
+                            </div>
+                        </div>
+                        <h3 class="tour-h">Prêt à dominer vos courses ?</h3>
+                        <p class="tour-p">Rejoignez des milliers de Tangérois qui économisent chaque jour sur Hawta.ma</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tour-footer">
+                <div class="tour-dots">
+                    <div class="tour-dot active" id="dot-0"></div>
+                    <div class="tour-dot" id="dot-1"></div>
+                    <div class="tour-dot" id="dot-2"></div>
+                </div>
+                <button class="tour-btn" id="tour-next-btn" onclick="nextTourStep()">
+                    Suivant
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <button class="tour-skip" onclick="closeTour()">Passer l'introduction</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ── Login ── */
+        function simulateLogin(e) {
+            e.preventDefault();
+            document.getElementById('location-modal').classList.add('active');
         }
         function closeLocationModal() {
-            document.getElementById('location-modal').classList.add('hidden');
-            document.getElementById('location-modal').classList.remove('flex');
+            document.getElementById('location-modal').classList.remove('active');
         }
         function confirmLocation() {
             window.location.href = 'dashboard.html';
         }
 
-        let currentTourStep = 0;
-        const totalSteps = 3;
+        /* ── Tour ── */
+        let step = 0;
+        const total = 3;
 
         function startTour() {
-            document.getElementById('onboarding-tour').classList.remove('hidden');
-            document.getElementById('onboarding-tour').classList.add('flex');
-            updateTour();
+            document.getElementById('onboarding-tour').classList.add('active');
         }
 
         function nextTourStep() {
-            if (currentTourStep < totalSteps - 1) {
-                currentTourStep++;
+            if (step < total - 1) {
+                step++;
                 updateTour();
             } else {
                 closeTour();
@@ -116,341 +837,34 @@
         }
 
         function updateTour() {
-            const container = document.getElementById('tour-slides');
-            const dots = document.querySelectorAll('.tour-dot');
-
-            container.style.transform = `translateX(-${currentTourStep * 100}%)`;
-
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('bg-primary', i === currentTourStep);
-                dot.classList.toggle('w-6', i === currentTourStep);
-                dot.classList.toggle('bg-primary/20', i !== currentTourStep);
-                dot.classList.toggle('w-2', i !== currentTourStep);
-            });
-
-            const btnText = currentTourStep === totalSteps - 1 ? 'C\'est parti !' : 'Suivant';
-            document.getElementById('tour-next-btn').innerHTML = `
-                ${btnText}
-                <span class="material-symbols-outlined font-black">${currentTourStep === totalSteps - 1 ? 'rocket_launch' : 'arrow_forward'}</span>
-            `;
+            document.getElementById('tour-slides').style.transform = `translateX(-${step * 100}%)`;
+            for (let i = 0; i < total; i++) {
+                const d = document.getElementById(`dot-${i}`);
+                d.classList.toggle('active', i === step);
+            }
+            const btn = document.getElementById('tour-next-btn');
+            const isLast = step === total - 1;
+            btn.innerHTML = isLast
+                ? `C'est parti ! <span class="material-symbols-outlined">rocket_launch</span>`
+                : `Suivant <span class="material-symbols-outlined">arrow_forward</span>`;
         }
 
         function closeTour() {
-            const tour = document.getElementById('onboarding-tour');
-            tour.classList.add('opacity-0');
+            const el = document.getElementById('onboarding-tour');
+            el.style.opacity = '0';
+            el.style.transition = 'opacity 0.25s';
             setTimeout(() => {
-                tour.classList.add('hidden');
-                tour.classList.remove('flex', 'opacity-0');
-            }, 300);
+                el.classList.remove('active');
+                el.style.opacity = '';
+                el.style.transition = '';
+                step = 0;
+                updateTour();
+            }, 250);
         }
 
-        // Auto-start tour for demo
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(startTour, 1000);
+            setTimeout(startTour, 800);
         });
     </script>
-    <style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-        }
-
-        .bg-tangier {
-            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 50%, #4a7fb5 100%);
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-        }
-
-        * {
-            font-family: 'Manrope', sans-serif;
-        }
-    </style>
-</head>
-
-<body class="bg-surface font-body text-on-surface antialiased min-h-screen overflow-y-auto">
-    <!-- Background Layer with Scattered Baskets -->
-    <div class="fixed inset-0 z-0 bg-white overflow-hidden pointer-events-none">
-        <!-- Scatetered icons -->
-        <span
-            class="material-symbols-outlined absolute text-primary/5 text-[120px] top-[10%] left-[5%] rotate-12">shopping_basket</span>
-        <span
-            class="material-symbols-outlined absolute text-primary/5 text-[80px] top-[25%] right-[10%] -rotate-12">shopping_basket</span>
-        <span
-            class="material-symbols-outlined absolute text-primary/5 text-[150px] bottom-[15%] left-[15%] rotate-45">shopping_basket</span>
-        <span
-            class="material-symbols-outlined absolute text-primary/5 text-[100px] bottom-[10%] right-[20%] -rotate-45">shopping_basket</span>
-        <span
-            class="material-symbols-outlined absolute text-primary/5 text-[60px] top-[50%] left-[40%] rotate-90">shopping_basket</span>
-        <span
-            class="material-symbols-outlined absolute text-primary/5 text-[110px] top-[15%] left-[50%] -rotate-15">shopping_basket</span>
-        <span
-            class="material-symbols-outlined absolute text-primary/5 text-[90px] bottom-[40%] right-[30%] rotate-30">shopping_basket</span>
-        <span
-            class="material-symbols-outlined absolute text-primary/3 text-[200px] top-[40%] left-[10%] -rotate-12">shopping_basket</span>
-        <span
-            class="material-symbols-outlined absolute text-primary/4 text-[130px] bottom-[5%] right-[50%] rotate-12">shopping_basket</span>
-    </div>
-
-    <!-- Main Content -->
-    <main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-12">
-        <!-- Centered Logo -->
-        <div class="mb-10 flex flex-col items-center gap-4">
-            <div
-                class="w-20 h-20 bg-primary/10 rounded-[2.5rem] flex items-center justify-center shadow-inner ring-8 ring-primary/5">
-                <span class="material-symbols-outlined text-primary text-4xl"
-                    style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
-            </div>
-            <div class="text-center">
-                <h1 class="text-4xl font-black text-slate-900 tracking-tighter font-headline" style="font-weight: 900;">
-                    Hawta.ma</h1>
-                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-primary/60 mt-1">Tanger Smart Groceries
-                </p>
-            </div>
-        </div>
-
-        <!-- Glassmorphism Login Card -->
-        <div
-            class="glass-panel w-full max-w-[440px] p-10 rounded-[2.5rem] shadow-[0_32px_80px_rgba(0,78,220,0.12)] border border-white/80">
-            <header class="mb-10 text-center">
-                <h2 class="font-headline text-3xl font-black text-on-surface mb-3 tracking-tighter">Connexion</h2>
-                <p class="text-on-surface-variant leading-relaxed text-sm">Prêt pour les meilleures affaires du jour ?
-                </p>
-            </header>
-
-            <form class="space-y-8" onsubmit="simulateLogin(event)">
-                <!-- Email Field -->
-                <div class="space-y-2">
-                    <label
-                        class="font-label text-[10px] font-black uppercase tracking-[0.15em] text-on-surface-variant ml-1"
-                        for="email">
-                        Adresse Email
-                    </label>
-                    <div class="relative group">
-                        <div
-                            class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-primary/50 group-focus-within:text-primary transition-colors">
-                            <span class="material-symbols-outlined text-[20px] font-black">mail</span>
-                        </div>
-                        <input
-                            class="w-full bg-white/40 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-4 pl-14 pr-5 text-on-surface placeholder:text-outline/30 focus:ring-4 focus:ring-primary/5 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm"
-                            id="email" placeholder="nom@exemple.com" type="email" required>
-                    </div>
-                </div>
-
-                <!-- Password Field -->
-                <div class="space-y-2">
-                    <div class="flex justify-between items-center ml-1">
-                        <label
-                            class="font-label text-[10px] font-black uppercase tracking-[0.15em] text-on-surface-variant"
-                            for="password">
-                            Mot de passe
-                        </label>
-                        <a class="text-[10px] font-black uppercase tracking-widest text-primary hover:text-primary-dim transition-colors"
-                            href="#">Oublié ?</a>
-                    </div>
-                    <div class="relative group">
-                        <div
-                            class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-primary/50 group-focus-within:text-primary transition-colors">
-                            <span class="material-symbols-outlined text-[20px] font-black">lock</span>
-                        </div>
-                        <input
-                            class="w-full bg-white/40 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-4 pl-14 pr-5 text-on-surface placeholder:text-outline/30 focus:ring-4 focus:ring-primary/5 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm"
-                            id="password" placeholder="********" type="password" required>
-                    </div>
-                </div>
-
-                <!-- Primary Action -->
-                <div class="pt-4">
-                    <button type="submit"
-                        class="w-full bg-primary text-on-primary font-headline font-black py-4 px-8 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 flex justify-center items-center gap-5 uppercase tracking-[0.2em] text-xs border-none">
-                        Se connecter
-                        <span class="material-symbols-outlined font-black">arrow_forward</span>
-                    </button>
-                </div>
-            </form>
-
-
-
-            <footer class="mt-10 text-center space-y-4">
-                <p class="text-on-surface-variant text-xs font-bold">
-                    Nouveau sur Hawta ?
-                </p>
-                <button
-                    class="w-full border-2 border-primary/20 text-primary font-headline font-black py-4 rounded-2xl hover:bg-primary/5 active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
-                    Créer un compte
-                </button>
-            </footer>
-        </div>
-
-        <div class="text-center pt-12">
-            <p class="text-xs text-slate-400 font-black uppercase tracking-widest">v1.0.2</p>
-            <p class="text-[10px] text-slate-300 mt-2 font-bold uppercase tracking-wider">Fait avec ❤️ pour Tanger</p>
-        </div>
-    </main>
-
-    <!-- Floating Stats -->
-    <div class="hidden lg:block fixed bottom-12 right-12 z-20 space-y-4">
-        <div
-            class="glass-panel p-6 rounded-2xl shadow-2xl w-80 border border-white/40 flex items-center gap-5 transition-transform hover:-translate-y-1">
-            <div
-                class="bg-secondary-fixed text-on-secondary-fixed w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner">
-                <span class="material-symbols-outlined font-black"
-                    style="font-variation-settings: 'FILL' 1;">trending_down</span>
-            </div>
-            <div>
-                <p class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant mb-1">Économie Moyenne
-                </p>
-                <p class="font-headline font-black text-3xl text-on-surface tracking-tighter">-24% <span
-                        class="text-sm font-bold">/ mois</span></p>
-            </div>
-        </div>
-        <div
-            class="glass-panel p-6 rounded-2xl shadow-2xl w-80 border border-white/40 flex items-center gap-5 transition-transform hover:-translate-y-1">
-            <div class="bg-primary/10 text-primary w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner">
-                <span class="material-symbols-outlined font-black"
-                    style="font-variation-settings: 'FILL' 1;">verified_user</span>
-            </div>
-            <div>
-                <p class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant mb-1">Données
-                    Sécurisées</p>
-                <p class="font-headline font-black text-sm text-on-surface uppercase tracking-widest">Chiffrement
-                    AES-256</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Location Warning Modal -->
-    <div id="location-modal"
-        class="hidden fixed inset-0 z-[100] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
-        <div
-            class="glass-panel w-full max-w-sm p-8 rounded-[2.5rem] shadow-2xl border border-white/40 animate-[scaleIn_0.3s_ease-out]">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="w-20 h-20 bg-primary/10 rounded-[2rem] flex items-center justify-center mb-6 shadow-inner ring-4 ring-primary/5">
-                    <span class="material-symbols-outlined text-primary text-4xl animate-bounce"
-                        style="font-variation-settings: 'FILL' 1;">location_on</span>
-                </div>
-                <h3 class="font-headline font-black text-2xl text-on-surface mb-3 tracking-tighter">Partager votre
-                    position ?</h3>
-                <p class="text-on-surface-variant leading-relaxed text-sm mb-8">Hawta.ma souhaite accéder à votre
-                    position actuelle pour identifier les meilleurs prix dans les souks et commerces de **Tanger**
-                    autour de vous.</p>
-
-                <div class="flex flex-col w-full gap-5">
-                    <button onclick="confirmLocation()"
-                        class="w-full bg-primary text-on-primary font-headline font-black py-4 rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
-                        Autoriser l'accès
-                    </button>
-                    <button onclick="closeLocationModal()"
-                        class="w-full bg-surface-container-low text-on-surface-variant font-headline font-black py-4 rounded-2xl hover:bg-surface-container-high active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
-                        Plus tard
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Onboarding Tour Overlay -->
-    <div id="onboarding-tour"
-        class="hidden fixed inset-0 z-[200] items-center justify-center p-6 bg-slate-900/60 backdrop-blur-md transition-opacity duration-300">
-        <div
-            class="glass-panel w-full max-w-[440px] rounded-[3rem] shadow-2xl border border-white/40 overflow-hidden flex flex-col animate-[scaleIn_0.3s_ease-out]">
-            <div class="relative overflow-hidden flex-grow bg-gradient-to-b from-primary/5 to-transparent">
-                <div id="tour-slides" class="flex transition-transform duration-500 ease-out h-[420px]">
-                    <!-- Slide 1 -->
-                    <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-10 text-center">
-                        <div
-                            class="w-24 h-24 bg-primary/10 rounded-[2.5rem] flex items-center justify-center mb-8 shadow-inner ring-8 ring-primary/5">
-                            <span class="material-symbols-outlined text-primary text-5xl"
-                                style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
-                        </div>
-                        <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">L'IA au
-                            service de votre budget</h3>
-                        <p class="text-on-surface-variant leading-relaxed text-sm">Fini le gaspillage. Hawta analyse
-                            Tanger en temps réel pour vous offrir le meilleur de chaque souk et supermarché.</p>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-10 text-center">
-                        <div class="grid grid-cols-3 gap-3 mb-8 w-full">
-                            <div
-                                class="aspect-square rounded-2xl bg-emerald-50 flex flex-col items-center justify-center text-emerald-600 gap-1">
-                                <span class="material-symbols-outlined text-xl font-black">payments</span>
-                                <span class="text-[8px] font-black uppercase">Prix</span>
-                            </div>
-                            <div
-                                class="aspect-square rounded-2xl bg-primary/5 flex flex-col items-center justify-center text-primary gap-1">
-                                <span class="material-symbols-outlined text-xl font-black">eco</span>
-                                <span class="text-[8px] font-black uppercase">Éco</span>
-                            </div>
-                            <div
-                                class="aspect-square rounded-2xl bg-secondary-container/20 flex flex-col items-center justify-center text-on-secondary-fixed gap-1">
-                                <span class="material-symbols-outlined text-xl font-black">bolt</span>
-                                <span class="text-[8px] font-black uppercase">Vitesse</span>
-                            </div>
-                        </div>
-                        <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">3 Chemins,
-                            un seul gagnant</h3>
-                        <p class="text-on-surface-variant leading-relaxed text-sm">Prix imbattable, itinéraire
-                            éco-responsable ou rapidité maximum ? L'IA Hawta calcule le meilleur compromis pour vous.
-                        </p>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-10 text-center">
-                        <div class="w-24 h-24 relative mb-8">
-                            <div class="absolute inset-0 bg-primary/20 rounded-full animate-ping"></div>
-                            <div
-                                class="relative w-24 h-24 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-xl">
-                                <span class="material-symbols-outlined text-4xl font-black"
-                                    style="font-variation-settings: 'FILL' 1;">verified</span>
-                            </div>
-                        </div>
-                        <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">Prêt à
-                            dominer vos courses ?</h3>
-                        <p class="text-on-surface-variant leading-relaxed text-sm">Rejoignez des milliers de Tangérois
-                            qui économisent chaque jour sur Hawta.ma</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tour Footer -->
-            <div class="p-10 pt-0 flex flex-col gap-6 items-center">
-                <!-- Dots Indicator -->
-                <div class="flex gap-2">
-                    <div class="tour-dot h-2 w-6 bg-primary rounded-full transition-all"></div>
-                    <div class="tour-dot h-2 w-2 bg-primary/20 rounded-full transition-all"></div>
-                    <div class="tour-dot h-2 w-2 bg-primary/20 rounded-full transition-all"></div>
-                </div>
-
-                <button id="tour-next-btn" onclick="nextTourStep()"
-                    class="w-full bg-primary text-on-primary font-headline font-black py-4 px-8 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 flex justify-center items-center gap-5 uppercase tracking-[0.2em] text-sm border-none">
-                    Suivant
-                    <span class="material-symbols-outlined font-black">arrow_forward</span>
-                </button>
-
-                <button onclick="closeTour()"
-                    class="text-on-surface-variant text-[10px] font-black uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity">Passer
-                    l'introduction</button>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-    </style>
 </body>
-
 </html>

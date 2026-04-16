@@ -113,9 +113,19 @@
         .nav-item:active {
             transform: scale(0.9);
         }
+        /* Sub-view Transitions */
+        .sub-view {
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+        }
+        .sub-view.active {
+            transform: translateY(0);
+            visibility: visible;
+        }
     </style>
 </head>
-<body class="bg-surface text-on-surface min-h-screen pb-32">
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen pb-32">
     <!-- TopAppBar -->
     <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(44,47,48,0.08)]">
         <div class="flex justify-between items-center px-6 py-3.5 w-full">
@@ -135,7 +145,7 @@
         </div>
     </header>
 
-    <main class="pt-24 px-6 space-y-8">
+    <main class="pt-24 px-6 space-y-8 max-w-md mx-auto">
         <!-- Welcome Section -->
         <section class="space-y-2">
             <h1 class="font-headline font-black text-4xl tracking-tighter text-on-surface">Salut Fatima 👋</h1>
@@ -224,7 +234,7 @@
             </div>
             <div class="flex gap-5 overflow-x-auto pb-6 -mx-6 px-6 no-scrollbar snap-x">
                 <!-- Deal 1 -->
-                <div class="snap-start min-w-[220px] bg-white rounded-2xl overflow-hidden group shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:-translate-y-1">
+                <div onclick="openDealDetails('Tomates Bio 1kg', 'Souk Msala', '6', '9.50', 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=800&h=600&fit=crop', '-38%')" class="snap-start min-w-[220px] bg-white rounded-2xl overflow-hidden group shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:-translate-y-1 cursor-pointer active:scale-95">
                     <div class="h-36 w-full bg-slate-100 relative overflow-hidden">
                         <img alt="tomatoes" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop">
                         <div class="absolute top-3 left-3 bg-error text-white text-[9px] font-black px-2.5 py-1 rounded-full shadow-lg uppercase tracking-tighter">
@@ -241,7 +251,7 @@
                     </div>
                 </div>
                 <!-- Deal 2 -->
-                <div class="snap-start min-w-[220px] bg-white rounded-2xl overflow-hidden group shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:-translate-y-1">
+                <div onclick="openDealDetails('Poulet Entier', 'Aswak Assalam', '42', '55', 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&h=600&fit=crop', 'PROMO')" class="snap-start min-w-[220px] bg-white rounded-2xl overflow-hidden group shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:-translate-y-1 cursor-pointer active:scale-95">
                     <div class="h-36 w-full bg-slate-100 relative overflow-hidden">
                         <img alt="chicken" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop">
                         <div class="absolute top-3 left-3 bg-secondary text-on-secondary-fixed text-[9px] font-black px-2.5 py-1 rounded-full shadow-lg uppercase tracking-tighter">
@@ -258,7 +268,7 @@
                     </div>
                 </div>
                 <!-- Deal 3 -->
-                <div class="snap-start min-w-[220px] bg-white rounded-2xl overflow-hidden group shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:-translate-y-1">
+                <div onclick="openDealDetails('Lait 2L', 'Marjane', '14', '17.50', 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=800&h=600&fit=crop', 'TOP')" class="snap-start min-w-[220px] bg-white rounded-2xl overflow-hidden group shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:-translate-y-1 cursor-pointer active:scale-95">
                     <div class="h-36 w-full bg-slate-100 relative overflow-hidden">
                         <img alt="milk" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=300&fit=crop">
                         <div class="absolute top-3 left-3 bg-primary text-white text-[9px] font-black px-2.5 py-1 rounded-full shadow-lg uppercase tracking-tighter">
@@ -279,7 +289,7 @@
     </main>
 
     <!-- Actions FAB -->
-    <div class="fixed bottom-32 right-8 flex flex-col gap-6 z-40">
+    <div class="fixed bottom-32 right-6 flex flex-col gap-5 z-40">
         <!-- New Deal -->
         <a href="scanner.html" class="bg-secondary-container text-on-secondary-fixed flex items-center gap-5 px-8 py-4 rounded-full shadow-xl shadow-secondary/20 active:scale-95 transition-all hover:-translate-y-1">
             <span class="material-symbols-outlined font-black">add_a_photo</span>
@@ -333,39 +343,130 @@
 
         </div>
     </nav>
-    <!-- Budget Management Modal -->
-    <div id="budget-modal" class="hidden fixed inset-0 z-[200] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
-        <div class="bg-white/90 backdrop-blur-2xl w-full max-w-sm p-8 rounded-[2.5rem] shadow-2xl animate-[scaleIn_0.3s_ease-out]">
-            <div class="flex flex-col items-center text-center">
-                <div class="w-20 h-20 bg-primary/10 rounded-[2rem] flex items-center justify-center mb-6 shadow-inner ring-4 ring-primary/5">
-                    <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
-                </div>
-                <h3 class="font-headline font-black text-2xl text-on-surface mb-2 tracking-tighter">Votre Budget Mensuel</h3>
-                <p class="text-on-surface-variant leading-relaxed text-xs mb-8 uppercase tracking-widest font-bold">Définissez votre limite de dépenses</p>
-                
-                <div class="w-full space-y-4 mb-8">
-                    <div class="relative group">
-                        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-primary/50 group-focus-within:text-primary transition-colors">
-                            <span class="material-symbols-outlined font-black">payments</span>
-                        </div>
-                        <input id="budget-input" type="number" value="2500" class="w-full bg-slate-50 border-none rounded-2xl py-5 pl-14 pr-16 text-2xl font-black text-on-surface focus:ring-4 focus:ring-primary/5 transition-all shadow-inner" placeholder="Ex: 3000">
-                        <div class="absolute inset-y-0 right-5 flex items-center pointer-events-none text-slate-400 font-black">
-                            DH
-                        </div>
-                    </div>
-                    <p class="text-[10px] text-on-surface-variant font-medium text-left px-2">Actuellement : <span class="font-black">1,240 DH</span> déjà dépensés ce mois-ci.</p>
-                </div>
+    </div>
 
-                <div class="flex flex-col w-full gap-4">
-                    <button onclick="saveBudget()" class="w-full bg-primary text-on-primary font-headline font-black py-5.5 px-8 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm border-none">
-                        Enregistrer
-                    </button>
-                    <button onclick="closeBudgetModal()" class="w-full bg-surface-container-low text-on-surface-variant font-headline font-black py-5.5 px-8 rounded-full hover:bg-surface-container-high active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm border-none">
-                        Annuler
-                    </button>
+    <!-- Recipe Detail Sub-view -->
+    <div id="recipe-view" class="sub-view fixed inset-0 z-[200] bg-surface flex flex-col">
+        <header class="bg-white/90 backdrop-blur-xl px-6 py-6 flex items-center gap-4 border-b border-slate-100">
+            <button onclick="closeSubView('recipe-view')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 text-on-surface-variant active:scale-95 transition-all">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h2 class="font-headline font-black text-xl tracking-tighter">Recette Optimisée</h2>
+        </header>
+        <main class="flex-grow overflow-y-auto p-6 space-y-8 no-scrollbar bg-slate-50 pb-32">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-100">
+                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&h=400&fit=crop">
+                <div class="p-6">
+                    <h3 class="font-headline font-black text-2xl tracking-tighter mb-2">Salade de Couscous aux Légumes</h3>
+                    <div class="flex gap-2">
+                        <span class="bg-primary/10 text-primary text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Économique</span>
+                        <span class="bg-secondary/10 text-secondary text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">15 Min</span>
+                    </div>
                 </div>
             </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs font-black uppercase tracking-[0.2em] text-on-surface-variant px-1">Ingrédients en promotion utilisés</h4>
+                <div class="bg-white rounded-2xl divide-y divide-slate-100 border border-slate-100 overflow-hidden shadow-lg">
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-emerald-500">check_circle</span>
+                            <span class="font-black text-sm text-on-surface">Tomates Bio (Souk Msala)</span>
+                        </div>
+                        <span class="text-primary font-black text-xs">-38%</span>
+                    </div>
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-emerald-500">check_circle</span>
+                            <span class="font-black text-sm text-on-surface">Oignons Rouges (Marjane)</span>
+                        </div>
+                        <span class="text-primary font-black text-xs">-15%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs font-black uppercase tracking-[0.2em] text-on-surface-variant px-1">Instructions</h4>
+                <p class="text-on-surface-variant text-sm leading-relaxed px-1">
+                    1. Coupez les tomates et oignons en petits dés.<br>
+                    2. Mélangez avec le couscous déjà cuit.<br>
+                    3. Ajoutez un filet d'huile d'olive (actuellement à -15% chez Bim).<br>
+                    4. Servez frais.
+                </p>
+            </div>
+            
+            <div class="bg-primary/5 p-6 rounded-2xl border border-primary/20 flex items-center justify-between">
+                <div>
+                    <p class="text-[9px] font-black text-primary uppercase tracking-widest mb-1">Coût par personne</p>
+                    <p class="font-headline font-black text-2xl text-primary">8.50 DH</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-[9px] font-black text-emerald-600 uppercase tracking-widest mb-1">Économie</p>
+                    <p class="font-headline font-black text-xl text-emerald-600">-22%</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Deal Detail Sub-view -->
+    <div id="deal-view" class="sub-view fixed inset-0 z-[200] bg-surface flex flex-col">
+        <div class="relative h-2/5 w-full">
+            <img id="deal-img" class="w-full h-full object-cover" src="">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/40 to-transparent"></div>
+            <button onclick="closeSubView('deal-view')" class="absolute top-6 left-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white active:scale-95 transition-all">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <div class="absolute bottom-6 left-6">
+                <span id="deal-badge" class="bg-error text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-lg uppercase tracking-widest"></span>
+            </div>
         </div>
+        <main class="flex-grow bg-white -mt-8 rounded-t-[2.5rem] relative z-20 p-8 space-y-8 overflow-y-auto no-scrollbar">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h2 id="deal-title" class="font-headline font-black text-3xl tracking-tighter text-on-surface mb-1"></h2>
+                    <p id="deal-location" class="text-primary font-black uppercase tracking-widest text-xs flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">location_on</span>
+                    </p>
+                </div>
+                <div class="bg-primary/5 p-4 rounded-2xl text-right">
+                    <p id="deal-price" class="font-headline font-black text-4xl text-primary tracking-tighter leading-none"></p>
+                    <p id="deal-old-price" class="text-xs text-on-surface-variant line-through opacity-50 mt-1"></p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 group hover:border-primary transition-all cursor-pointer">
+                    <p class="text-[9px] font-black text-on-surface-variant uppercase tracking-widest mb-1">Disponibilité</p>
+                    <p class="font-black text-sm text-emerald-600 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                        En Stock
+                    </p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 group hover:border-primary transition-all cursor-pointer">
+                    <p class="text-[9px] font-black text-on-surface-variant uppercase tracking-widest mb-1">Validité</p>
+                    <p class="font-black text-sm text-on-surface flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">schedule</span>
+                        48h restantes
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="font-headline font-black text-xl tracking-tight">À propos de cette offre</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">Cette offre a été partagée par la communauté Hawta. Les prix peuvent varier selon les stocks disponibles en magasin. N'oubliez pas de scanner votre ticket pour gagner des points !</p>
+            </div>
+
+            <div class="pt-4 flex flex-col gap-4">
+                <button class="w-full bg-primary text-on-primary font-black py-5.5 rounded-full shadow-xl shadow-primary/20 active:scale-95 transition-all text-sm uppercase tracking-widest flex items-center justify-center gap-3">
+                    <span class="material-symbols-outlined">map</span>
+                    Y ALLER MAINTENANT
+                </button>
+                <button class="w-full bg-white text-on-surface border-2 border-slate-100 font-black py-5.5 rounded-full active:scale-95 transition-all text-sm uppercase tracking-widest flex items-center justify-center gap-3">
+                    <span class="material-symbols-outlined">share</span>
+                    PARTAGER
+                </button>
+            </div>
+        </main>
     </div>
 
     <style>
@@ -378,6 +479,29 @@
     <script>
         let currentBudget = 2500;
         let currentSpent = 1240;
+
+        function openDealDetails(title, loc, price, oldPrice, imgUrl, badge) {
+            const view = document.getElementById('deal-view');
+            document.getElementById('deal-title').textContent = title;
+            document.getElementById('deal-location').innerHTML = `<span class="material-symbols-outlined text-sm">location_on</span>${loc}`;
+            document.getElementById('deal-price').innerHTML = `${price}<span class="text-lg">DH</span>`;
+            document.getElementById('deal-old-price').textContent = `${oldPrice} DH`;
+            document.getElementById('deal-img').src = imgUrl;
+            document.getElementById('deal-badge').textContent = badge;
+
+            view.classList.add('active');
+        }
+
+        function openRedemption() {
+            // Recipe as a placeholder for smart recommendation
+            const view = document.getElementById('recipe-view');
+            view.classList.add('active');
+        }
+
+        function closeSubView(id) {
+            const view = document.getElementById(id);
+            view.classList.remove('active');
+        }
 
         function openBudgetModal() {
             document.getElementById('budget-modal').classList.remove('hidden');
@@ -412,14 +536,9 @@
             // Percentage
             document.getElementById('budget-percent').textContent = percent + '%';
             
-            // Circular progress simulation
-            // In a real circular bar using conic-gradient or SVG dashoffset
-            // Here we adjust the rotation or the gradient
             const progress = document.getElementById('budget-progress');
-            // Mocking rotation change to simulate gauge fill
             const color = percent > 90 ? '#b41340' : (percent > 75 ? '#695c00' : '#004edc');
             progress.style.borderColor = color;
-            // Simplified: in a real app would update the conic-gradient
         }
     </script>
 </body>
