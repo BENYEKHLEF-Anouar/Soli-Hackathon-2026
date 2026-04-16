@@ -68,26 +68,6 @@ Les utilisateurs partagent des promos en anonyme → l’IA vérifie et valide �
 - Utilisation exclusive de Firebase Auth (aucun partage de compte ni de données sensibles)
 ---
 
-## **Charte Graphique Globale**
-
-**Mode principal** : **Dark Mode** (fond très sombre / noir)  
-**Couleurs principales** :
-- **Accent principal (highlight)** : Jaune vif / doré (#FFD700 ou similaire au jaune de l’image) → pour les cartes "Meilleur prix", deals chauds, badges
-- **Accent secondaire** : Bleu (#3B82F6 ou bleu électrique comme dans l’image) → pour alertes, sections secondaires
-- **Texte principal** : Blanc / gris clair sur fond sombre
-- **Vert Hawta (économie)** : `#00B86E` (gardé pour les économies et notes éco)
-- **Orange promo** : `#FF6B00`
-- **Rouge alertes** : `#E63939`
-
-**Polices** :
-- Titres : Poppins Bold ou Cairo Bold (texte très bold et moderne)
-- Texte : Noto Sans Arabic + Poppins (clean et lisible)
-
-**Style général** :  
-Modern Dark UI + cartes avec coins arrondis + glassmorphism léger + ombres subtiles + icônes stylisées marocaines (souk, tagine, carte Tanger).  
-Mettre en avant les éléments importants avec des cartes jaunes comme dans l’image (ex. : meilleure option en jaune).
-
----
 
 ## **Écrans de l’Application**
 
