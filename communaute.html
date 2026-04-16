@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communauté | Hawta.ma</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: "#695c00",
+                        "on-error-container": "#510017",
+                        "surface-container-high": "#e0e3e4",
+                        "tertiary-fixed": "#ffffff",
+                        surface: "#f5f6f7",
+                        outline: "#757778",
+                        "on-surface": "#2c2f30",
+                        error: "#b41340",
+                        "on-primary-fixed-variant": "#002572",
+                        "on-primary": "#f1f2ff",
+                        "surface-bright": "#f5f6f7",
+                        "inverse-primary": "#658aff",
+                        "outline-variant": "#abadae",
+                        "on-secondary-container": "#5c5000",
+                        "error-dim": "#a70138",
+                        "on-tertiary-container": "#636262",
+                        "secondary-fixed": "#f9e04c",
+                        "on-secondary-fixed": "#473e00",
+                        "on-primary-container": "#001c5e",
+                        "surface-container-highest": "#dadddf",
+                        primary: "#004edc",
+                        "surface-container-low": "#eff1f2",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "secondary-container": "#f9e04c",
+                        "on-secondary": "#fff3c0",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#0c0f10",
+                        tertiary: "#5c5b5b",
+                        "on-surface-variant": "#595c5d",
+                        "surface-variant": "#dadddf",
+                        "on-tertiary": "#f5f2f1",
+                        "secondary-dim": "#5b5000",
+                        "primary-container": "#7e9cff",
+                        "secondary-fixed-dim": "#ead23f",
+                        "on-error": "#ffefef",
+                        "error-container": "#f74b6d",
+                        "tertiary-container": "#ffffff",
+                        "on-background": "#2c2f30",
+                        "primary-dim": "#0043c1",
+                        "on-primary-fixed": "#000000",
+                        background: "#f5f6f7",
+                        "on-secondary-fixed-variant": "#675a00",
+                        "surface-container": "#e6e8ea"
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "2rem",
+                        xl: "3rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Manrope"],
+                        body: ["Manrope"],
+                        label: ["Manrope"],
+                        sans: ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        * {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(44,47,48,0.08)]">
+        <div class="flex justify-between items-center px-6 py-3.5 w-full">
+            <a href="dashboard.html" class="flex items-center gap-2.5 group">
+                <span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                <span class="text-2xl font-black text-slate-900 tracking-tighter font-headline" style="font-weight: 900;">Hawta.ma</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="alertes.html" class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-primary/10 transition-all text-primary relative active:scale-95">
+                    <span class="material-symbols-outlined text-2xl">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-error rounded-full border-2 border-white animate-pulse"></span>
+                </a>
+                <a href="profil.html" class="w-11 h-11 rounded-full overflow-hidden border-2 border-primary-container hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                    <img alt="User Profile" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-32 px-6">
+        <!-- Hero Stats -->
+        <!-- Hero Stats -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-br from-primary to-primary-dim p-8 rounded-2xl relative overflow-hidden shadow-xl border border-white/20">
+                <div class="absolute -top-10 -right-10 w-48 h-48 bg-white/20 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 right-0 p-4 opacity-10">
+                    <span class="material-symbols-outlined text-[10rem]">workspace_premium</span>
+                </div>
+                <div class="relative z-10">
+                    <p class="text-on-primary/70 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Votre Classement</p>
+                    <div class="flex items-baseline gap-2 mb-8">
+                        <span class="text-6xl font-black text-on-primary font-headline tracking-tighter">#12</span>
+                        <span class="text-on-primary/80 font-bold text-lg">sur 4,280</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full flex items-center gap-2 border border-white/10 shadow-sm">
+                            <span class="material-symbols-outlined text-secondary-fixed text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+                            <span class="text-on-primary font-black">14,250 <span class="text-[10px] font-bold opacity-70 uppercase tracking-widest ml-1">pts</span></span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full flex items-center gap-2 border border-white/10 shadow-sm">
+                            <span class="material-symbols-outlined text-green-400 text-xl font-bold">trending_up</span>
+                            <span class="text-on-primary font-black">+12%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <nav class="flex gap-2 mb-10 p-1.5 bg-white/50 backdrop-blur-md rounded-2xl border border-white/40 shadow-inner">
+            <button onclick="switchTab('leaderboard')" id="tab-leaderboard" class="tab-btn flex-1 py-3 px-6 rounded-xl text-white font-black text-[10px] bg-primary shadow-lg shadow-primary/20 transition-all uppercase tracking-widest">
+                Classement
+            </button>
+            <button onclick="switchTab('deals')" id="tab-deals" class="tab-btn flex-1 py-3 px-6 rounded-xl text-on-surface-variant font-black text-[10px] hover:bg-white/50 transition-all uppercase tracking-widest">
+                Mes Deals
+            </button>
+        </nav>
+
+        <!-- Badges Section -->
+        <section class="mb-14">
+            <div class="flex justify-between items-end mb-6 px-2">
+                <h2 class="text-xs font-black uppercase tracking-[0.2em] text-on-surface-variant">Badges Débloqués</h2>
+                <button class="text-primary text-xs font-black uppercase tracking-widest hover:underline">Tout voir</button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/40 flex flex-col items-center text-center hover:shadow-2xl transition-all border border-white cursor-pointer active:scale-95 group">
+                    <div class="w-16 h-16 bg-secondary-container/20 rounded-2xl flex items-center justify-center mb-4 shadow-inner border border-secondary-container/10 group-hover:bg-secondary-container/40 transition-colors">
+                        <span class="material-symbols-outlined text-on-secondary-container text-4xl font-black" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+                    </div>
+                    <p class="font-black text-[11px] uppercase tracking-widest leading-tight mb-1">Roi du Souk Msala</p>
+                    <span class="text-[9px] text-primary font-black uppercase tracking-widest opacity-60">Niveau 4</span>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/40 flex flex-col items-center text-center hover:shadow-2xl transition-all border border-white cursor-pointer active:scale-95 group">
+                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-4 shadow-inner border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-4xl font-black" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                    </div>
+                    <p class="font-black text-[11px] uppercase tracking-widest leading-tight mb-1">Chasseur Éclair</p>
+                    <span class="text-[9px] text-primary font-black uppercase tracking-widest opacity-60">Niveau 2</span>
+                </div>
+                <div class="col-span-2 bg-inverse-surface p-6 rounded-2xl flex items-center justify-between hover:opacity-95 transition-all cursor-pointer shadow-xl shadow-inverse-surface/20 active:scale-95">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/10">
+                            <span class="material-symbols-outlined text-white text-2xl">lock</span>
+                        </div>
+                        <div>
+                            <p class="text-white font-black text-sm tracking-tight">Prochain Badge</p>
+                            <p class="text-white/60 text-[10px] font-bold uppercase tracking-widest">Maître Négociateur</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-secondary-fixed font-black text-lg leading-none">85%</p>
+                        <div class="w-20 h-1.5 bg-white/10 rounded-full mt-2 overflow-hidden">
+                            <div class="w-[85%] h-full bg-secondary-fixed rounded-full shadow-[0_0_8px_rgba(249,224,76,0.5)]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard Content -->
+        <div id="content-leaderboard" class="tab-content">
+            <section>
+                <div class="flex items-center gap-3 mb-6 px-2">
+                    <div class="w-1 h-6 bg-primary rounded-full"></div>
+                    <h2 class="text-lg font-black tracking-tight">Top Chasseurs de Tanger</h2>
+                </div>
+                <div class="space-y-4">
+                    <!-- Leader 1 -->
+                    <div class="bg-white p-5 rounded-2xl flex items-center justify-between shadow-lg shadow-slate-200/40 border border-slate-50 hover:shadow-xl transition-all">
+                        <div class="flex items-center gap-4">
+                            <div class="relative">
+                                <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-secondary-fixed shadow-md">
+                                    <img alt="rank 1" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face">
+                                </div>
+                                <div class="absolute -top-1.5 -right-1.5 w-7 h-7 bg-secondary-fixed text-on-secondary-fixed rounded-xl flex items-center justify-center border-2 border-white shadow-md">
+                                    <span class="text-xs font-black">1</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="font-black text-sm">Sarah Bendris</p>
+                                <p class="text-[9px] text-on-surface-variant font-black uppercase tracking-widest opacity-60">Expert Tanger</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-black text-primary text-xl tracking-tighter">28,450</p>
+                            <p class="text-[8px] uppercase text-on-surface-variant font-black tracking-widest">Hawta Pts</p>
+                        </div>
+                    </div>
+                    <!-- Leader 2 -->
+                    <div class="bg-white p-5 rounded-2xl flex items-center justify-between shadow-lg shadow-slate-200/40 border border-slate-50 hover:shadow-xl transition-all">
+                        <div class="flex items-center gap-4">
+                            <div class="relative">
+                                <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-slate-100 shadow-md">
+                                    <img alt="rank 2" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face">
+                                </div>
+                                <div class="absolute -top-1.5 -right-1.5 w-7 h-7 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center border-2 border-white shadow-md">
+                                    <span class="text-xs font-black">2</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="font-black text-sm">Mehdi Alami</p>
+                                <p class="text-[9px] text-on-surface-variant font-black uppercase tracking-widest opacity-60">Dénicheur Casa</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-black text-primary text-xl tracking-tighter">26,120</p>
+                            <p class="text-[8px] uppercase text-on-surface-variant font-black tracking-widest">Hawta Pts</p>
+                        </div>
+                    </div>
+                    <!-- Current User -->
+                    <div class="bg-primary/5 border-2 border-primary/20 p-5 rounded-2xl flex items-center justify-between shadow-2xl shadow-primary/10 transition-transform hover:scale-[1.01]">
+                        <div class="flex items-center gap-4">
+                            <div class="relative">
+                                <div class="w-14 h-14 rounded-2xl overflow-hidden border-4 border-primary shadow-lg">
+                                    <img alt="current user" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face">
+                                </div>
+                                <div class="absolute -top-2 -right-2 w-8 h-8 bg-primary text-white rounded-xl flex items-center justify-center border-2 border-white shadow-md">
+                                    <span class="text-xs font-black">12</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="font-black text-sm">Fatima Zohra <span class="text-[10px] opacity-40 ml-1">(Moi)</span></p>
+                                <p class="text-[9px] text-primary font-black uppercase tracking-widest">Héros Local</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-black text-primary text-2xl tracking-tighter">14,250</p>
+                            <p class="text-[8px] uppercase text-on-surface-variant font-black tracking-widest">Hawta Pts</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- My Deals Content (Hidden by default) -->
+        <div id="content-deals" class="tab-content hidden">
+            <section class="space-y-6">
+                <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-white/40 hover:shadow-md transition-all">
+                    <div class="flex gap-5">
+                        <div class="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 shadow-inner">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=200&h=200&fit=crop">
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="font-black text-on-surface tracking-tight">Tomates Bio</h4>
+                                <span class="text-emerald-600 font-black">5.50 DH</span>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Souk Msala • il y a 2h</p>
+                            <div class="mt-4 flex items-center gap-2">
+                                <span class="text-[10px] font-black bg-secondary-container/50 px-3 py-1 rounded-full text-on-secondary-container border border-secondary-container/20">+10 pts</span>
+                                <span class="text-[10px] text-on-surface-variant font-bold ml-auto italic"> Utilisé 24 fois</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-white/40 hover:shadow-md transition-all">
+                    <div class="flex gap-5">
+                        <div class="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 shadow-inner">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=200&h=200&fit=crop">
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="font-black text-on-surface tracking-tight">Lait 2L</h4>
+                                <span class="text-emerald-600 font-black">14 DH</span>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Marjane • hier</p>
+                            <div class="mt-4 flex items-center gap-2">
+                                <span class="text-[10px] font-black bg-secondary-container/50 px-3 py-1 rounded-full text-on-secondary-container border border-secondary-container/20">+25 pts</span>
+                                <span class="text-[10px] text-on-surface-variant font-bold ml-auto italic"> Utilisé 156 fois</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="scanner.html" class="block w-full py-5.5 bg-primary text-on-primary text-center rounded-full font-black shadow-xl shadow-primary/20 active:scale-95 transition-all flex items-center justify-center gap-3 hover:opacity-95 uppercase tracking-widest text-sm">
+                    <span class="material-symbols-outlined font-black">add_circle</span>
+                    Partager un deal
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Standardized Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-8 pt-2 pointer-events-none">
+        <div class="max-w-lg mx-auto bg-white/80 backdrop-blur-2xl rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/20 flex justify-around items-center px-3 py-3 pointer-events-auto">
+            <!-- Home -->
+            <a href="dashboard.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 text-slate-400 hover:text-primary hover:bg-primary/5">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'opsz' 24;">home</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Accueil</span>
+            </a>
+            <!-- List -->
+            <a href="liste.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 text-slate-400 hover:text-primary hover:bg-primary/5">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'opsz' 24;">format_list_bulleted</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Listes</span>
+            </a>
+            <!-- Map -->
+            <a href="carte.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 text-slate-400 hover:text-primary hover:bg-primary/5">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'opsz' 24;">map</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Carte</span>
+            </a>
+            <!-- Community -->
+            <a href="communaute.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 bg-primary text-white shadow-lg shadow-primary/30">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'opsz' 24;">group</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Communauté</span>
+            </a>
+            <!-- Profile -->
+            <a href="profil.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 text-slate-400 hover:text-primary hover:bg-primary/5">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'opsz' 24;">person</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Profil</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        function switchTab(tab) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                btn.classList.add('text-on-surface-variant');
+            });
+            document.getElementById('tab-' + tab).classList.add('bg-primary', 'text-white', 'shadow-md');
+            document.getElementById('tab-' + tab).classList.remove('text-on-surface-variant');
+
+            // Show/hide content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById('content-' + tab).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

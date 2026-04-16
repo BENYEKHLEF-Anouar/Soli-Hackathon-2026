@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | Hawta.ma</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: "#695c00",
+                        "inverse-on-surface": "#9b9d9e",
+                        "surface-dim": "#d1d5d7",
+                        primary: "#004edc",
+                        "on-error-container": "#510017",
+                        "surface-container-high": "#e0e3e4",
+                        "tertiary-fixed": "#ffffff",
+                        surface: "#f5f6f7",
+                        outline: "#757778",
+                        "on-surface": "#2c2f30",
+                        error: "#b41340",
+                        "on-primary-fixed-variant": "#002572",
+                        "on-primary": "#f1f2ff",
+                        "tertiary-dim": "#504f4f",
+                        "surface-bright": "#f5f6f7",
+                        "inverse-primary": "#658aff",
+                        "outline-variant": "#abadae",
+                        "on-secondary-container": "#5c5000",
+                        "error-dim": "#a70138",
+                        "on-tertiary-container": "#636262",
+                        "secondary-fixed": "#f9e04c",
+                        "on-secondary-fixed": "#473e00",
+                        "on-primary-container": "#001c5e",
+                        "surface-container-highest": "#dadddf",
+                        "surface-tint": "#004edc",
+                        "primary-fixed": "#7e9cff",
+                        "surface-container-low": "#eff1f2",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "secondary-container": "#f9e04c",
+                        "on-secondary": "#fff3c0",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#0c0f10",
+                        tertiary: "#5c5b5b",
+                        "on-surface-variant": "#595c5d",
+                        "surface-variant": "#dadddf",
+                        "on-tertiary": "#f5f2f1",
+                        "secondary-dim": "#5b5000",
+                        "primary-container": "#7e9cff",
+                        "secondary-fixed-dim": "#ead23f",
+                        "on-error": "#ffefef",
+                        "error-container": "#f74b6d",
+                        "tertiary-container": "#ffffff",
+                        "on-background": "#2c2f30",
+                        "primary-dim": "#0043c1",
+                        "on-primary-fixed": "#000000",
+                        "background": "#f5f6f7",
+                        "on-secondary-fixed-variant": "#675a00",
+                        "surface-container": "#e6e8ea"
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "2rem",
+                        xl: "3rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Manrope"],
+                        body: ["Manrope"],
+                        label: ["Manrope"],
+                        sans: ["Manrope"]
+                    },
+                    spacing: {
+                        '4.5': '1.125rem',
+                        '5.5': '1.375rem',
+                    }
+                }
+            }
+        }
+        function simulateLogin(event) {
+            event.preventDefault();
+            document.getElementById('location-modal').classList.remove('hidden');
+            document.getElementById('location-modal').classList.add('flex');
+        }
+        function closeLocationModal() {
+            document.getElementById('location-modal').classList.add('hidden');
+            document.getElementById('location-modal').classList.remove('flex');
+        }
+        function confirmLocation() {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .bg-tangier {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 50%, #4a7fb5 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        * {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen overflow-y-auto">
+    <!-- Background Layer with Scattered Baskets -->
+    <div class="fixed inset-0 z-0 bg-white overflow-hidden pointer-events-none">
+        <!-- Scatetered icons -->
+        <span class="material-symbols-outlined absolute text-primary/5 text-[120px] top-[10%] left-[5%] rotate-12">shopping_basket</span>
+        <span class="material-symbols-outlined absolute text-primary/5 text-[80px] top-[25%] right-[10%] -rotate-12">shopping_basket</span>
+        <span class="material-symbols-outlined absolute text-primary/5 text-[150px] bottom-[15%] left-[15%] rotate-45">shopping_basket</span>
+        <span class="material-symbols-outlined absolute text-primary/5 text-[100px] bottom-[10%] right-[20%] -rotate-45">shopping_basket</span>
+        <span class="material-symbols-outlined absolute text-primary/5 text-[60px] top-[50%] left-[40%] rotate-90">shopping_basket</span>
+        <span class="material-symbols-outlined absolute text-primary/5 text-[110px] top-[15%] left-[50%] -rotate-15">shopping_basket</span>
+        <span class="material-symbols-outlined absolute text-primary/5 text-[90px] bottom-[40%] right-[30%] rotate-30">shopping_basket</span>
+        <span class="material-symbols-outlined absolute text-primary/3 text-[200px] top-[40%] left-[10%] -rotate-12">shopping_basket</span>
+        <span class="material-symbols-outlined absolute text-primary/4 text-[130px] bottom-[5%] right-[50%] rotate-12">shopping_basket</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-12">
+        <!-- Centered Logo -->
+        <div class="mb-10 flex flex-col items-center gap-4">
+            <div class="w-20 h-20 bg-primary/10 rounded-[2.5rem] flex items-center justify-center shadow-inner ring-8 ring-primary/5">
+                <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+            </div>
+            <div class="text-center">
+                <h1 class="text-4xl font-black text-slate-900 tracking-tighter font-headline" style="font-weight: 900;">Hawta.ma</h1>
+                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-primary/60 mt-1">Tanger Smart Groceries</p>
+            </div>
+        </div>
+
+        <!-- Glassmorphism Login Card -->
+        <div class="glass-panel w-full max-w-[440px] p-10 rounded-[2.5rem] shadow-[0_32px_80px_rgba(0,78,220,0.12)] border border-white/80">
+            <header class="mb-10 text-center">
+                <h2 class="font-headline text-3xl font-black text-on-surface mb-3 tracking-tighter">Connexion</h2>
+                <p class="text-on-surface-variant leading-relaxed text-sm">Prêt pour les meilleures affaires du jour ?</p>
+            </header>
+            
+            <form class="space-y-8" onsubmit="simulateLogin(event)">
+                <!-- Email Field -->
+                <div class="space-y-2">
+                    <label class="font-label text-[10px] font-black uppercase tracking-[0.15em] text-on-surface-variant ml-1" for="email">
+                        Adresse Email
+                    </label>
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-primary/50 group-focus-within:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-[20px] font-black">mail</span>
+                        </div>
+                        <input class="w-full bg-white/40 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-5.5 pl-14 pr-5 text-on-surface placeholder:text-outline/30 focus:ring-4 focus:ring-primary/5 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm" id="email" placeholder="nom@exemple.com" type="email" required>
+                    </div>
+                </div>
+                
+                <!-- Password Field -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center ml-1">
+                        <label class="font-label text-[10px] font-black uppercase tracking-[0.15em] text-on-surface-variant" for="password">
+                            Mot de passe
+                        </label>
+                        <a class="text-[10px] font-black uppercase tracking-widest text-primary hover:text-primary-dim transition-colors" href="#">Oublié ?</a>
+                    </div>
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-primary/50 group-focus-within:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-[20px] font-black">lock</span>
+                        </div>
+                        <input class="w-full bg-white/40 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-5.5 pl-14 pr-5 text-on-surface placeholder:text-outline/30 focus:ring-4 focus:ring-primary/5 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm" id="password" placeholder="********" type="password" required>
+                    </div>
+                </div>
+                
+                <!-- Primary Action -->
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-primary text-on-primary font-headline font-black py-5.5 px-8 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 flex justify-center items-center gap-5 uppercase tracking-[0.2em] text-sm border-none">
+                        Se connecter
+                        <span class="material-symbols-outlined font-black">arrow_forward</span>
+                    </button>
+                </div>
+            </form>
+            
+
+            
+            <footer class="mt-10 text-center space-y-4">
+                <p class="text-on-surface-variant text-xs font-bold">
+                    Nouveau sur Hawta ? 
+                </p>
+                <button class="w-full border-2 border-primary/20 text-primary font-headline font-black py-5.5 rounded-2xl hover:bg-primary/5 active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
+                    Créer un compte
+                </button>
+            </footer>
+        </div>
+        
+        <div class="text-center pt-12">
+            <p class="text-xs text-slate-400 font-black uppercase tracking-widest">v1.0.2</p>
+            <p class="text-[10px] text-slate-300 mt-2 font-bold uppercase tracking-wider">Fait avec ❤️ pour Tanger</p>
+        </div>
+    </main>
+    
+    <!-- Floating Stats -->
+    <div class="hidden lg:block fixed bottom-12 right-12 z-20 space-y-4">
+        <div class="glass-panel p-6 rounded-2xl shadow-2xl w-80 border border-white/40 flex items-center gap-5 transition-transform hover:-translate-y-1">
+            <div class="bg-secondary-fixed text-on-secondary-fixed w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner">
+                <span class="material-symbols-outlined font-black" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+            </div>
+            <div>
+                <p class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant mb-1">Économie Moyenne</p>
+                <p class="font-headline font-black text-3xl text-on-surface tracking-tighter">-24% <span class="text-sm font-bold">/ mois</span></p>
+            </div>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl shadow-2xl w-80 border border-white/40 flex items-center gap-5 transition-transform hover:-translate-y-1">
+            <div class="bg-primary/10 text-primary w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner">
+                <span class="material-symbols-outlined font-black" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+            </div>
+            <div>
+                <p class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant mb-1">Données Sécurisées</p>
+                <p class="font-headline font-black text-sm text-on-surface uppercase tracking-widest">Chiffrement AES-256</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Warning Modal -->
+    <div id="location-modal" class="hidden fixed inset-0 z-[100] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+        <div class="glass-panel w-full max-w-sm p-8 rounded-[2.5rem] shadow-2xl border border-white/40 animate-[scaleIn_0.3s_ease-out]">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-20 h-20 bg-primary/10 rounded-[2rem] flex items-center justify-center mb-6 shadow-inner ring-4 ring-primary/5">
+                    <span class="material-symbols-outlined text-primary text-4xl animate-bounce" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                </div>
+                <h3 class="font-headline font-black text-2xl text-on-surface mb-3 tracking-tighter">Partager votre position ?</h3>
+                <p class="text-on-surface-variant leading-relaxed text-sm mb-8">Hawta.ma souhaite accéder à votre position actuelle pour identifier les meilleurs prix dans les souks et commerces de **Tanger** autour de vous.</p>
+                
+                <div class="flex flex-col w-full gap-5">
+                    <button onclick="confirmLocation()" class="w-full bg-primary text-on-primary font-headline font-black py-5.5 rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
+                        Autoriser l'accès
+                    </button>
+                    <button onclick="closeLocationModal()" class="w-full bg-surface-container-low text-on-surface-variant font-headline font-black py-5.5 rounded-2xl hover:bg-surface-container-high active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
+                        Plus tard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats Optimisation | Hawta.ma</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: "#695c00",
+                        "on-error-container": "#510017",
+                        "surface-container-high": "#e0e3e4",
+                        "tertiary-fixed": "#ffffff",
+                        surface: "#f5f6f7",
+                        outline: "#757778",
+                        "on-surface": "#2c2f30",
+                        error: "#b41340",
+                        "on-primary-fixed-variant": "#002572",
+                        "on-primary": "#f1f2ff",
+                        "surface-bright": "#f5f6f7",
+                        "inverse-primary": "#658aff",
+                        "outline-variant": "#abadae",
+                        "on-secondary-container": "#5c5000",
+                        "error-dim": "#a70138",
+                        "on-tertiary-container": "#636262",
+                        "secondary-fixed": "#f9e04c",
+                        "on-secondary-fixed": "#473e00",
+                        "on-primary-container": "#001c5e",
+                        "surface-container-highest": "#dadddf",
+                        primary: "#004edc",
+                        "surface-container-low": "#eff1f2",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "secondary-container": "#f9e04c",
+                        "on-secondary": "#fff3c0",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#0c0f10",
+                        tertiary: "#5c5b5b",
+                        "on-surface-variant": "#595c5d",
+                        "surface-variant": "#dadddf",
+                        "on-tertiary": "#f5f2f1",
+                        "secondary-dim": "#5b5000",
+                        "primary-container": "#7e9cff",
+                        "secondary-fixed-dim": "#ead23f",
+                        "on-error": "#ffefef",
+                        "error-container": "#f74b6d",
+                        "tertiary-container": "#ffffff",
+                        "on-background": "#2c2f30",
+                        "primary-dim": "#0043c1",
+                        "on-primary-fixed": "#000000",
+                        background: "#f5f6f7",
+                        "on-secondary-fixed-variant": "#675a00",
+                        "surface-container": "#e6e8ea"
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "2rem",
+                        xl: "3rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Manrope"],
+                        body: ["Manrope"],
+                        label: ["Manrope"],
+                        sans: ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        * {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(44,47,48,0.08)]">
+        <div class="flex justify-between items-center px-6 py-3.5 w-full">
+            <a href="dashboard.html" class="flex items-center gap-2.5 group">
+                <span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                <span class="text-2xl font-black text-slate-900 tracking-tighter font-headline" style="font-weight: 900;">Hawta.ma</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="alertes.html" class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-primary/10 transition-all text-primary relative active:scale-95">
+                    <span class="material-symbols-outlined text-2xl">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-error rounded-full border-2 border-white animate-pulse"></span>
+                </a>
+                <a href="profil.html" class="w-11 h-11 rounded-full overflow-hidden border-2 border-primary-container hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                    <img alt="User Profile" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="px-6 pt-24 max-w-md mx-auto">
+        <!-- Hero Section -->
+        <div class="mb-12">
+            <h1 class="font-headline font-black text-4xl leading-tight tracking-tighter text-on-surface mb-3">
+                Résultats <br> <span class="text-primary">Optimisés</span>
+            </h1>
+            <p class="text-on-surface-variant font-black uppercase tracking-widest text-[10px] opacity-60 leading-relaxed">L'IA a analysé 142 combinaisons pour vos courses à Tanger.</p>
+        </div>
+
+        <!-- Loading Animation (shown briefly) -->
+        <div id="loading" class="mb-8 text-center transition-all duration-500">
+            <div class="inline-flex items-center gap-3 bg-primary/5 px-6 py-3 rounded-full border border-primary/10 shadow-sm">
+                <span class="material-symbols-outlined text-primary animate-spin text-xl">sync</span>
+                <span class="text-sm text-primary font-bold tracking-tight">Optimisation en cours...</span>
+            </div>
+        </div>
+
+        <!-- Comparison Cards -->
+        <div id="results" class="flex flex-col gap-6 hidden">
+            <!-- Option C: Hawta (Recommended) -->
+            <div class="bg-secondary-container p-8 rounded-[2rem] shadow-xl shadow-secondary-fixed/20 relative overflow-hidden transform scale-105 z-10 border-none">
+                <div class="absolute top-0 right-0 p-5">
+                    <span class="bg-on-secondary-fixed text-secondary-fixed text-[9px] px-3 py-1 rounded-full font-black uppercase tracking-[0.2em] shadow-sm">Recommandée</span>
+                </div>
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <span class="text-on-secondary-container text-[10px] px-2 py-1 rounded-sm font-bold tracking-widest uppercase opacity-70">Option C</span>
+                        <h3 class="text-3xl font-black text-on-secondary-container mt-2">Hawta</h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-3xl font-black text-on-secondary-container">187 <span class="text-xl">DH</span></span>
+                        <p class="text-[10px] text-on-secondary-container/70 font-bold uppercase tracking-widest">Total Estimé</p>
+                    </div>
+                </div>
+                <!-- Savings Badge -->
+                <div class="bg-on-secondary-fixed/20 rounded-2xl p-4 mb-6 flex items-center gap-3 border border-on-secondary-fixed/10">
+                    <span class="material-symbols-outlined text-on-secondary-container text-2xl">savings</span>
+                    <span class="text-sm font-extrabold text-on-secondary-container">Économisez <span class="text-xl">58 DH</span> (23%)</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-white/40 backdrop-blur-md flex items-center justify-center text-on-secondary-container shadow-inner">
+                            <span class="material-symbols-outlined font-bold">bolt</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-on-secondary-container/70 uppercase font-black tracking-tighter">Vitesse</p>
+                            <p class="text-base font-black text-on-secondary-container">Optimale</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-white/40 backdrop-blur-md flex items-center justify-center text-on-secondary-container shadow-inner">
+                            <span class="material-symbols-outlined font-bold" style="font-variation-settings: 'FILL' 1;">forest</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-on-secondary-container/70 uppercase font-black tracking-tighter">Eco-score</p>
+                            <p class="text-base font-black text-on-secondary-container tracking-tighter">Excellent</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Route -->
+                <div class="mb-8 space-y-3">
+                    <div class="flex items-center gap-3 opacity-60">
+                        <span class="material-symbols-outlined text-on-secondary-container">location_on</span>
+                        <div class="flex-1 h-[2px] bg-on-secondary-container/20 rounded-full"></div>
+                        <span class="material-symbols-outlined text-on-secondary-container">local_mall</span>
+                        <div class="flex-1 h-[2px] bg-on-secondary-container/20 rounded-full"></div>
+                        <span class="material-symbols-outlined text-on-secondary-container">shopping_basket</span>
+                    </div>
+                    <p class="text-[11px] text-on-secondary-container font-bold text-center tracking-tight">Souk Msala → Laquinta</p>
+                </div>
+                <button onclick="selectOption('hawta')" class="w-full py-5 bg-on-secondary-container text-secondary-fixed font-black text-lg rounded-full shadow-2xl transition-all active:scale-95 flex items-center justify-center gap-3 hover:opacity-95">
+                    Choisir ce plan
+                    <span class="material-symbols-outlined font-black">arrow_forward</span>
+                </button>
+            </div>
+
+            <!-- Option A: Confort -->
+            <div class="bg-surface-container-lowest p-6 rounded-2xl transition-all border border-white/40 shadow-sm hover:shadow-md">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <span class="bg-surface-container text-on-surface-variant text-[10px] px-2 py-1 rounded-sm font-bold tracking-widest uppercase">Option A</span>
+                        <h3 class="text-2xl font-black mt-2 tracking-tight">Confort</h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-black text-on-surface">245 <span class="text-lg">DH</span></span>
+                        <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Total Estimé</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined font-bold">schedule</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-on-surface-variant uppercase font-black tracking-tighter">Temps</p>
+                            <p class="text-sm font-bold">15 min</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600">
+                            <span class="material-symbols-outlined font-bold">eco</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-on-surface-variant uppercase font-black tracking-tighter">Eco-score</p>
+                            <p class="text-sm font-bold">Bon</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-on-surface-variant mb-6 font-medium">Marjane Tanger City Mall uniquement</p>
+                <button onclick="selectOption('confort')" class="w-full py-4 bg-surface-container-high text-on-surface font-black rounded-full transition-all active:scale-95 hover:bg-surface-container">
+                    Choisir Confort
+                </button>
+            </div>
+
+            <!-- Option B: Équilibre -->
+            <div class="bg-surface-container-lowest p-6 rounded-2xl transition-all border border-white/40 shadow-sm hover:shadow-md">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <span class="bg-surface-container text-on-surface-variant text-[10px] px-2 py-1 rounded-sm font-bold tracking-widest uppercase">Option B</span>
+                        <h3 class="text-2xl font-black mt-2 tracking-tight">Équilibre</h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-black text-on-surface">210 <span class="text-lg">DH</span></span>
+                        <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Total Estimé</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined font-bold">directions_walk</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-on-surface-variant uppercase font-black tracking-tighter">Trajet</p>
+                            <p class="text-sm font-bold">2 arrêts</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
+                            <span class="material-symbols-outlined font-bold">eco</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-on-surface-variant uppercase font-black tracking-tighter">Eco-score</p>
+                            <p class="text-sm font-bold">Très bon</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-on-surface-variant mb-6 font-medium">Marjane + Souk Msala</p>
+                <button onclick="selectOption('equilibre')" class="w-full py-4 bg-surface-container-high text-on-surface font-black rounded-full transition-all active:scale-95 hover:bg-surface-container">
+                    Choisir Équilibre
+                </button>
+            </div>
+        </div>
+
+        <!-- Recipe Recommendation -->
+        <div class="mt-12 mb-12 bg-white/50 backdrop-blur-md rounded-2xl p-6 border border-white/40 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined font-bold">restaurant</span>
+                </div>
+                <h4 class="font-black tracking-tight">Suggestion de recette</h4>
+            </div>
+            <p class="text-sm text-on-surface-variant mb-4 leading-relaxed">Avec vos articles, préparez un <span class="text-primary font-black">tajine au poulet</span> pour 4 personnes !</p>
+            <button class="text-primary text-sm font-black hover:underline uppercase tracking-widest flex items-center gap-1">
+                Voir la recette
+                <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Standardized Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-8 pt-2 pointer-events-none">
+        <div class="max-w-lg mx-auto bg-white/80 backdrop-blur-2xl rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/20 flex justify-around items-center px-3 py-3 pointer-events-auto">
+            <!-- Home -->
+            <a href="dashboard.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 text-slate-400 hover:text-primary hover:bg-primary/5">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'opsz' 24;">home</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Accueil</span>
+            </a>
+            <!-- List -->
+            <a href="liste.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 bg-primary text-white shadow-lg shadow-primary/30">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'opsz' 24;">format_list_bulleted</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Listes</span>
+            </a>
+            <!-- Map -->
+            <a href="carte.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 text-slate-400 hover:text-primary hover:bg-primary/5">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'opsz' 24;">map</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Carte</span>
+            </a>
+            <!-- Community -->
+            <a href="communaute.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 text-slate-400 hover:text-primary hover:bg-primary/5">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'opsz' 24;">group</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Communauté</span>
+            </a>
+            <!-- Profile -->
+            <a href="profil.html" class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300 active:scale-90 text-slate-400 hover:text-primary hover:bg-primary/5">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'opsz' 24;">person</span>
+                <span class="text-[9px] font-bold uppercase tracking-tighter mt-1">Profil</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Simulate loading then show results
+        setTimeout(() => {
+            const loading = document.getElementById('loading');
+            loading.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                document.getElementById('results').classList.remove('hidden');
+                document.getElementById('results').classList.add('animate-in', 'fade-in', 'slide-in-from-bottom-5', 'duration-700');
+            }, 500);
+        }, 1500);
+
+        function selectOption(option) {
+            const names = { hawta: 'Hawta (Recommandée)', confort: 'Confort', equilibre: 'Équilibre' };
+            alert(`Option "${names[option]}" sélectionnée ! Votre itinéraire est prêt.`);
+            // window.location.href = 'carte.html';
+        }
+    </script>
+</body>
+</html>
