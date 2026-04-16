@@ -2,7 +2,7 @@
 **Hackathon 2026**  
 **Date** : 16 avril 2026  
 
-**Objectif** : Application mobile qui aide les Tangérois à faire leurs courses au prix le plus bas en combinant **IA + communauté + données locales** (supermarchés + souks + livraison).
+**Objectif** : Application qui aide les Tangérois à faire leurs courses au prix le plus bas en combinant **IA + communauté + données locales** (supermarchés + souks).
 
 ## 1. Concept (Pitch 30 secondes)
 
@@ -23,18 +23,16 @@ Les utilisateurs partagent des promos en anonyme → l’IA vérifie et valide �
 - Reconnaissance vocale naturelle pour dicter sa liste (“jbed 2l halib, 1kg maticha, 3 boites thon, 5kg riz”)
 - Comparaison intelligente et actualisée en temps réel des prix chez :
   - Grandes surfaces : Marjane Tanger City Mall, Aswak Assalam Malabata, Carrefour Market, Sabrine
-  - Service de livraison : Laquinta (livraison gratuite au-dessus de 150 DH)
   - Souks locaux : Marché Msala, Grand Souk / Grand Socco, Marché Central
 - L’IA propose **exactement 3 meilleures options** classées selon :
   - Prix total le plus bas
   - Temps de déplacement estimé
   - Note « éco » (prise en compte distance, impact carbone et fraîcheur des produits)
-- Adaptation selon le profil : Famille de 5, Célibataire, Étudiant, etc.
 - Prise en compte du jour de la semaine, de l’heure actuelle et du quartier de l’utilisateur
 
 ### Fonctionnalité 2 : Carte des deals en temps réel (Killer Feature)
 - Carte interactive full-screen de Tanger (utilisant Leaflet ou Google Maps en dark mode)
-- Filtres par quartier et par catégorie (chips horizontaux : Tous | Souks | Supermarchés | Livraison | Promos du jour)
+- Filtres par quartier et par catégorie (chips horizontaux : Tous | Souks | Supermarchés | Promos du jour)
 - Épingles dynamiques et colorées :
   - Rouge = Promo très chaude (moins d’1 heure)
   - Vert = Meilleur prix du moment
@@ -55,7 +53,7 @@ Les utilisateurs partagent des promos en anonyme → l’IA vérifie et valide �
   - +50 points si le deal est le plus utilisé de la semaine
   - +100 points pour le “Deal du mois”
 - Leaderboard compétitif : Top Chasseurs de Tanger (classement global + classements par quartier)
-- Badges locaux et valorisants : « Roi du Souk Msala », « Maître de Malabata », « Éco-chasseur Ibn Battouta », « Livraison Master Laquinta »
+- Badges locaux et valorisants : « Roi du Souk Msala », « Maître de Malabata », « Éco-chasseur Ibn Battouta »
 - Tout reste individuel : pas de partage de données personnelles entre utilisateurs
 
 ### Fonctionnalités bonus
@@ -113,7 +111,6 @@ Mettre en avant les éléments importants avec des cartes jaunes comme dans l’
 - Jauge circulaire “Budget avril” : 1240 DH / 2500 DH (vert → orange selon remplissage)
 - Section “Deals chauds aujourd’hui” → 3 cartes horizontales scrollables :
   - Tomates 1kg → 6 DH (souk Msala) → badge “-38%”
-  - Lait Laquinta → 17 DH (livraison gratuite)
   - Poulet entier → 42 DH (Aswak)
 - Carte interactive miniature (Tanger) avec 4 épingles
 - Gros bouton flottant central : **+ Nouvelle liste de courses** (vert + icône panier)
@@ -135,7 +132,7 @@ Mettre en avant les éléments importants avec des cartes jaunes comme dans l’
 **Carte Option 1 (Meilleure)** :
 - Badge “Meilleur prix global” (vert)
 - Prix total : **214 DH** (économie -47 DH)
-- Itinéraire : Souk Msala → Laquinta (livraison)
+- Itinéraire : Souk Msala → Laquinta 
 - Temps estimé : 35 min
 - Note éco : ★★★★☆
 - Bouton “Choisir cet itinéraire”
@@ -144,7 +141,7 @@ Mettre en avant les éléments importants avec des cartes jaunes comme dans l’
 ### **Écran 3 : Carte des deals (Killer Feature)**
 - Full screen map (Leaflet/Google)
 - Filtres en haut (chips horizontaux) :
-  - Tous | Souks | Supermarchés | Livraison | Promos du jour
+  - Tous | Souks | Supermarchés | Promos du jour
 - Épingles personnalisées :
   - Rouge = Promo très chaude (< 1h)
   - Vert = Meilleur prix
@@ -165,7 +162,6 @@ Mettre en avant les éléments importants avec des cartes jaunes comme dans l’
 - Liste chronologique avec icônes :
   - ↑ Lait +12% cette semaine (rouge)
   - Tomates à 6 DH au souk Msala (vert)
-  - Laquinta offre livraison gratuite aujourd’hui
 - Bouton “Gérer mes alertes” → choix de produits + quartiers + seuil de variation
 
 ### **Écran 6 : Profil**
@@ -186,7 +182,6 @@ Mettre en avant les éléments importants avec des cartes jaunes comme dans l’
   - Prix total
   - Magasins & ordre
   - Temps total
-  - Coût livraison
   - Note éco
   - Économie vs moyenne
 - Bouton “Simuler économies” (animation avant/après)
