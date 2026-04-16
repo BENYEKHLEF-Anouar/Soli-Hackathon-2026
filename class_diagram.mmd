@@ -1,0 +1,164 @@
+classDiagram
+    direction TB
+
+    class Utilisateur {
+        +Integer id
+        +String nom
+        +String email
+        +String mot_de_passe
+        +String langue_preference
+        +Integer niveau
+        +Integer points_xp
+        +Decimal economies_totales
+        +DateTime created_at
+    }
+
+    class Quartier {
+        +Integer id
+        +String nom
+        +String ville
+    }
+
+    class Produit {
+        +Integer id
+        +String nom_commun
+        +String categorie
+        +String unite
+        +String image_miniature
+        +Decimal prix_moyen
+        +DateTime derniere_mise_a_jour
+    }
+
+    class Magasin {
+        +Integer id
+        +String nom
+        +String type
+        +Float latitude
+        +Float longitude
+        +String horaires_ouverture
+        +Float score_fiabilite
+    }
+
+    class ListeCourses {
+        +Integer id
+        +String titre
+        +DateTime created_at
+        +String statut
+    }
+
+    class Item {
+        +Integer id
+        +Decimal quantite
+        +String unite
+        +String marque_preferee
+        +Boolean est_achete
+    }
+
+    class ResultatOptimisation {
+        +Integer id
+        +Decimal prix_total
+        +Decimal economies
+        +Integer score_eco
+        +Integer temps_estime_minutes
+        +DateTime created_at
+    }
+
+    class OptionOptimisation {
+        +Integer id
+        +Integer rang
+        +Decimal prix_total
+        +String description_itineraire
+        +Integer score_eco
+        +Integer temps_estime_minutes
+        +Decimal economies
+    }
+
+    class EntreePrix {
+        +Integer id
+        +Decimal prix
+        +String unite
+        +DateTime timestamp
+        +Boolean est_valide
+        +String source
+    }
+
+    class Deal {
+        +Integer id
+        +Decimal prix
+        +String titre
+        +String description
+        +String image_url
+        +Float score_validation
+        +String statut
+        +DateTime created_at
+    }
+
+    class ScanTicket {
+        +Integer id
+        +String image_url
+        +String texte_extrait
+        +String statut
+        +DateTime created_at
+    }
+
+    class Badge {
+        +Integer id
+        +String nom
+        +String description
+        +String niveau
+        +String icone_url
+    }
+
+    class TransactionPoints {
+        +Integer id
+        +Integer montant
+        +String raison
+        +DateTime created_at
+    }
+
+    class Notification {
+        +Integer id
+        +String type
+        +String message
+        +DateTime created_at
+        +Boolean lue
+    }
+
+    %% ==================== RELATIONS ====================
+
+    Utilisateur "1" --> "*" ListeCourses : cree
+    Utilisateur "1" --> "1" Quartier : habite_dans
+    Utilisateur "1" --> "*" Deal : partage
+    Utilisateur "1" --> "*" ScanTicket : effectue
+    Utilisateur "1" --> "*" TransactionPoints : gagne
+    Utilisateur "1" --> "*" Badge : debloque
+    Utilisateur "1" --> "*" Notification : recoit
+
+    ListeCourses "1" --> "*" Item : contient
+    Item "1" --> "1" Produit : concerne
+
+    ListeCourses "1" --> "1" ResultatOptimisation : genere
+    ResultatOptimisation "1" --> "*" OptionOptimisation : propose
+
+    OptionOptimisation "1" --> "*" Magasin : utilise
+
+    Magasin "1" --> "1" Quartier : situe_dans
+
+    Produit "1" <-- "*" EntreePrix : enregistre_prix
+    Magasin "1" --> "*" EntreePrix : fournit_prix
+
+    Deal "1" --> "1" Produit : concerne
+    Deal "1" --> "1" Magasin : se_deroule_a
+    Deal "1" --> "1" Utilisateur : soumis_par
+    ScanTicket "1" --> "*" Deal : genere
+
+    %% ==================== NOTES ====================
+
+    note for OptionOptimisation "Top 3 options générées par l'IA (meilleur prix / temps / localisation)"
+    note for Deal "Deals communautaires validés automatiquement par l'IA"
+    note for ResultatOptimisation "Résultat global d'une optimisation de liste de courses"
+
+    %% Commentaires supplémentaires
+    %% Magasin.type : "Supermarche" | "Souk" | "Marche"
+    %% ListeCourses.statut : "active" | "terminee" | "optimisee"
+    %% Deal.statut : "en_attente" | "valide" | "rejete"
