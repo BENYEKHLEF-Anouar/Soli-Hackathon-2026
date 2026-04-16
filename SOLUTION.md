@@ -1,4 +1,4 @@
-# **Hawta.com**  
+# **Hawta.ma**  
 **Hackathon 2026**  
 **Date** : 16 avril 2026  
 
@@ -6,7 +6,7 @@
 
 ## 1. Concept (Pitch 30 secondes)
 
-**Hawta.com - Tanger** transforme les courses en jeu collectif intelligent :  
+**Hawta.ma - Tanger** transforme les courses en jeu collectif intelligent :  
 
 Tu listes tes produits, l’IA te dit **exactement** où acheter aujourd’hui à Tanger (Marjane, Aswak, Carrefour, Sabrine, Laquinta, souks…) pour payer le moins cher.  
 
@@ -74,7 +74,7 @@ Les utilisateurs partagent des promos en anonyme → l’IA vérifie et valide �
 ### **Écran 0 : Login / Register (Onboarding)**
 **Détails visuels :**
 - Fond : Photo aérienne floutée de Tanger (baie + Médina + mer) avec overlay sombre 40%
-- Logo Hawta.com centré en haut (texte blanc + petit tagine stylisé vert)
+- Logo Hawta.ma centré en haut (texte blanc + petit tagine stylisé vert)
 - Carte Tanger miniature en arrière-plan très transparente
 - Formulaire centré dans une carte blanche avec coins arrondis (glassmorphism)
 - Champs : Email + Mot de passe + “Confirmer mot de passe” (register)
