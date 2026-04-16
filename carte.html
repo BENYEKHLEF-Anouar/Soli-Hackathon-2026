@@ -140,10 +140,10 @@
         </div>
         <!-- Filter Chips -->
         <div class="px-6 pb-4 flex gap-2 overflow-x-auto no-scrollbar">
-            <button onclick="filterDeals('all')" class="filter-btn active bg-primary text-white px-5 py-2.5 rounded-xl text-[10px] font-black whitespace-nowrap shadow-lg shadow-primary/20 uppercase tracking-widest transition-all">Tous</button>
-            <button onclick="filterDeals('souk')" class="filter-btn bg-white text-on-surface px-5 py-2.5 rounded-xl text-[10px] font-black whitespace-nowrap border border-slate-200 shadow-sm uppercase tracking-widest transition-all">Souks</button>
-            <button onclick="filterDeals('super')" class="filter-btn bg-white text-on-surface px-5 py-2.5 rounded-xl text-[10px] font-black whitespace-nowrap border border-slate-200 shadow-sm uppercase tracking-widest transition-all">Supermarchés</button>
-            <button onclick="filterDeals('promo')" class="filter-btn bg-white text-on-surface px-5 py-2.5 rounded-xl text-[10px] font-black whitespace-nowrap border border-slate-200 shadow-sm uppercase tracking-widest transition-all">Promos</button>
+            <button onclick="filterDeals('all', this)" class="filter-btn bg-primary text-white px-5 py-2.5 rounded-xl text-[10px] font-black whitespace-nowrap shadow-lg shadow-primary/20 uppercase tracking-widest transition-all">Tous</button>
+            <button onclick="filterDeals('souk', this)" class="filter-btn bg-white text-on-surface px-5 py-2.5 rounded-xl text-[10px] font-black whitespace-nowrap border border-slate-200 shadow-sm uppercase tracking-widest transition-all">Souks</button>
+            <button onclick="filterDeals('super', this)" class="filter-btn bg-white text-on-surface px-5 py-2.5 rounded-xl text-[10px] font-black whitespace-nowrap border border-slate-200 shadow-sm uppercase tracking-widest transition-all">Supermarchés</button>
+            <button onclick="filterDeals('promo', this)" class="filter-btn bg-white text-on-surface px-5 py-2.5 rounded-xl text-[10px] font-black whitespace-nowrap border border-slate-200 shadow-sm uppercase tracking-widest transition-all">Promos</button>
         </div>
     </header>
 
@@ -354,14 +354,19 @@
         });
 
         // Filter function
-        function filterDeals(type) {
+        function filterDeals(type, btn) {
             // Update button styles
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white', 'shadow-md');
-                btn.classList.add('bg-surface-container-lowest', 'text-on-surface');
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                // Reset all to inactive state
+                b.classList.remove('bg-primary', 'text-white', 'shadow-lg', 'shadow-primary/20');
+                b.classList.add('bg-white', 'text-on-surface', 'border', 'border-slate-200', 'shadow-sm');
             });
-            event.target.classList.remove('bg-surface-container-lowest', 'text-on-surface');
-            event.target.classList.add('bg-primary', 'text-white', 'shadow-md');
+
+            // Set clicked button to active state
+            if (btn) {
+                btn.classList.remove('bg-white', 'text-on-surface', 'border', 'border-slate-200', 'shadow-sm');
+                btn.classList.add('bg-primary', 'text-white', 'shadow-lg', 'shadow-primary/20');
+            }
 
             // Filter markers
             markers.forEach((marker, index) => {
