@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord | Hawta.ma</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: "#695c00",
+                        "inverse-on-surface": "#9b9d9e",
+                        "surface-dim": "#d1d5d7",
+                        primary: "#004edc",
+                        "on-error-container": "#510017",
+                        "surface-container-high": "#e0e3e4",
+                        "tertiary-fixed": "#ffffff",
+                        surface: "#f5f6f7",
+                        outline: "#757778",
+                        "on-surface": "#2c2f30",
+                        error: "#b41340",
+                        "on-primary-fixed-variant": "#002572",
+                        "on-primary": "#f1f2ff",
+                        "tertiary-dim": "#504f4f",
+                        "surface-bright": "#f5f6f7",
+                        "inverse-primary": "#658aff",
+                        "outline-variant": "#abadae",
+                        "on-secondary-container": "#5c5000",
+                        "error-dim": "#a70138",
+                        "on-tertiary-container": "#636262",
+                        "secondary-fixed": "#f9e04c",
+                        "on-secondary-fixed": "#473e00",
+                        "on-primary-container": "#001c5e",
+                        "surface-container-highest": "#dadddf",
+                        "surface-tint": "#004edc",
+                        "primary-fixed": "#7e9cff",
+                        "surface-container-low": "#eff1f2",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "secondary-container": "#f9e04c",
+                        "on-secondary": "#fff3c0",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#0c0f10",
+                        tertiary: "#5c5b5b",
+                        "on-surface-variant": "#595c5d",
+                        "surface-variant": "#dadddf",
+                        "on-tertiary": "#f5f2f1",
+                        "secondary-dim": "#5b5000",
+                        "primary-container": "#7e9cff",
+                        "secondary-fixed-dim": "#ead23f",
+                        "on-error": "#ffefef",
+                        "error-container": "#f74b6d",
+                        "tertiary-container": "#ffffff",
+                        "on-background": "#2c2f30",
+                        "primary-dim": "#0043c1",
+                        "on-primary-fixed": "#000000",
+                        background: "#f5f6f7",
+                        "on-secondary-fixed-variant": "#675a00",
+                        "surface-container": "#e6e8ea"
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "2rem",
+                        xl: "3rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Manrope"],
+                        body: ["Manrope"],
+                        label: ["Manrope"],
+                        sans: ["Manrope"]
+                    },
+                    spacing: {
+                        '4.5': '1.125rem',
+                        '5.5': '1.375rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        * {
+            font-family: 'Manrope', sans-serif;
+        }
+        .circular-progress {
+            background: conic-gradient(#004edc 177deg, #eff1f2 0deg);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .nav-active {
+            color: #004edc !important;
+        }
+        .nav-active .indicator {
+            width: 12px;
+            opacity: 1;
+        }
+        .nav-item:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(44,47,48,0.08)]">
+        <div class="flex justify-between items-center px-6 py-3.5 w-full">
+            <a href="dashboard.html" class="flex items-center gap-2.5 group">
+                <span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                <span class="text-2xl font-black text-slate-900 tracking-tighter font-headline" style="font-weight: 900;">Hawta.ma</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="alertes.html" class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-primary/10 transition-all text-primary relative active:scale-95">
+                    <span class="material-symbols-outlined text-2xl">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-error rounded-full border-2 border-white animate-pulse"></span>
+                </a>
+                <a href="profil.html" class="w-11 h-11 rounded-full overflow-hidden border-2 border-primary-container hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                    <img alt="User Profile" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 px-6 space-y-8">
+        <!-- Welcome Section -->
+        <section class="space-y-2">
+            <h1 class="font-headline font-black text-4xl tracking-tighter text-on-surface">Salut Fatima 👋</h1>
+            <div class="flex items-center gap-2 text-primary font-black uppercase tracking-widest text-[10px]">
+                <span class="material-symbols-outlined text-sm font-black">location_on</span>
+                <p>Malabata, Tanger</p>
+            </div>
+        </section>
+
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Budget Card -->
+            <div class="bg-white/80 backdrop-blur-2xl p-8 rounded-2xl shadow-xl shadow-slate-200/40 border border-white flex flex-col items-center justify-center text-center space-y-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4">
+                    <button onclick="openBudgetModal()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/5 text-primary hover:bg-primary/10 transition-all active:scale-90 shadow-sm">
+                        <span class="material-symbols-outlined font-black">edit</span>
+                    </button>
+                </div>
+                <div class="w-full text-left">
+                    <h3 class="font-headline font-black text-xs uppercase tracking-widest text-on-surface-variant">Budget d'Avril</h3>
+                </div>
+                <div class="relative w-48 h-48 flex items-center justify-center">
+                    <div class="absolute inset-0 rounded-full border-[12px] border-slate-100"></div>
+                    <div id="budget-progress" class="absolute inset-0 rounded-full border-[12px] border-primary border-t-transparent border-l-transparent rotate-45 transition-all duration-1000"></div>
+                    <div class="flex flex-col items-center justify-center">
+                        <span id="budget-percent" class="font-headline font-black text-5xl text-primary tracking-tighter">49%</span>
+                        <span class="font-black text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">Utilisé</span>
+                    </div>
+                </div>
+                <div class="flex gap-4 w-full">
+                    <div class="flex-1 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <p class="font-black text-[9px] text-on-surface-variant uppercase tracking-widest mb-1">Dépensé</p>
+                        <p class="font-headline font-black text-xl text-on-surface"><span id="spent-amount">1,240</span> <span class="text-xs">DH</span></p>
+                    </div>
+                    <div class="flex-1 bg-primary/5 p-4 rounded-xl border border-primary/10">
+                        <p class="font-black text-[9px] text-primary uppercase tracking-widest mb-1">Restant</p>
+                        <p class="font-headline font-black text-xl text-primary"><span id="remaining-amount">1,260</span> <span class="text-xs">DH</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings Card -->
+            <div class="bg-primary p-8 rounded-2xl text-on-primary flex flex-col justify-between overflow-hidden relative shadow-xl shadow-primary/20 transition-transform hover:scale-[1.02]">
+                <div class="absolute -right-8 -top-8 w-48 h-48 bg-white/20 rounded-full blur-3xl"></div>
+                <div class="z-10">
+                    <div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-8 border border-white/20">
+                        <span class="material-symbols-outlined text-on-primary font-black text-3xl">trending_down</span>
+                    </div>
+                    <h3 class="font-headline font-black text-2xl mb-1 tracking-tight">Économies Semaine</h3>
+                    <p class="text-on-primary/70 text-xs font-black uppercase tracking-widest">+12% vs semaine dernière</p>
+                </div>
+                <div class="mt-12 z-10 flex items-baseline gap-2">
+                    <span class="text-6xl font-headline font-black tracking-tighter">187</span>
+                    <span class="text-2xl font-black text-secondary-fixed">DH</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mini Map Preview -->
+        <section class="bg-white/80 backdrop-blur-2xl rounded-2xl p-6 shadow-xl shadow-slate-200/40 border border-white">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-headline font-black text-lg text-on-surface tracking-tight">Offres près de chez vous</h3>
+                <a href="carte.html" class="text-primary font-black text-xs uppercase tracking-widest hover:underline">La Carte</a>
+            </div>
+            <a href="carte.html" class="block relative h-36 bg-slate-50 rounded-xl overflow-hidden border border-slate-100 group">
+                <div class="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity">
+                    <svg class="w-full h-full" viewBox="0 0 400 200">
+                        <path d="M50 100 Q100 50 150 100 T250 100 T350 80" stroke="#004edc" stroke-width="3" fill="none"/>
+                        <circle cx="120" cy="90" r="10" fill="#f9e04c" class="animate-pulse"/>
+                        <circle cx="220" cy="110" r="8" fill="#b41340"/>
+                        <circle cx="300" cy="85" r="9" fill="#004edc"/>
+                    </svg>
+                </div>
+                <div class="absolute bottom-4 left-4 flex gap-2">
+                    <span class="bg-secondary-container text-on-secondary-fixed text-[9px] px-3 py-1.5 rounded-full font-black uppercase tracking-widest shadow-sm">3 OFFRES ACTIVES</span>
+                    <span class="bg-error text-white text-[9px] px-3 py-1.5 rounded-full font-black uppercase tracking-widest shadow-sm border border-white/20">🔥 1 URGENT</span>
+                </div>
+            </a>
+        </section>
+
+        <!-- Hot Deals Section -->
+        <section class="space-y-6">
+            <div class="flex justify-between items-end px-1">
+                <h3 class="font-headline font-black text-2xl text-on-surface tracking-tighter">Offres Phares 🔥</h3>
+                <a href="carte.html" class="text-primary font-black text-xs uppercase tracking-widest hover:underline">Voir tout</a>
+            </div>
+            <div class="flex gap-5 overflow-x-auto pb-6 -mx-6 px-6 no-scrollbar snap-x">
+                <!-- Deal 1 -->
+                <div class="snap-start min-w-[220px] bg-white rounded-2xl overflow-hidden group shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:-translate-y-1">
+                    <div class="h-36 w-full bg-slate-100 relative overflow-hidden">
+                        <img alt="tomatoes" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop">
+                        <div class="absolute top-3 left-3 bg-error text-white text-[9px] font-black px-2.5 py-1 rounded-full shadow-lg uppercase tracking-tighter">
+                            -38%
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-[9px] font-black text-on-surface-variant uppercase tracking-widest mb-1">Souk Msala</p>
+                        <h4 class="font-black text-on-surface text-lg leading-tight mb-2">Tomates Bio 1kg</h4>
+                        <div class="flex items-baseline gap-2">
+                            <span class="font-headline font-black text-2xl text-primary tracking-tighter">6<span class="text-xs ml-0.5">DH</span></span>
+                            <span class="text-xs text-on-surface-variant line-through opacity-50">9.50 DH</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Deal 2 -->
+                <div class="snap-start min-w-[220px] bg-white rounded-2xl overflow-hidden group shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:-translate-y-1">
+                    <div class="h-36 w-full bg-slate-100 relative overflow-hidden">
+                        <img alt="chicken" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop">
+                        <div class="absolute top-3 left-3 bg-secondary text-on-secondary-fixed text-[9px] font-black px-2.5 py-1 rounded-full shadow-lg uppercase tracking-tighter">
+                            PROMO
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-[9px] font-black text-on-surface-variant uppercase tracking-widest mb-1">Aswak Assalam</p>
+                        <h4 class="font-black text-on-surface text-lg leading-tight mb-2">Poulet Entier</h4>
+                        <div class="flex items-baseline gap-2">
+                            <span class="font-headline font-black text-2xl text-primary tracking-tighter">42<span class="text-xs ml-0.5">DH</span></span>
+                            <span class="text-xs text-on-surface-variant line-through opacity-50">55 DH</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Deal 3 -->
+                <div class="snap-start min-w-[220px] bg-white rounded-2xl overflow-hidden group shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:-translate-y-1">
+                    <div class="h-36 w-full bg-slate-100 relative overflow-hidden">
+                        <img alt="milk" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=300&fit=crop">
+                        <div class="absolute top-3 left-3 bg-primary text-white text-[9px] font-black px-2.5 py-1 rounded-full shadow-lg uppercase tracking-tighter">
+                            MEILLEURE OFFRE
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-[9px] font-black text-on-surface-variant uppercase tracking-widest mb-1">Marjane</p>
+                        <h4 class="font-black text-on-surface text-lg leading-tight mb-2">Lait 2L</h4>
+                        <div class="flex items-baseline gap-2">
+                            <span class="font-headline font-black text-2xl text-primary tracking-tighter">14<span class="text-xs ml-0.5">DH</span></span>
+                            <span class="text-xs text-on-surface-variant line-through opacity-50">17.50 DH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Actions FAB -->
+    <div class="fixed bottom-32 right-8 flex flex-col gap-6 z-40">
+        <!-- New Deal -->
+        <a href="scanner.html" class="bg-secondary-container text-on-secondary-fixed flex items-center gap-5 px-8 py-4 rounded-full shadow-xl shadow-secondary/20 active:scale-95 transition-all hover:-translate-y-1">
+            <span class="material-symbols-outlined font-black">add_a_photo</span>
+            <span class="font-headline font-black text-sm uppercase tracking-widest">Partager un Deal</span>
+        </a>
+        <!-- New List -->
+        <a href="liste.html" class="bg-primary text-white flex items-center gap-5 px-8 py-4 rounded-full shadow-xl shadow-primary/20 active:scale-95 transition-all hover:-translate-y-1">
+            <span class="material-symbols-outlined font-black">add_task</span>
+            <span class="font-headline font-black text-sm uppercase tracking-widest">Nouvelle Liste</span>
+        </a>
+    </div>
+
+    <!-- Floating Dock Navigation -->
+    <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-6 pt-2 pointer-events-none">
+        <div class="max-w-md mx-auto bg-white/95 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.2)] border border-white/50 flex justify-around items-end px-2 py-4 pointer-events-auto relative">
+            
+            <!-- Home (Active) -->
+            <a href="dashboard.html" class="nav-item flex flex-col items-center justify-center w-16 transition-all duration-300 nav-active">
+                <span class="material-symbols-outlined text-2xl transition-transform" style="font-variation-settings: 'FILL' 1;">home</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Accueil</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- List -->
+            <a href="liste.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">format_list_bulleted</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Listes</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- Map -->
+            <a href="carte.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">map</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Carte</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- Community -->
+            <a href="communaute.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">group</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Social</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- Profile -->
+            <a href="profil.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">person</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Profil</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+
+        </div>
+    </nav>
+    <!-- Budget Management Modal -->
+    <div id="budget-modal" class="hidden fixed inset-0 z-[200] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+        <div class="bg-white/90 backdrop-blur-2xl w-full max-w-sm p-8 rounded-[2.5rem] shadow-2xl animate-[scaleIn_0.3s_ease-out]">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-20 h-20 bg-primary/10 rounded-[2rem] flex items-center justify-center mb-6 shadow-inner ring-4 ring-primary/5">
+                    <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+                </div>
+                <h3 class="font-headline font-black text-2xl text-on-surface mb-2 tracking-tighter">Votre Budget Mensuel</h3>
+                <p class="text-on-surface-variant leading-relaxed text-xs mb-8 uppercase tracking-widest font-bold">Définissez votre limite de dépenses</p>
+                
+                <div class="w-full space-y-4 mb-8">
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-primary/50 group-focus-within:text-primary transition-colors">
+                            <span class="material-symbols-outlined font-black">payments</span>
+                        </div>
+                        <input id="budget-input" type="number" value="2500" class="w-full bg-slate-50 border-none rounded-2xl py-5 pl-14 pr-16 text-2xl font-black text-on-surface focus:ring-4 focus:ring-primary/5 transition-all shadow-inner" placeholder="Ex: 3000">
+                        <div class="absolute inset-y-0 right-5 flex items-center pointer-events-none text-slate-400 font-black">
+                            DH
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-on-surface-variant font-medium text-left px-2">Actuellement : <span class="font-black">1,240 DH</span> déjà dépensés ce mois-ci.</p>
+                </div>
+
+                <div class="flex flex-col w-full gap-4">
+                    <button onclick="saveBudget()" class="w-full bg-primary text-on-primary font-headline font-black py-5.5 px-8 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm border-none">
+                        Enregistrer
+                    </button>
+                    <button onclick="closeBudgetModal()" class="w-full bg-surface-container-low text-on-surface-variant font-headline font-black py-5.5 px-8 rounded-full hover:bg-surface-container-high active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm border-none">
+                        Annuler
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+
+    <script>
+        let currentBudget = 2500;
+        let currentSpent = 1240;
+
+        function openBudgetModal() {
+            document.getElementById('budget-modal').classList.remove('hidden');
+            document.getElementById('budget-modal').classList.add('flex');
+            document.getElementById('budget-input').focus();
+        }
+
+        function closeBudgetModal() {
+            document.getElementById('budget-modal').classList.add('hidden');
+            document.getElementById('budget-modal').classList.remove('flex');
+        }
+
+        function saveBudget() {
+            const input = document.getElementById('budget-input');
+            const newBudget = parseInt(input.value);
+            
+            if (newBudget > 0) {
+                currentBudget = newBudget;
+                updateBudgetUI();
+                closeBudgetModal();
+            }
+        }
+
+        function updateBudgetUI() {
+            const remaining = currentBudget - currentSpent;
+            const percent = Math.min(Math.round((currentSpent / currentBudget) * 100), 100);
+            
+            // Amounts
+            document.getElementById('spent-amount').textContent = currentSpent.toLocaleString();
+            document.getElementById('remaining-amount').textContent = remaining.toLocaleString();
+            
+            // Percentage
+            document.getElementById('budget-percent').textContent = percent + '%';
+            
+            // Circular progress simulation
+            // In a real circular bar using conic-gradient or SVG dashoffset
+            // Here we adjust the rotation or the gradient
+            const progress = document.getElementById('budget-progress');
+            // Mocking rotation change to simulate gauge fill
+            const color = percent > 90 ? '#b41340' : (percent > 75 ? '#695c00' : '#004edc');
+            progress.style.borderColor = color;
+            // Simplified: in a real app would update the conic-gradient
+        }
+    </script>
+</body>
+</html>

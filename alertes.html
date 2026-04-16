@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Alertes | Hawta.ma</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: "#695c00",
+                        "on-error-container": "#510017",
+                        "surface-container-high": "#e0e3e4",
+                        "tertiary-fixed": "#ffffff",
+                        surface: "#f5f6f7",
+                        outline: "#757778",
+                        "on-surface": "#2c2f30",
+                        error: "#b41340",
+                        "on-primary-fixed-variant": "#002572",
+                        "on-primary": "#f1f2ff",
+                        "surface-bright": "#f5f6f7",
+                        "inverse-primary": "#658aff",
+                        "outline-variant": "#abadae",
+                        "on-secondary-container": "#5c5000",
+                        "error-dim": "#a70138",
+                        "on-tertiary-container": "#636262",
+                        "secondary-fixed": "#f9e04c",
+                        "on-secondary-fixed": "#473e00",
+                        "on-primary-container": "#001c5e",
+                        "surface-container-highest": "#dadddf",
+                        primary: "#004edc",
+                        "surface-container-low": "#eff1f2",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "secondary-container": "#f9e04c",
+                        "on-secondary": "#fff3c0",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#0c0f10",
+                        tertiary: "#5c5b5b",
+                        "on-surface-variant": "#595c5d",
+                        "surface-variant": "#dadddf",
+                        "on-tertiary": "#f5f2f1",
+                        "secondary-dim": "#5b5000",
+                        "primary-container": "#7e9cff",
+                        "secondary-fixed-dim": "#ead23f",
+                        "on-error": "#ffefef",
+                        "error-container": "#f74b6d",
+                        "tertiary-container": "#ffffff",
+                        "on-background": "#2c2f30",
+                        "primary-dim": "#0043c1",
+                        "on-primary-fixed": "#000000",
+                        background: "#f5f6f7",
+                        "on-secondary-fixed-variant": "#675a00",
+                        "surface-container": "#e6e8ea"
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "2rem",
+                        xl: "3rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Manrope"],
+                        body: ["Manrope"],
+                        label: ["Manrope"],
+                        sans: ["Manrope"]
+                    },
+                    spacing: {
+                        '4.5': '1.125rem',
+                        '5.5': '1.375rem'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        * {
+            font-family: 'Manrope', sans-serif;
+        }
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .nav-active {
+            color: #004edc !important;
+        }
+        .nav-active .indicator {
+            width: 12px;
+            opacity: 1;
+        }
+        .nav-item:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body class="text-on-surface" style="background: linear-gradient(135deg, #f5f6f7 0%, #eef2ff 100%); min-height: 100vh;">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(44,47,48,0.08)]">
+        <div class="flex justify-between items-center px-6 py-3.5 w-full">
+            <a href="dashboard.html" class="flex items-center gap-2.5 group">
+                <span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                <span class="text-2xl font-black text-slate-900 tracking-tighter font-headline" style="font-weight: 900;">Hawta.ma</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <button onclick="markAllRead()" class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-primary/10 transition-all text-primary relative active:scale-95" title="Tout lire">
+                    <span class="material-symbols-outlined text-2xl">done_all</span>
+                </button>
+                <a href="profil.html" class="w-11 h-11 rounded-full overflow-hidden border-2 border-primary-container hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                    <img alt="User Profile" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="px-6 pt-24 pb-32">
+        <!-- Page Title -->
+        <section class="mb-12">
+            <h1 class="font-headline font-black text-4xl leading-tight tracking-tighter text-on-surface mb-3">
+                Alertes & <span class="text-primary">Social</span>
+            </h1>
+            <p class="text-on-surface-variant font-black uppercase tracking-widest text-[10px] opacity-60">Suivez les variations de prix et l'activité de Tanger en temps réel.</p>
+        </section>
+
+        <!-- Action Button -->
+        <div class="mb-10">
+            <a href="carte.html" class="w-full py-5 px-6 bg-white rounded-2xl flex items-center justify-between group hover:bg-primary/5 transition-all duration-300 shadow-xl shadow-slate-200/40 border border-white">
+                <div class="flex items-center gap-4">
+                    <div class="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-inner">
+                        <span class="material-symbols-outlined font-black">settings</span>
+                    </div>
+                    <span class="font-black text-sm uppercase tracking-widest">Gérer mes alertes</span>
+                </div>
+                <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+            </a>
+        </div>
+
+        <!-- Notification Feed -->
+        <div class="space-y-6">
+            <!-- Price Drop Alert -->
+            <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_20px_40px_rgba(44,47,48,0.06)] relative overflow-hidden group hover:shadow-lg transition-shadow border border-white/40">
+                <div class="absolute top-0 right-0 p-5">
+                    <span class="text-[0.6875rem] font-label font-bold uppercase tracking-widest text-outline-variant opacity-70">Aujourd'hui, 09:30</span>
+                </div>
+                <div class="flex gap-5">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center border border-emerald-100 shadow-inner">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-headline font-black text-xl text-on-surface mb-1 tracking-tight">Baisse de prix !</h3>
+                        <p class="font-body text-sm text-on-surface-variant leading-relaxed">Le prix de l'huile d'olive Extra Vierge (1L) a chuté de <span class="text-emerald-600 font-bold">15%</span> chez votre commerçant habituel.</p>
+                        <div class="mt-4 flex items-center gap-3">
+                            <span class="text-3xl font-headline font-black text-on-surface">64 <span class="text-lg">DH</span></span>
+                            <span class="text-sm line-through text-outline-variant">75 DH</span>
+                            <a href="carte.html" class="ml-auto bg-primary text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-95 transition-all">Voir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inflation Alert -->
+            <div class="bg-white rounded-2xl p-6 shadow-xl shadow-slate-200/40 relative overflow-hidden group hover:shadow-2xl transition-all border border-white">
+                <div class="absolute top-0 right-0 p-5">
+                    <span class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant opacity-40">Hier, 18:45</span>
+                </div>
+                <div class="flex gap-5">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-error/5 text-error rounded-xl flex items-center justify-center border border-error/10 shadow-inner">
+                            <span class="material-symbols-outlined font-black">trending_up</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-headline font-black text-xl text-on-surface mb-2 tracking-tight">Alerte Inflation</h3>
+                        <p class="font-body text-sm text-on-surface-variant leading-relaxed">Attention, le prix du café moulu a augmenté de <span class="text-error font-black">8%</span> sur le marché national ce matin.</p>
+                        <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 bg-error/5 rounded-full text-error text-[9px] font-black uppercase tracking-widest border border-error/10">
+                            <span class="material-symbols-outlined text-xs font-black">warning</span>
+                            Tendance Critique
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stock Alert -->
+            <div class="bg-white rounded-2xl p-6 shadow-xl shadow-slate-200/40 relative overflow-hidden group hover:shadow-2xl transition-all border border-white">
+                <div class="flex gap-5">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-secondary/5 text-secondary rounded-xl flex items-center justify-center border border-secondary/10 shadow-inner">
+                            <span class="material-symbols-outlined font-black">notifications_active</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-headline font-black text-xl text-on-surface mb-2 tracking-tight">Stock disponible !</h3>
+                        <p class="font-body text-sm text-on-surface-variant leading-relaxed">Les œufs de ferme sont à nouveau disponibles dans 3 magasins à proximité de votre position.</p>
+                        <div class="mt-5 flex items-center justify-between">
+                            <div class="flex -space-x-2">
+                                <img class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=50&h=50&fit=crop">
+                                <img class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" src="https://images.unsplash.com/photo-1579113800032-c38bd7635818?w=50&h=50&fit=crop">
+                                <div class="w-8 h-8 rounded-full border-2 border-white bg-primary text-white flex items-center justify-center text-[10px] font-black shadow-sm">
+                                    +3
+                                </div>
+                            </div>
+                            <a href="carte.html" class="text-[10px] font-black uppercase tracking-widest text-primary hover:underline">Voir les lieux</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Deal Alert -->
+            <div class="bg-white rounded-2xl p-6 shadow-xl shadow-slate-200/40 relative overflow-hidden group hover:shadow-2xl transition-all border border-white">
+                <div class="flex gap-5">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-primary/5 text-primary rounded-xl flex items-center justify-center border border-primary/10 shadow-inner">
+                            <span class="material-symbols-outlined font-black">campaign</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-headline font-black text-xl text-on-surface mb-2 tracking-tight">Nouveau deal partagé</h3>
+                        <p class="font-body text-sm text-on-surface-variant leading-relaxed">Un utilisateur a partagé une promo sur le poulet entier à <span class="text-primary font-black">38 DH</span> chez Aswak Assalam.</p>
+                        <div class="mt-5 flex items-center gap-3">
+                            <img class="w-7 h-7 rounded-full object-cover border border-slate-100 shadow-sm" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face">
+                            <span class="text-[10px] font-black tracking-tight text-on-surface-variant">Sarah B. • il y a 30 min</span>
+                            <a href="communaute.html" class="ml-auto bg-slate-50 text-primary px-5 py-2 rounded-full text-[9px] font-black uppercase tracking-widest border border-slate-100 transition-colors hover:bg-primary hover:text-white">Détails</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bento Mini Cards -->
+            <div class="grid grid-cols-2 gap-4">
+                <a href="carte.html" class="col-span-1 bg-primary text-white rounded-2xl p-6 flex flex-col justify-between aspect-square hover:scale-[1.02] transition-all shadow-xl shadow-primary/20 relative overflow-hidden group">
+                    <div class="absolute -right-4 -top-4 w-20 h-20 bg-white/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+                    <span class="material-symbols-outlined text-4xl font-black relative z-10">rocket_launch</span>
+                    <div class="relative z-10">
+                        <h4 class="font-headline font-black text-lg leading-tight mb-1">Meilleure offre</h4>
+                        <p class="font-black text-[9px] uppercase tracking-widest opacity-60">Secteur Gauthier</p>
+                    </div>
+                </a>
+                <a href="carte.html" class="col-span-1 bg-white rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:scale-[1.02] transition-all shadow-xl shadow-slate-200/40 border border-white group">
+                    <div class="w-24 h-24 rounded-xl overflow-hidden mb-3 border border-slate-100 shadow-inner group-hover:scale-105 transition-transform">
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200&h=200&fit=crop">
+                    </div>
+                    <span class="text-on-surface font-black text-xs uppercase tracking-widest mb-1">Huile d'Argan</span>
+                    <span class="text-primary font-black tracking-tighter text-lg">120 DH</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Dock Navigation -->
+    <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-6 pt-2 pointer-events-none">
+        <div class="max-w-md mx-auto bg-white/95 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_25px_50_rgba(0,0,0,0.15)] border border-white/50 flex justify-around items-end px-2 py-4 pointer-events-auto relative">
+            
+            <!-- Home -->
+            <a href="dashboard.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">home</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Accueil</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- List -->
+            <a href="liste.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">format_list_bulleted</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Listes</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- Map -->
+            <a href="carte.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">map</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Carte</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- Community -->
+            <a href="communaute.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">group</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Social</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- Profile -->
+            <a href="profil.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">person</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Profil</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+
+        </div>
+    </nav>
+
+    <script>
+        function markAllRead() {
+            alert('Toutes les notifications ont été marquées comme lues !');
+        }
+    </script>
+</body>
+</html>

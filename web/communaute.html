@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communauté | Hawta.ma Web</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#004edc",
+                        surface: "#f5f6f7",
+                        "on-surface": "#2c2f30",
+                        "on-surface-variant": "#595c5d",
+                        "primary-dim": "#0043c1"
+                    },
+                    spacing: {
+                        '4.5': '1.125rem',
+                        '5.5': '1.375rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        * { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen">
+    
+    <!-- Sidebar (Shared Component) -->
+    <aside class="hidden lg:flex fixed left-0 top-0 h-screen w-72 bg-white border-r border-slate-100 flex-col z-50">
+        <div class="p-8">
+            <a href="dashboard.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                </div>
+                <span class="text-2xl font-black text-slate-900 tracking-tighter">Hawta.ma</span>
+            </a>
+        </div>
+
+        <nav class="flex-grow px-4 space-y-2 mt-4">
+            <a href="dashboard.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-sm">Tableau de bord</span>
+            </a>
+            <a href="liste.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">format_list_bulleted</span>
+                <span class="text-sm">Mes Listes</span>
+            </a>
+            <a href="carte.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">map</span>
+                <span class="text-sm">Carte des Deals</span>
+            </a>
+            <a href="communaute.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-primary/5 text-primary font-black transition-all">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+                <span class="text-sm">Communauté</span>
+            </a>
+            <a href="profil.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">person</span>
+                <span class="text-sm">Mon Profil</span>
+            </a>
+        </nav>
+
+        <div class="p-6 border-t border-slate-50 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-grow">
+                <p class="text-xs font-black text-slate-900">Fatima Benali</p>
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Niveau 7</p>
+            </div>
+            <a href="index.html" class="text-slate-300 hover:text-error transition-colors">
+                <span class="material-symbols-outlined text-xl">logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="lg:ml-72 min-h-screen">
+        <!-- Header -->
+        <header class="sticky top-0 bg-white/80 backdrop-blur-xl border-b border-slate-100 z-40 px-8 py-6 flex justify-between items-end">
+            <div>
+                <h1 class="text-3xl font-black tracking-tighter text-slate-900">Communauté Hawta⚓</h1>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Directement depuis les souks de Tanger</p>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="flex -space-x-3 overflow-hidden lg:flex hidden">
+                    <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?w=100&h=100&fit=crop">
+                    <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?w=100&h=100&fit=crop">
+                    <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop">
+                </div>
+                <button class="bg-primary text-white font-black text-xs uppercase tracking-widest px-8 py-4 rounded-full shadow-xl shadow-primary/20 flex items-center gap-3">
+                    <span class="material-symbols-outlined text-sm">edit</span>
+                    Poster un deal
+                </button>
+            </div>
+        </header>
+
+        <div class="p-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-10">
+            <!-- Left: Community Feed -->
+            <div class="lg:col-span-3 space-y-8">
+                <!-- Filters -->
+                <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+                    <button class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap">Tout Tanger</button>
+                    <button class="bg-white border border-slate-200 text-slate-400 px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap hover:border-primary hover:text-primary transition-all">Souk Msala</button>
+                    <button class="bg-white border border-slate-200 text-slate-400 px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap hover:border-primary hover:text-primary transition-all">Marjane</button>
+                    <button class="bg-white border border-slate-200 text-slate-400 px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap hover:border-primary hover:text-primary transition-all">Médina</button>
+                </div>
+
+                <!-- Deal Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <!-- Deal Card 1 -->
+                    <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all group">
+                        <div class="h-64 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=800&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6">
+                                <span class="bg-error text-white text-[9px] font-black px-3 py-1 rounded-full uppercase self-start mb-2">🔥 OFFRE CHAUDE</span>
+                                <h3 class="text-white font-black text-xl leading-tight">Légumes Frais du Jour</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="w-8 h-8 rounded-full border border-slate-100">
+                                <div>
+                                    <p class="text-xs font-black">Mehdi K.</p>
+                                    <p class="text-[9px] text-slate-400 font-bold">Il y a 5 min • Souk Msala</p>
+                                </div>
+                            </div>
+                            <div class="flex items-end justify-between">
+                                <span class="text-2xl font-black text-primary">5.00 <span class="text-xs">DH</span></span>
+                                <div class="flex items-center gap-4 text-slate-300">
+                                    <div class="flex items-center gap-1 group/like cursor-pointer">
+                                        <span class="material-symbols-outlined text-sm group-hover/like:text-error transition-colors">favorite</span>
+                                        <span class="text-[10px] font-black">24</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-sm">chat_bubble</span>
+                                        <span class="text-[10px] font-black">6</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Deal Card 2 -->
+                    <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all group">
+                        <div class="h-64 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1628102422280-082df3f05816?w=600&h=800&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white font-black text-xl leading-tight">Huile d'Olive (Pressage Bio)</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" class="w-8 h-8 rounded-full border border-slate-100">
+                                <div>
+                                    <p class="text-xs font-black">Yasmine L.</p>
+                                    <p class="text-[9px] text-slate-400 font-bold">Il y a 12 min • Malabata</p>
+                                </div>
+                            </div>
+                            <div class="flex items-end justify-between">
+                                <span class="text-2xl font-black text-primary">85.00 <span class="text-xs">DH</span></span>
+                                <div class="flex items-center gap-4 text-slate-300">
+                                    <div class="flex items-center gap-1 group/like cursor-pointer text-error">
+                                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                                        <span class="text-[10px] font-black">152</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-sm">chat_bubble</span>
+                                        <span class="text-[10px] font-black">18</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Deal Card 3 -->
+                    <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all group">
+                        <div class="h-64 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&h=800&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white font-black text-xl leading-tight">Épices Orientales (Lot)</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" class="w-8 h-8 rounded-full border border-slate-100">
+                                <div>
+                                    <p class="text-xs font-black">Amine J.</p>
+                                    <p class="text-[9px] text-slate-400 font-bold">Il y a 1h • Grand Socco</p>
+                                </div>
+                            </div>
+                            <div class="flex items-end justify-between">
+                                <span class="text-2xl font-black text-primary">12.50 <span class="text-xs">DH</span></span>
+                                <div class="flex items-center gap-4 text-slate-300">
+                                    <div class="flex items-center gap-1 group/like cursor-pointer">
+                                        <span class="material-symbols-outlined text-sm group-hover/like:text-error transition-colors">favorite</span>
+                                        <span class="text-[10px] font-black">31</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-sm">chat_bubble</span>
+                                        <span class="text-[10px] font-black">2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar: Badges & Community Stats -->
+            <aside class="space-y-8 lg:block hidden">
+                <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-lg shadow-slate-200/20">
+                    <h3 class="text-lg font-black tracking-tight mb-6">Badges Hawta 🥇</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-secondary-container/20 p-5 rounded-2xl flex flex-col items-center text-center">
+                            <span class="material-symbols-outlined text-3xl text-on-secondary-fixed mb-2" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                            <p class="text-[9px] font-black uppercase tracking-widest">Early Adopter</p>
+                        </div>
+                        <div class="bg-primary/5 p-5 rounded-2xl flex flex-col items-center text-center">
+                            <span class="material-symbols-outlined text-3xl text-primary mb-2" style="font-variation-settings: 'FILL' 1;">eco</span>
+                            <p class="text-[9px] font-black uppercase tracking-widest">Eco-Hunter</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl flex flex-col items-center text-center opacity-40 grayscale">
+                            <span class="material-symbols-outlined text-3xl text-slate-400 mb-2">local_fire_department</span>
+                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400">Streak 30j</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl flex flex-col items-center text-center border-2 border-dashed border-slate-200">
+                             <span class="material-symbols-outlined text-xl text-slate-300 mb-2">add</span>
+                             <p class="text-[9px] font-black uppercase tracking-widest text-slate-300">Voir tout</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-lg shadow-slate-200/20">
+                    <h3 class="text-lg font-black tracking-tight mb-6">Activité Récente</h3>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-2 h-2 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-900 leading-tight">Ahmed a gagné 50 XP en partageant un deal à Marjane.</p>
+                                <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">2 MIN</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-2 h-2 bg-emerald-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-900 leading-tight">Yasmine a économisé 120 DH avec sa liste "Ramadan".</p>
+                                <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">15 MIN</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Mobile Bottom Nav (Shared) -->
+    <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-8 pt-2 pointer-events-none lg:hidden">
+        <div class="max-w-lg mx-auto bg-white/80 backdrop-blur-2xl rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/20 flex justify-around items-center px-2 py-2 pointer-events-auto">
+            <a href="dashboard.html" class="w-14 h-14 text-slate-400 flex flex-col items-center justify-center">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[8px] font-black uppercase mt-1">Home</span>
+            </a>
+            <a href="liste.html" class="w-14 h-14 text-slate-400 flex flex-col items-center justify-center">
+                <span class="material-symbols-outlined">format_list_bulleted</span>
+                <span class="text-[8px] font-black uppercase mt-1">Listes</span>
+            </a>
+            <a href="communaute.html" class="w-14 h-14 bg-primary text-white rounded-full flex flex-col items-center justify-center shadow-lg">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+                <span class="text-[8px] font-black uppercase mt-1">Social</span>
+            </a>
+        </div>
+    </nav>
+
+</body>
+</html>

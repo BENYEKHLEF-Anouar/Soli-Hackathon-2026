@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hawta - Community &amp; Leaderboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#001c5e",
+                        "surface-container-high": "#e0e3e4",
+                        "tertiary": "#5c5b5b",
+                        "on-secondary-container": "#5c5000",
+                        "on-surface-variant": "#595c5d",
+                        "on-primary": "#f1f2ff",
+                        "tertiary-container": "#ffffff",
+                        "surface-dim": "#d1d5d7",
+                        "outline": "#757778",
+                        "on-primary-fixed-variant": "#002572",
+                        "surface": "#f5f6f7",
+                        "surface-variant": "#dadddf",
+                        "on-error-container": "#510017",
+                        "on-background": "#2c2f30",
+                        "secondary": "#695c00",
+                        "on-secondary-fixed-variant": "#675a00",
+                        "on-secondary": "#fff3c0",
+                        "background": "#f5f6f7",
+                        "error-dim": "#a70138",
+                        "primary-fixed": "#7e9cff",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "on-tertiary-fixed-variant": "#6e6d6c",
+                        "surface-container": "#e6e8ea",
+                        "on-surface": "#2c2f30",
+                        "surface-tint": "#004edc",
+                        "primary-fixed-dim": "#698dff",
+                        "primary": "#004edc",
+                        "surface-container-low": "#eff1f2",
+                        "inverse-primary": "#658aff",
+                        "secondary-fixed": "#f9e04c",
+                        "on-tertiary-fixed": "#515050",
+                        "surface-bright": "#f5f6f7",
+                        "error-container": "#f74b6d",
+                        "secondary-dim": "#5b5000",
+                        "tertiary-dim": "#504f4f",
+                        "outline-variant": "#abadae",
+                        "on-error": "#ffefef",
+                        "inverse-surface": "#0c0f10",
+                        "secondary-fixed-dim": "#ead23f",
+                        "on-primary-fixed": "#000000",
+                        "error": "#b41340",
+                        "secondary-container": "#f9e04c",
+                        "on-tertiary-container": "#636262",
+                        "tertiary-fixed": "#ffffff",
+                        "primary-container": "#7e9cff",
+                        "primary-dim": "#0043c1",
+                        "on-tertiary": "#f5f2f1",
+                        "surface-container-highest": "#dadddf",
+                        "inverse-on-surface": "#9b9d9e",
+                        "on-secondary-fixed": "#473e00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f5f6f7; color: #2c2f30; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_20px_40px_rgba(44,47,48,0.06)] flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="user profile" class="w-full h-full object-cover" data-alt="Professional studio portrait of a smiling man with short dark hair and a neat beard, soft lighting on a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJhw1cx6-PQ1cWMyUSY_msNQAPZoPfbnO1xdgOEpvG2kaHRpEoeJroZURh4h8fMJX-4oQckYsoynALYURZ1RWz_6HbEvUYS5ItMuuncYXzSInChQapPlnIyU-IQDhl9E3Ucpi82udlDi-NcgZFrg1Ozh9UORUvdIGESAOLzWmSuuDARwyMDOstQuWBR-y07gMebGCgxkfWg0D3jET6DW9zKMKwPs6uEpjN5QTHlrHSc-MEMD-O_SJ3caOwMzh52_UbF-A2oI31h9F0"/>
+</div>
+<span class="text-2xl font-black text-slate-900 dark:text-white tracking-tighter font-headline">Hawta</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-blue-600 hover:bg-slate-100/50 transition-colors active:scale-90">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-6">
+<!-- Hero Section: Stats & Rank -->
+<section class="mb-10">
+<div class="bg-primary p-8 rounded-lg relative overflow-hidden shadow-lg">
+<!-- Decorative background elements -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-container/20 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-[8rem]" data-icon="trophy">trophy</span>
+</div>
+<div class="relative z-10">
+<p class="text-on-primary/70 text-xs font-label uppercase tracking-widest mb-1">Votre Classement</p>
+<div class="flex items-baseline gap-2 mb-6">
+<span class="text-5xl font-extrabold text-on-primary font-headline tracking-tighter">#12</span>
+<span class="text-on-primary/80 font-medium">sur 4,280</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-on-primary font-bold">14,250 <span class="text-xs font-normal opacity-70">pts</span></span>
+</div>
+<div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-green-400" data-icon="trending_up">trending_up</span>
+<span class="text-on-primary font-bold">+12%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Tabs Navigation -->
+<nav class="flex gap-2 mb-8 p-1 bg-surface-container-low rounded-full">
+<button class="flex-1 py-3 px-6 rounded-full text-white font-bold bg-blue-600 shadow-md transition-all">
+                Leaderboard
+            </button>
+<button class="flex-1 py-3 px-6 rounded-full text-on-surface-variant font-medium hover:bg-surface-container transition-all">
+                Mes Deals
+            </button>
+</nav>
+<!-- Badges Section: Bento Style -->
+<section class="mb-12">
+<div class="flex justify-between items-end mb-6">
+<h2 class="text-xl font-bold font-headline">Badges Débloqués</h2>
+<button class="text-primary text-sm font-semibold">Voir Tout</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_40px_rgba(44,47,48,0.06)] flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-4 shadow-inner">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl" data-icon="shopping_bag" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+</div>
+<p class="font-bold text-sm leading-tight mb-1">Roi du Souk Msala</p>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Level 4</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_40px_rgba(44,47,48,0.06)] flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 shadow-inner">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<p class="font-bold text-sm leading-tight mb-1">Chasseur Éclair</p>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Level 2</span>
+</div>
+<div class="col-span-2 bg-inverse-surface p-6 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-2xl" data-icon="lock">lock</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Prochain Badge</p>
+<p class="text-white/60 text-xs">Maître Négociateur</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-secondary-fixed font-bold text-sm">85%</p>
+<div class="w-20 h-1 bg-white/20 rounded-full mt-1">
+<div class="w-[85%] h-full bg-secondary-fixed rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Chasseurs List -->
+<section>
+<h2 class="text-xl font-bold font-headline mb-6">Top Chasseurs</h2>
+<div class="space-y-4">
+<!-- Leader #1 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img alt="rank 1" class="w-full h-full object-cover" data-alt="Close up portrait of a young woman with a joyful expression, wearing a stylish denim jacket, bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEciG_e9voONm8wTh2EhYz5hSmeDliimzViwkmhC58DlfTxkzcLci7He2CQ4Ie9R_-gvx5q93stqlefiAp073VblXtX1ruGRsdxvujOvGj53A6ZpZGp6L-FONHvLxM88rivgnvt1mWGbDowhfzxVHGjdr5BFKS7E6rVyuhaiGWcv_ip-dj0oTdna8doyoTa61_ZNGVpzlynfF1lmh5ZCtybIKEYT_xDJUgnKWvrniiboEQqONQSBPGHWmoPtWtD57SpkBlIODvjVyY"/>
+</div>
+<div class="absolute -top-1 -right-1 w-5 h-5 bg-secondary-fixed rounded-full flex items-center justify-center border-2 border-white">
+<span class="text-[10px] font-bold">1</span>
+</div>
+</div>
+<div>
+<p class="font-bold text-sm">Sarah Bendris</p>
+<p class="text-xs text-on-surface-variant">Expert Tanger</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-primary">28,450</p>
+<p class="text-[10px] uppercase text-on-surface-variant font-label">Hawta Pts</p>
+</div>
+</div>
+<!-- Leader #2 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img alt="rank 2" class="w-full h-full object-cover" data-alt="A man with a cheerful face and short hair wearing a casual white t-shirt, warm natural sunlight lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGCuURyhqXdT2i__OLIiAigDjnTBUZ4D1RB4WkdR7ae_KBJfmL2_dNk4D9j3mqp3qphw9kdqH17S2NQApWUk9_vhWCl-p-MlMR10XRLuHSQmCiDSmzayjg-RPLTLlpeANqS0rWWdEzm8CzsMexg2bE4jszsGYrt2O12y9QjDqXl44lRmixB4WtjiK186ku3UOI6_kY220lLpR_IQwHRn3zUKFIhlhmjAClsOJw0mU3Jf81rIc7cVvIekZewknhVg000NE0fZdDyb8A"/>
+</div>
+<div class="absolute -top-1 -right-1 w-5 h-5 bg-surface-container-high rounded-full flex items-center justify-center border-2 border-white">
+<span class="text-[10px] font-bold">2</span>
+</div>
+</div>
+<div>
+<p class="font-bold text-sm">Mehdi Alami</p>
+<p class="text-xs text-on-surface-variant">Dénicheur Casa</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-primary">26,120</p>
+<p class="text-[10px] uppercase text-on-surface-variant font-label">Hawta Pts</p>
+</div>
+</div>
+<!-- Leader #3 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img alt="rank 3" class="w-full h-full object-cover" data-alt="Portrait of a young man with glasses and a friendly smile, professional headshot in an indoor environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKG1PcC1SXWD9J1dkhTo3ZvqyVo2QtICIfiXcPkgZNa3TvRd6gfbAhsunssLhKzABnbyiRP6hntHyQzh7l_QGNHyG_Pb3qF9YfmD7JThb9yCQoMdVfCKMsQ8pceQZgUrCHjWvztzNN4AW4MGWoRLuvocgJnAx07zkbtps2Ysk2veJM77watj39h97PhNv9dJBqfghgonEIc6_LYkOWObpIv1Bfk0y05dunRzNTu5nm3jdtDFfITUC5P1OSnHZLYK-Xnd2ihbZZkSLK"/>
+</div>
+<div class="absolute -top-1 -right-1 w-5 h-5 bg-orange-200 rounded-full flex items-center justify-center border-2 border-white">
+<span class="text-[10px] font-bold">3</span>
+</div>
+</div>
+<div>
+<p class="font-bold text-sm">Omar Kabbaj</p>
+<p class="text-xs text-on-surface-variant">Sultan du Rabais</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-primary">24,900</p>
+<p class="text-[10px] uppercase text-on-surface-variant font-label">Hawta Pts</p>
+</div>
+</div>
+<!-- User Self Entry (Fixed in context) -->
+<div class="bg-primary/5 border-2 border-primary/20 p-4 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+<img alt="current user" class="w-full h-full object-cover" data-alt="Professional studio portrait of a smiling man with short dark hair and a neat beard, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIJQTgVB3yjv5flWke1sMe0pYBR2kkgZV8hP0rfHdV_pG_W-_pCUKK-wDiJdO0SedYbvVdxdBZBdz2_mB20-U46_Gp7sXalcyVn7ur1ps0whWEGgs4aaj5v-irpZxdH5X8r-3tchH2LiKWz14TFGkuzrS1FsZz4OVLsTp0sZYUlx1fovnoJKmzbE90vpZekN0UZ7YY0OO4MU-kqjKEUwEVN66sB0SXF-2hkK6HQlgRfD0HfbUNpq0RrCq5TBPuBaKmEYRSONyp2Brw"/>
+</div>
+<div class="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center border-2 border-white">
+<span class="text-[10px] font-bold text-white">12</span>
+</div>
+</div>
+<div>
+<p class="font-bold text-sm">Moi (Toi)</p>
+<p class="text-xs text-primary font-medium">Héros Local</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-primary">14,250</p>
+<p class="text-[10px] uppercase text-on-surface-variant font-label">Hawta Pts</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl flex justify-around items-center px-4 pb-6 pt-2 shadow-[0_-10px_30px_rgba(0,0,0,0.03)] rounded-t-[2rem]">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="format_list_bulleted">format_list_bulleted</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="map">map</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-600 text-white rounded-full p-3 shadow-lg shadow-blue-200 scale-110 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+</a>
+</nav>
+</body></html>

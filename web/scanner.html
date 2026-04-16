@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partager un Deal | Hawta.ma Web</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#004edc",
+                        surface: "#f5f6f7",
+                        "on-surface": "#2c2f30",
+                        "on-surface-variant": "#595c5d",
+                        "primary-dim": "#0043c1"
+                    },
+                    spacing: {
+                        '4.5': '1.125rem',
+                        '5.5': '1.375rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        * { font-family: 'Manrope', sans-serif; }
+        .scan-line {
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #004edc, transparent);
+            box-shadow: 0 0 20px #004edc;
+            width: 100%;
+            position: absolute;
+            animation: scan 2s linear infinite;
+        }
+        @keyframes scan { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen">
+    
+    <!-- Sidebar -->
+    <aside class="hidden lg:flex fixed left-0 top-0 h-screen w-72 bg-white border-r border-slate-100 flex-col z-50">
+        <div class="p-8">
+            <a href="dashboard.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                </div>
+                <span class="text-2xl font-black text-slate-900 tracking-tighter">Hawta.ma</span>
+            </a>
+        </div>
+
+        <nav class="flex-grow px-4 space-y-2 mt-4">
+            <a href="dashboard.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-sm">Tableau de bord</span>
+            </a>
+            <a href="liste.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">format_list_bulleted</span>
+                <span class="text-sm">Mes Listes</span>
+            </a>
+            <a href="carte.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">map</span>
+                <span class="text-sm">Carte des Deals</span>
+            </a>
+            <a href="communaute.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">group</span>
+                <span class="text-sm">Communauté</span>
+            </a>
+            <a href="#" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-primary/5 text-primary font-black transition-all">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_a_photo</span>
+                <span class="text-sm">Poster un deal</span>
+            </a>
+        </nav>
+
+        <div class="p-6 border-t border-slate-50 flex items-center gap-3 mt-auto">
+            <div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-grow">
+                <p class="text-xs font-black text-slate-900">Fatima Benali</p>
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Niveau 7</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="lg:ml-72 min-h-screen">
+        <!-- Header -->
+        <header class="sticky top-0 bg-white/80 backdrop-blur-xl border-b border-slate-100 z-40 px-8 py-6">
+            <h1 class="text-3xl font-black tracking-tighter text-slate-900">Partager un Deal 🏷️</h1>
+             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Aidez la communauté de Tanger à économiser</p>
+        </header>
+
+        <div class="p-8 max-w-7xl mx-auto">
+            <div id="view-selection" class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Left: Scanner IA -->
+                <button onclick="startScanning()" class="bg-white p-12 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/20 text-left group hover:border-primary transition-all active:scale-[0.98]">
+                    <div class="w-24 h-24 bg-primary/5 text-primary rounded-[2rem] flex items-center justify-center mb-10 group-hover:bg-primary group-hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-5xl">document_scanner</span>
+                    </div>
+                    <h3 class="text-3xl font-black tracking-tighter mb-4">Scanner IA de Ticket</h3>
+                    <p class="text-slate-400 leading-relaxed font-medium mb-12">Prenez une photo de votre ticket de caisse. Notre IA se charge d'extraire les prix et les produits automatiquement.</p>
+                    <div class="flex items-center gap-2 text-primary font-black uppercase text-xs tracking-widest">
+                        Lancer le scan <span class="material-symbols-outlined">arrow_forward</span>
+                    </div>
+                </button>
+
+                <!-- Right: Manual Photo -->
+                <button onclick="startScanning()" class="bg-white p-12 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/20 text-left group hover:border-primary transition-all active:scale-[0.98]">
+                    <div class="w-24 h-24 bg-emerald-50 text-emerald-600 rounded-[2rem] flex items-center justify-center mb-10 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-5xl">photo_camera</span>
+                    </div>
+                    <h3 class="text-3xl font-black tracking-tighter mb-4">Photo d'un Produit</h3>
+                    <p class="text-slate-400 leading-relaxed font-medium mb-12">Vous avez vu un prix incroyable en rayon ? Prenez une photo directe du produit et de son étiquette.</p>
+                    <div class="flex items-center gap-2 text-emerald-600 font-black uppercase text-xs tracking-widest">
+                        Prendre une photo <span class="material-symbols-outlined">arrow_forward</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- View: Active Scan UI -->
+            <div id="view-scan" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-10 animate-[scaleIn_0.3s_ease-out]">
+                <!-- Camera / Upload Viewfinder -->
+                <div class="bg-slate-900 rounded-[3rem] p-10 flex flex-col items-center justify-center relative overflow-hidden aspect-[4/3] lg:aspect-square">
+                    <img id="preview-img" class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=800">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40"></div>
+                    
+                    <div class="relative z-10 w-full max-w-sm aspect-[3/4] border-4 border-dashed border-white/20 rounded-2xl flex items-center justify-center">
+                        <div class="scan-line"></div>
+                        <div class="text-center text-white/40">
+                            <span class="material-symbols-outlined text-8xl mb-4">add_a_photo</span>
+                            <p class="text-xs font-black uppercase tracking-widest">Placer le ticket ici</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 relative z-10 flex gap-6">
+                        <button onclick="simulateProcess()" class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-2xl active:scale-90 transition-all">
+                            <span class="material-symbols-outlined text-3xl">camera_rounded</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Guidance / Status -->
+                <div class="flex flex-col justify-center space-y-10">
+                    <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl">
+                        <div class="flex items-center gap-5 mb-8">
+                            <div class="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-2xl animate-pulse">auto_awesome</span>
+                            </div>
+                            <h4 class="text-xl font-black tracking-tight leading-tight">L'IA de Hawta analyse <br>votre ticket...</h4>
+                        </div>
+                        <ul class="space-y-6">
+                            <li class="flex items-center gap-4 text-sm font-medium text-slate-600">
+                                <span class="material-symbols-outlined text-emerald-500 font-black">check_circle</span>
+                                Netteté de l'image : Excellente
+                            </li>
+                            <li class="flex items-center gap-4 text-sm font-medium text-slate-400">
+                                <span class="material-symbols-outlined text-slate-200">radio_button_unchecked</span>
+                                Extraction des noms de produits...
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="switchView('view-selection')" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-slate-900">Annuler et revenir</button>
+                </div>
+            </div>
+
+            <!-- View: Verification -->
+            <div id="view-verification" class="hidden max-w-4xl mx-auto space-y-10 animate-[scaleIn_0.3s_ease-out]">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 bg-emerald-500 text-white rounded-[1.5rem] flex items-center justify-center shadow-lg">
+                        <span class="material-symbols-outlined text-3xl font-black">verified</span>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-black tracking-tighter">Vérification du Deal ✅</h2>
+                        <p class="text-sm font-medium text-slate-400">L'IA a détecté ces articles. Confirmez les prix pour publier d'un clic.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-xl space-y-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Magasin</label>
+                            <select class="w-full bg-slate-50 border-none rounded-2xl py-5 px-6 font-black text-slate-900 focus:ring-8 focus:ring-primary/5">
+                                <option>Marjane Tanger City Mall</option>
+                                <option>Souk Msala</option>
+                                <option>Aswak Assalam</option>
+                            </select>
+                        </div>
+                        <div class="space-y-4">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Produit Détecté</label>
+                            <div class="flex items-center gap-4 bg-slate-50 rounded-2xl py-5 px-6">
+                                <input type="text" value="Tomates Bio 1kg" class="bg-transparent border-none p-0 flex-grow font-black text-slate-900 focus:ring-0">
+                                <div class="flex items-center gap-2">
+                                    <input type="text" value="6.50" class="bg-transparent border-none p-0 w-16 text-right font-black text-primary focus:ring-0">
+                                    <span class="text-xs font-black text-primary">DH</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="switchView('view-success')" class="w-full bg-primary text-white font-black py-6 rounded-full shadow-2xl shadow-primary/20 uppercase tracking-widest text-sm hover:scale-[1.01] transition-all">
+                        Publier ce deal sur Tanger
+                    </button>
+                </div>
+            </div>
+
+            <!-- View: Success -->
+            <div id="view-success" class="hidden flex flex-col items-center py-20 text-center animate-[scaleIn_0.3s_ease-out]">
+                <div class="w-40 h-40 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mb-10 shadow-2xl relative">
+                    <span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+                    <div class="absolute inset-0 bg-emerald-500 opacity-20 blur-3xl rounded-full"></div>
+                </div>
+                <h2 class="text-5xl font-black tracking-tighter mb-4">Félicitations ! 🎉</h2>
+                <p class="text-lg text-slate-400 font-medium mb-12">Votre deal a été publié. Vous avez gagné <span class="text-slate-900 font-bold">+50 XP</span>.</p>
+                <div class="flex gap-6">
+                    <a href="dashboard.html" class="px-10 py-5 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-widest text-xs">Tableau de bord</a>
+                    <a href="communaute.html" class="px-10 py-5 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black uppercase tracking-widest text-xs">Voir dans le flux</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Processing Overlay -->
+    <div id="processing" class="hidden fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-xl flex items-center justify-center">
+        <div class="text-center space-y-10 w-full max-w-sm">
+            <div class="w-32 h-32 bg-primary/20 rounded-full flex items-center justify-center mx-auto shadow-2xl relative overflow-hidden">
+                <span class="material-symbols-outlined text-primary text-6xl animate-spin">sync</span>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-3xl font-black text-white tracking-tighter">Analyse IA en cours</h3>
+                <p class="text-slate-400 font-medium">Extraction des données de Tanger...</p>
+            </div>
+            <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+                <div id="progress-bar" class="bg-primary h-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchView(viewId) {
+            ['view-selection', 'view-scan', 'view-verification', 'view-success'].forEach(v => {
+                document.getElementById(v).classList.add('hidden');
+            });
+            document.getElementById(viewId).classList.remove('hidden');
+        }
+
+        function startScanning() {
+            switchView('view-scan');
+        }
+
+        function simulateProcess() {
+            document.getElementById('processing').classList.remove('hidden');
+            let progress = 0;
+            const bar = document.getElementById('progress-bar');
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('processing').classList.add('hidden');
+                        switchView('view-verification');
+                    }, 500);
+                }
+                bar.style.width = progress + '%';
+            }, 200);
+        }
+    </script>
+
+    <style>
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</body>
+</html>

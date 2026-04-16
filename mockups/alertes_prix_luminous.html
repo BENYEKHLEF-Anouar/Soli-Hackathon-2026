@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hawta - Alertes &amp; Prix</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#001c5e",
+                    "surface-container-high": "#e0e3e4",
+                    "tertiary": "#5c5b5b",
+                    "on-secondary-container": "#5c5000",
+                    "on-surface-variant": "#595c5d",
+                    "on-primary": "#f1f2ff",
+                    "tertiary-container": "#ffffff",
+                    "surface-dim": "#d1d5d7",
+                    "outline": "#757778",
+                    "on-primary-fixed-variant": "#002572",
+                    "surface": "#f5f6f7",
+                    "surface-variant": "#dadddf",
+                    "on-error-container": "#510017",
+                    "on-background": "#2c2f30",
+                    "secondary": "#695c00",
+                    "on-secondary-fixed-variant": "#675a00",
+                    "on-secondary": "#fff3c0",
+                    "background": "#f5f6f7",
+                    "error-dim": "#a70138",
+                    "primary-fixed": "#7e9cff",
+                    "tertiary-fixed-dim": "#f3f0ef",
+                    "on-tertiary-fixed-variant": "#6e6d6c",
+                    "surface-container": "#e6e8ea",
+                    "on-surface": "#2c2f30",
+                    "surface-tint": "#004edc",
+                    "primary-fixed-dim": "#698dff",
+                    "primary": "#004edc",
+                    "surface-container-low": "#eff1f2",
+                    "inverse-primary": "#658aff",
+                    "secondary-fixed": "#f9e04c",
+                    "on-tertiary-fixed": "#515050",
+                    "surface-bright": "#f5f6f7",
+                    "error-container": "#f74b6d",
+                    "secondary-dim": "#5b5000",
+                    "tertiary-dim": "#504f4f",
+                    "outline-variant": "#abadae",
+                    "on-error": "#ffefef",
+                    "inverse-surface": "#0c0f10",
+                    "secondary-fixed-dim": "#ead23f",
+                    "on-primary-fixed": "#000000",
+                    "error": "#b41340",
+                    "secondary-container": "#f9e04c",
+                    "on-tertiary-container": "#636262",
+                    "tertiary-fixed": "#ffffff",
+                    "primary-container": "#7e9cff",
+                    "primary-dim": "#0043c1",
+                    "on-tertiary": "#f5f2f1",
+                    "surface-container-highest": "#dadddf",
+                    "inverse-on-surface": "#9b9d9e",
+                    "on-secondary-fixed": "#473e00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f6f7 0%, #eef2ff 100%);
+            min-height: 100vh;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full docked full-width top-0 sticky z-50 shadow-[0_20px_40px_rgba(44,47,48,0.06)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="user profile picture" class="w-full h-full object-cover" data-alt="close-up portrait of a professional man with a friendly expression in soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8k0uZ6GL5GIazajZBnBzvt9IVrW3eEmSO0WbDLgz4eTlzFk8ChPoKfYcjWyTQOuAokHDsRSWFma_C7rLu-M-J8589C7u8h9fGLUsNXv7N0Gq63QJkvESl--rwCxgsiThogIFmEAtfSaFARTYa6XiQEo_DlDNnf8Rs6FdRiId58YT1kB9MO_kS93zbGzqdWJU4tDGnNSsJisV__Q45Cly8CFeqcTNwMdysZm1jIkIsj4HbLAZQQ7wLgS__EmJKEU0aieAoM1g-Zvpm"/>
+</div>
+<span class="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">Hawta</span>
+</div>
+<button class="text-blue-600 dark:text-blue-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors p-2 rounded-full scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="px-6 pt-8 pb-32">
+<!-- Page Title Section -->
+<section class="mb-10">
+<h1 class="font-headline font-extrabold text-[2.5rem] leading-tight tracking-tight text-on-surface mb-2">
+                Alertes &amp; Notifications
+            </h1>
+<p class="text-on-surface-variant font-body text-sm">Suivez les variations de prix en temps réel.</p>
+</section>
+<!-- Action Button -->
+<div class="mb-8">
+<button class="w-full py-4 px-6 bg-surface-container-lowest rounded-lg flex items-center justify-between group hover:bg-primary/5 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="bg-primary/10 p-3 rounded-full text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+<span class="font-headline font-bold text-lg">Gérer mes alertes</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Notification Feed -->
+<div class="space-y-6">
+<!-- Price Drop Alert (Success/Green) -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_20px_40px_rgba(44,47,48,0.06)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4">
+<span class="text-[0.6875rem] font-label font-bold uppercase tracking-widest text-outline-variant">Aujourd'hui</span>
+</div>
+<div class="flex gap-5">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline font-bold text-lg text-on-surface mb-1">Baisse de prix !</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">Le prix de l'huile d'olive Extra Vierge (1L) a chuté de <span class="text-emerald-600 font-bold">15%</span> chez votre commerçant habituel.</p>
+<div class="mt-4 flex items-center gap-3">
+<span class="text-2xl font-headline font-extrabold text-on-surface">64,00 DH</span>
+<span class="text-sm line-through text-outline-variant">75,00 DH</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Inflation Alert (Error/Red) -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_20px_40px_rgba(44,47,48,0.06)] relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="text-[0.6875rem] font-label font-bold uppercase tracking-widest text-outline-variant">Hier</span>
+</div>
+<div class="flex gap-5">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 bg-error/10 text-error rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline font-bold text-lg text-on-surface mb-1">Alerte Inflation</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">Attention, le prix du café moulu a augmenté de <span class="text-error font-bold">8%</span> sur le marché national ce matin.</p>
+<div class="mt-4 inline-flex items-center gap-2 px-3 py-1 bg-error-container/20 rounded-full text-error text-[0.6875rem] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-xs" data-icon="warning">warning</span>
+                            Tendance Critique
+                        </div>
+</div>
+</div>
+</div>
+<!-- Generic Update -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_20px_40px_rgba(44,47,48,0.06)]">
+<div class="flex gap-5">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 bg-secondary-container/20 text-secondary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline font-bold text-lg text-on-surface mb-1">Stock de nouveau disponible</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">Les oeufs de ferme sont à nouveau disponibles dans 3 magasins à proximité de votre position.</p>
+<div class="mt-4 flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="close up of organic farm eggs in a basket with straw background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdDkMrbeCVOBC9dr4BB41VCdk_kJ6b6UnPKe_yHlC35XnpQjjAgzEXuj6MIPSUiClcVM87-jBPOiQj7BsbawpPOL6ThEzR7ny_sx_zLii3Xju0P7syR1GbvydG6bPydyvZy-6JfjutQ_01xykKYwjTTdthDE6n90S_N_WoCH9akN-kz3iY8LqXqVtzvV0Gwxa5eKsyCoPJWiTxK5okMcBPzg4zLc6ru9Jk3v2zyiIsZ8Ma3YcuEeClaB05ZkBiIduF1NrkJ0mcTXiu"/>
+<img class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="supermarket aisle shelf stocked with dairy products and eggs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi7AKjP11y4XwayvFU9xbSy7NhPk5Z-_us8pAhgwLfyUgmDe28rYT1oc2AJrnTAe9FoWOzhrubhqELwnaXYBMeXiA7BoEupF1X0pcDQjLOQW4Ona6oswR__FhrODCepH2PYE_Hy0oxqxhyfG8MCYQEmMSHJK-hrGtu0mtDaRGjj88d28dsmRciHXHgVL1ajVFNiolDu_9TJ1H__0MHCWylCj-ueADf5HbTUfOe0dxjk2GlwQJSTu7QgFubipu_qZpuJiSVLc_w4ivu"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Display Card (Bento Style Asymmetry) -->
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-1 bg-primary text-white rounded-lg p-6 flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-4xl" data-icon="rocket_launch">rocket_launch</span>
+<div>
+<h4 class="font-headline font-bold leading-tight">Meilleure offre</h4>
+<p class="font-body text-[0.6875rem] opacity-70">Secteur Gauthier</p>
+</div>
+</div>
+<div class="col-span-1 bg-surface-container-lowest rounded-lg p-4 flex flex-col items-center justify-center text-center">
+<img class="w-20 h-20 object-contain mb-2" data-alt="isolated bottle of premium cooking oil on white background clean studio photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa198_pqQxRtwM-Da4L15-waf-Fll55yFEYyIrvCLTuVP8yFplEZ9I7PeWyttMGBflaOIr2nPD-ooLOrFyQDsV-NmfBDBPypLI7Jrl-IOD38jnsj-equh4y0CYgxas8s4wYe_lgC-nvE6cAI0-4eqJ3guSTb0t-5ThJ3DZVQSQxMCzB0XHIx2DydhYU3OVPhH0XMwwALZuvEIabwwxkIwOPzCmQAsq_r1TwMrHBvV-_IUvtTZpv84evXwJgtScmh2e6dSRGzfkO8FF"/>
+<span class="text-on-surface font-bold text-sm">Huile d'Argan</span>
+<span class="text-primary font-bold">120 DH</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl rounded-t-[2rem] shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 dark:hover:text-blue-300 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 dark:hover:text-blue-300 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="format_list_bulleted">format_list_bulleted</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-600 dark:bg-blue-500 text-white rounded-full p-3 shadow-lg shadow-blue-200 dark:shadow-blue-900/20 scale-110 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 dark:hover:text-blue-300 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 dark:hover:text-blue-300 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+</body></html>

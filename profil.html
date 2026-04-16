@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil | Hawta.ma</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: "#695c00",
+                        "on-error-container": "#510017",
+                        "surface-container-high": "#e0e3e4",
+                        "tertiary-fixed": "#ffffff",
+                        surface: "#f5f6f7",
+                        outline: "#757778",
+                        "on-surface": "#2c2f30",
+                        error: "#b41340",
+                        "on-primary-fixed-variant": "#002572",
+                        "on-primary": "#f1f2ff",
+                        "surface-bright": "#f5f6f7",
+                        "inverse-primary": "#658aff",
+                        "outline-variant": "#abadae",
+                        "on-secondary-container": "#5c5000",
+                        "error-dim": "#a70138",
+                        "on-tertiary-container": "#636262",
+                        "secondary-fixed": "#f9e04c",
+                        "on-secondary-fixed": "#473e00",
+                        "on-primary-container": "#001c5e",
+                        "surface-container-highest": "#dadddf",
+                        primary: "#004edc",
+                        "surface-container-low": "#eff1f2",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "secondary-container": "#f9e04c",
+                        "on-secondary": "#fff3c0",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#0c0f10",
+                        tertiary: "#5c5b5b",
+                        "on-surface-variant": "#595c5d",
+                        "surface-variant": "#dadddf",
+                        "on-tertiary": "#f5f2f1",
+                        "secondary-dim": "#5b5000",
+                        "primary-container": "#7e9cff",
+                        "secondary-fixed-dim": "#ead23f",
+                        "on-error": "#ffefef",
+                        "error-container": "#f74b6d",
+                        "tertiary-container": "#ffffff",
+                        "on-background": "#2c2f30",
+                        "primary-dim": "#0043c1",
+                        "on-primary-fixed": "#000000",
+                        background: "#f5f6f7",
+                        "on-secondary-fixed-variant": "#675a00",
+                        "surface-container": "#e6e8ea"
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "2rem",
+                        xl: "3rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Manrope"],
+                        body: ["Manrope"],
+                        label: ["Manrope"],
+                        sans: ["Manrope"]
+                    },
+                    spacing: {
+                        '4.5': '1.125rem',
+                        '5.5': '1.375rem'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        * {
+            font-family: 'Manrope', sans-serif;
+        }
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .nav-active {
+            color: #004edc !important;
+        }
+        .nav-active .indicator {
+            width: 12px;
+            opacity: 1;
+        }
+        .nav-item:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(44,47,48,0.08)]">
+        <div class="flex justify-between items-center px-6 py-3.5 w-full">
+            <a href="dashboard.html" class="flex items-center gap-2.5 group">
+                <span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                <span class="text-2xl font-black text-slate-900 tracking-tighter font-headline" style="font-weight: 900;">Hawta.ma</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="alertes.html" class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-primary/10 transition-all text-primary relative active:scale-95">
+                    <span class="material-symbols-outlined text-2xl">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-error rounded-full border-2 border-white animate-pulse"></span>
+                </a>
+                <a href="profil.html" class="w-11 h-11 rounded-full overflow-hidden border-2 border-primary-container hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                    <img alt="User Profile" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 px-6 space-y-8">
+        <!-- Profile Section -->
+        <section class="flex flex-col items-center text-center space-y-4">
+            <div class="relative">
+                <div class="w-28 h-28 rounded-xl overflow-hidden shadow-xl">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face">
+                </div>
+                <div class="absolute -bottom-2 -right-2 bg-secondary-container text-on-secondary-container text-[10px] font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
+                    Lvl 7
+                </div>
+            </div>
+            <div>
+                <h2 class="text-2xl font-black tracking-tight text-on-surface">Fatima Benali</h2>
+                <p class="text-primary font-black uppercase tracking-widest text-[9px] mt-1">Niveau 7 — Chasseuse Confirmée</p>
+            </div>
+            <!-- XP Bar -->
+            <div class="w-full max-w-xs">
+                <div class="flex justify-between text-xs mb-1">
+                    <span class="text-on-surface-variant">XP</span>
+                    <span class="text-primary font-bold">7,250 / 10,000</span>
+                </div>
+                <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+                    <div class="h-full bg-primary rounded-full" style="width: 72%"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Grid -->
+        <section class="grid grid-cols-2 gap-4">
+            <!-- Large Stat Card -->
+            <div class="col-span-2 bg-primary text-on-primary p-6 rounded-2xl flex flex-col justify-between h-40 shadow-xl shadow-primary/20 relative overflow-hidden transition-all hover:shadow-2xl">
+                <div class="absolute top-0 right-0 p-4 opacity-10">
+                    <span class="material-symbols-outlined text-8xl font-black">savings</span>
+                </div>
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Économies Totales</p>
+                <h3 class="text-4xl font-black font-headline tracking-tighter">2,840 <span class="text-xl">DH</span></h3>
+                <div class="bg-white/20 self-start px-3 py-1.5 rounded-full text-[9px] font-black flex items-center gap-1.5 backdrop-blur-md">
+                    <span class="material-symbols-outlined text-[10px] font-black">trending_up</span>
+                    +15% ce mois
+                </div>
+            </div>
+            <!-- Smaller Cards -->
+            <div class="bg-white p-5 rounded-2xl flex flex-col gap-3 shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:scale-[1.02]">
+                <div class="w-10 h-10 bg-secondary/5 text-secondary rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined font-black">share</span>
+                </div>
+                <div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant">Deals Partagés</p>
+                    <h4 class="text-2xl font-black font-headline tracking-tighter">47</h4>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl flex flex-col gap-3 shadow-lg shadow-slate-200/40 border border-slate-100 transition-all hover:scale-[1.02]">
+                <div class="w-10 h-10 bg-error/5 text-error rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined font-black">stars</span>
+                </div>
+                <div>
+                    <p class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant">Points Fidélité</p>
+                    <h4 class="text-2xl font-black font-headline tracking-tighter">14,250</h4>
+                </div>
+            </div>
+            
+            <!-- Redeem Points Button -->
+            <button onclick="redeemPoints()" class="col-span-2 bg-white/80 backdrop-blur-2xl text-on-surface font-black py-5 rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-slate-200/50 active:scale-95 transition-all border border-white/60 group hover:bg-white">
+                <div class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
+                    <span class="material-symbols-outlined font-black">redeem</span>
+                </div>
+                <span class="tracking-widest uppercase text-xs">Échanger mes points</span>
+            </button>
+        </section>
+
+        <!-- Badges Section -->
+        <section class="space-y-6">
+            <div class="flex justify-between items-center px-1">
+                <h3 class="text-xs font-black uppercase tracking-[0.2em] text-on-surface-variant">Mes Badges (5)</h3>
+                <button class="text-primary text-[10px] font-black uppercase tracking-widest hover:underline transition-all">Tout voir</button>
+            </div>
+            
+            <div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar -mx-6 px-6">
+                <!-- Badge 1 -->
+                <div class="flex-shrink-0 w-28 group">
+                    <div class="aspect-[4/5] rounded-2xl bg-white border border-slate-100 shadow-lg shadow-slate-200/40 p-4 flex flex-col items-center justify-between transition-all group-hover:-translate-y-1 group-hover:shadow-xl relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50"></div>
+                        <div class="relative z-10 w-full flex justify-end">
+                            <span class="bg-primary text-white text-[7px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-tighter shadow-sm">Nouv</span>
+                        </div>
+                        <div class="relative z-10 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/10">
+                            <span class="material-symbols-outlined text-3xl font-black" style="font-variation-settings: 'FILL' 1;">explore</span>
+                        </div>
+                        <span class="relative z-10 text-[9px] font-black text-center uppercase tracking-widest text-on-surface leading-tight">Éclaireur</span>
+                    </div>
+                </div>
+
+                <!-- Badge 2 -->
+                <div class="flex-shrink-0 w-28 group">
+                    <div class="aspect-[4/5] rounded-2xl bg-white border border-slate-100 shadow-lg shadow-slate-200/40 p-4 flex flex-col items-center justify-between transition-all group-hover:-translate-y-1 group-hover:shadow-xl relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-50"></div>
+                        <div class="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/10 mt-2">
+                            <span class="material-symbols-outlined text-3xl font-black" style="font-variation-settings: 'FILL' 1;">storefront</span>
+                        </div>
+                        <span class="text-[9px] font-black text-center uppercase tracking-widest text-on-surface leading-tight mt-1">Roi du Souk</span>
+                    </div>
+                </div>
+
+                <!-- Badge 3 -->
+                <div class="flex-shrink-0 w-28 group">
+                    <div class="aspect-[4/5] rounded-2xl bg-white border border-slate-100 shadow-lg shadow-slate-200/40 p-4 flex flex-col items-center justify-between transition-all group-hover:-translate-y-1 group-hover:shadow-xl relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-50"></div>
+                        <div class="w-14 h-14 rounded-xl bg-emerald-50/50 flex items-center justify-center text-emerald-600 border border-emerald-100 mt-2">
+                            <span class="material-symbols-outlined text-3xl font-black" style="font-variation-settings: 'FILL' 1;">handshake</span>
+                        </div>
+                        <span class="text-[9px] font-black text-center uppercase tracking-widest text-on-surface leading-tight mt-1">Négociateur</span>
+                    </div>
+                </div>
+
+                <!-- Badge 4 (Locked) -->
+                <div class="flex-shrink-0 w-28 grayscale opacity-60 group">
+                    <div class="aspect-[4/5] rounded-2xl bg-slate-50 border border-slate-200 p-4 flex flex-col items-center justify-center gap-3 transition-all">
+                        <div class="w-14 h-14 rounded-xl bg-slate-200/50 flex items-center justify-center text-slate-400">
+                            <span class="material-symbols-outlined text-3xl font-black">lock</span>
+                        </div>
+                        <span class="text-[9px] font-black text-center uppercase tracking-widest text-slate-400 leading-tight">Chasseur...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Monthly Savings Chart -->
+        <section class="bg-surface-container-low p-6 rounded-2xl border border-white/40 shadow-sm space-y-6">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h3 class="text-lg font-black tracking-tight tracking-tight">Économies Mensuelles</h3>
+                    <p class="text-xs text-on-surface-variant font-medium">Performance des 6 derniers mois</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-primary font-black text-xl">Avril</span>
+                </div>
+            </div>
+            <div class="flex items-end justify-between h-32 gap-3 pt-4">
+                <div class="flex flex-col items-center flex-1 gap-2">
+                    <div class="w-full bg-surface-container-highest rounded-t-md h-[40%]"></div>
+                    <span class="text-[9px] font-label uppercase text-on-surface-variant">Nov</span>
+                </div>
+                <div class="flex flex-col items-center flex-1 gap-2">
+                    <div class="w-full bg-surface-container-highest rounded-t-md h-[55%]"></div>
+                    <span class="text-[9px] font-label uppercase text-on-surface-variant">Dec</span>
+                </div>
+                <div class="flex flex-col items-center flex-1 gap-2">
+                    <div class="w-full bg-surface-container-highest rounded-t-md h-[45%]"></div>
+                    <span class="text-[9px] font-label uppercase text-on-surface-variant">Jan</span>
+                </div>
+                <div class="flex flex-col items-center flex-1 gap-2">
+                    <div class="w-full bg-primary-container rounded-t-md h-[70%]"></div>
+                    <span class="text-[9px] font-label uppercase text-on-surface-variant">Fev</span>
+                </div>
+                <div class="flex flex-col items-center flex-1 gap-2">
+                    <div class="w-full bg-primary-container rounded-t-md h-[60%]"></div>
+                    <span class="text-[9px] font-label uppercase text-on-surface-variant">Mar</span>
+                </div>
+                <div class="flex flex-col items-center flex-1 gap-2">
+                    <div class="w-full bg-primary rounded-t-md h-[85%]"></div>
+                    <span class="text-[9px] font-label uppercase text-primary font-bold">Avr</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings List -->
+        <section class="space-y-4">
+            <h3 class="text-xs font-black uppercase tracking-[0.2em] text-on-surface-variant px-1">Paramètres du compte</h3>
+            <div class="bg-white rounded-2xl divide-y divide-slate-100 overflow-hidden shadow-xl shadow-slate-200/40 border border-slate-100">
+                <a class="flex items-center justify-between p-5 hover:bg-slate-50 transition-all group" href="dashboard.html">
+                    <div class="flex items-center gap-4">
+                        <div class="w-11 h-11 bg-slate-50 rounded-xl flex items-center justify-center text-slate-500 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">account_balance_wallet</span>
+                        </div>
+                        <div>
+                            <p class="font-black text-xs uppercase tracking-widest">Gestion du Budget</p>
+                            <p class="text-[11px] font-bold text-on-surface-variant">Objectif : 2,500 DH / mois</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+                </a>
+                <a class="flex items-center justify-between p-5 hover:bg-slate-50 transition-all group" href="#">
+                    <div class="flex items-center gap-4">
+                        <div class="w-11 h-11 bg-slate-50 rounded-xl flex items-center justify-center text-slate-500 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">language</span>
+                        </div>
+                        <div>
+                            <p class="font-black text-xs uppercase tracking-widest">Langue</p>
+                            <p class="text-[11px] font-bold text-on-surface-variant">Français (FR)</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+                </a>
+                <a class="flex items-center justify-between p-5 hover:bg-slate-50 transition-all group" href="carte.html">
+                    <div class="flex items-center gap-4">
+                        <div class="w-11 h-11 bg-slate-50 rounded-xl flex items-center justify-center text-slate-500 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">location_on</span>
+                        </div>
+                        <div>
+                            <p class="font-black text-xs uppercase tracking-widest">Mon Quartier</p>
+                            <p class="text-[11px] font-bold text-on-surface-variant">Malabata, Tanger</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+                </a>
+                <a class="flex items-center justify-between p-5 hover:bg-slate-50 transition-all group" href="#">
+                    <div class="flex items-center gap-4">
+                        <div class="w-11 h-11 bg-slate-50 rounded-xl flex items-center justify-center text-slate-500 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">notifications</span>
+                        </div>
+                        <div>
+                            <p class="font-black text-xs uppercase tracking-widest">Notifications</p>
+                            <p class="text-[11px] font-bold text-on-surface-variant">5 alertes actives</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+                </a>
+                <a class="flex items-center justify-between p-5 hover:bg-error/5 transition-all group" href="index.html">
+                    <div class="flex items-center gap-4">
+                        <div class="w-11 h-11 bg-error/10 rounded-xl flex items-center justify-center text-error group-hover:bg-error group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">logout</span>
+                        </div>
+                        <div>
+                            <p class="font-black text-xs uppercase tracking-widest text-error">Déconnexion</p>
+                            <p class="text-[11px] font-bold text-error/60">À bientôt sur Hawta</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- App Version -->
+        <div class="text-center pt-4 pb-8">
+            <p class="text-xs text-on-surface-variant">Hawta.ma v1.0.2</p>
+            <p class="text-[10px] text-on-surface-variant/60 mt-1">Made with love for Tanger</p>
+        </div>
+    </main>
+
+    <!-- Floating Dock Navigation -->
+    <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-6 pt-2 pointer-events-none">
+        <div class="max-w-md mx-auto bg-white/95 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_25px_50_rgba(0,0,0,0.15)] border border-white/50 flex justify-around items-end px-2 py-4 pointer-events-auto relative">
+            
+            <!-- Home -->
+            <a href="dashboard.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">home</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Accueil</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- List -->
+            <a href="liste.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">format_list_bulleted</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Listes</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- Map -->
+            <a href="carte.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">map</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Carte</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- Community -->
+            <a href="communaute.html" class="nav-item flex flex-col items-center justify-center w-16 text-slate-400 transition-all duration-300 hover:text-primary">
+                <span class="material-symbols-outlined text-2xl">group</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Social</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+            
+            <!-- Profile (Active) -->
+            <a href="profil.html" class="nav-item flex flex-col items-center justify-center w-16 transition-all duration-300 nav-active">
+                <span class="material-symbols-outlined text-2xl transition-transform" style="font-variation-settings: 'FILL' 1;">person</span>
+                <span class="text-[8px] font-black uppercase tracking-[0.1em] mt-1">Profil</span>
+                <div class="indicator h-1 w-0 bg-primary rounded-full mt-1.5 opacity-0 transition-all duration-300"></div>
+            </a>
+
+        </div>
+    </nav>
+
+    <script>
+        function redeemPoints() {
+            // Show redemption options
+            const options = [
+                '20% off at Carrefour - 5,000 pts',
+                'Free Delivery - 2,500 pts',
+                '5 DH Coupon - 1,000 pts',
+                'Premium Badge - 10,000 pts'
+            ];
+            
+            const choice = prompt('Redeem your 14,250 points for:\n\n' + options.map((o, i) => `${i + 1}. ${o}`).join('\n') + '\n\nEnter number (1-4):');
+            
+            if (choice && choice >= 1 && choice <= 4) {
+                alert(`You selected: ${options[choice - 1]}\n\nComing soon to your wallet!`);
+            }
+        }
+    </script>
+</body>
+</html>

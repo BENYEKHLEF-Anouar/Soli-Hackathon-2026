@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation | Hawta.ma</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#004edc",
+                        secondary: "#f9e04c",
+                        surface: "#f5f6f7",
+                        "on-surface": "#2c2f30",
+                        "on-surface-variant": "#595c5d",
+                        background: "#ffffff"
+                    },
+                    fontFamily: {
+                        headline: ["Manrope"],
+                        body: ["Manrope"]
+                    },
+                    spacing: {
+                        '5.5': '1.375rem'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+        * { font-family: 'Manrope', sans-serif; }
+        #map { height: 100vh; width: 100vw; }
+        .custom-marker { background: none; border: none; }
+        .marker-destination {
+            width: 48px;
+            height: 48px;
+            background: #004edc;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,78,220,0.4);
+            border: 3px solid white;
+        }
+        .marker-destination span {
+            transform: rotate(45deg);
+            color: white;
+            font-size: 24px;
+        }
+        .marker-user {
+            width: 24px;
+            height: 24px;
+            background: #004edc;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 20px rgba(0,78,220,0.6);
+            position: relative;
+        }
+        .marker-user::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: rgba(0,78,220,0.2);
+            animation: pulse-user 2s infinite;
+        }
+        @keyframes pulse-user {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        #nav-header { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+</head>
+<body class="bg-surface overflow-hidden h-screen flex flex-col">
+
+    <!-- Navigation Header -->
+    <header id="nav-header" class="fixed top-0 left-0 w-full z-50 p-6 px-4">
+        <div class="max-w-md mx-auto bg-primary text-white p-5 rounded-[2rem] shadow-2xl flex items-center gap-5 border border-white/20">
+            <button onclick="window.location.href='optimisation.html'" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+                <span class="material-symbols-outlined font-black">close</span>
+            </button>
+            <div class="flex-1">
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] opacity-70 mb-0.5">En cours vers</p>
+                <h1 class="text-lg font-black tracking-tight leading-tight">Souk Msala (Étape 1)</h1>
+            </div>
+            <div class="text-right">
+                <p class="text-2xl font-black tracking-tighter">8 <span class="text-sm">min</span></p>
+                <p class="text-[10px] font-bold opacity-70">1.2 km</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Map Container -->
+    <main class="flex-grow relative h-full w-full">
+        <div id="map"></div>
+        
+        <!-- Recenter Button -->
+        <button onclick="recenterMap()" class="absolute bottom-40 right-6 z-10 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center text-primary active:scale-95 transition-all border border-slate-100">
+            <span class="material-symbols-outlined font-black">my_location</span>
+        </button>
+    </main>
+
+    <!-- Navigation Bottom Panel -->
+    <div class="fixed bottom-0 left-0 w-full z-50 p-6">
+        <div class="max-w-md mx-auto bg-white rounded-[2.5rem] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] p-8 border border-slate-100">
+            <div class="flex items-center gap-6 mb-8">
+                <div class="w-16 h-16 bg-surface rounded-2xl flex items-center justify-center text-primary shadow-inner">
+                    <span class="material-symbols-outlined text-4xl font-black">turn_slight_right</span>
+                </div>
+                <div class="flex-1">
+                    <h2 class="text-xl font-black tracking-tight text-on-surface">Dans 350m</h2>
+                    <p class="text-on-surface-variant font-medium text-sm leading-relaxed">Tournez à droite vers <span class="text-primary font-bold">Boulevard Mohamed V</span></p>
+                </div>
+            </div>
+            
+            <div class="flex gap-4">
+                <button onclick="window.location.href='optimisation.html'" class="flex-1 py-5.5 bg-surface text-on-surface-variant font-black text-xs uppercase tracking-[0.2em] rounded-full active:scale-95 transition-all">
+                    Quitter
+                </button>
+                <button onclick="confirmArrival()" class="flex-[1.5] py-5.5 bg-primary text-white font-black text-xs uppercase tracking-[0.2em] rounded-full shadow-xl shadow-primary/20 active:scale-95 transition-all flex items-center justify-center gap-3">
+                    J'ai trouvé
+                    <span class="material-symbols-outlined font-black">celebration</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Map
+        const map = L.map('map', { zoomControl: false }).setView([35.7780, -5.8030], 15);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Coordinates for the route (Simulated for Tangier)
+        const routePoints = [
+            [35.7725, -5.7940], // User Start
+            [35.7745, -5.7975],
+            [35.7770, -5.8020],
+            [35.7795, -5.8070],
+            [35.7820, -5.8115]  // Destination (Souk Msala)
+        ];
+
+        // Draw Route with Animated Dashes
+        const routeLine = L.polyline(routePoints, {
+            color: '#004edc',
+            weight: 7,
+            opacity: 0.9,
+            lineJoin: 'round',
+            dashArray: '1, 15',
+            lineCap: 'round'
+        }).addTo(map);
+
+        // Add Destination Marker
+        const destIcon = L.divIcon({
+            className: 'custom-marker',
+            html: '<div class="marker-destination"><span class="material-symbols-outlined" style="font-variation-settings: \'FILL\' 1;">shopping_basket</span></div>',
+            iconSize: [48, 48],
+            iconAnchor: [24, 48]
+        });
+        L.marker([35.7820, -5.8115], { icon: destIcon }).addTo(map);
+
+        // Add User Marker
+        const userIcon = L.divIcon({
+            className: 'custom-marker',
+            html: '<div class="marker-user"></div>',
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+        });
+        const userMarker = L.marker([35.7725, -5.7940], { icon: userIcon }).addTo(map);
+
+        function recenterMap() {
+            map.flyTo([35.7725, -5.7940], 17);
+        }
+
+        function confirmArrival() {
+            alert('🎉 Magnifique ! Vous êtes arrivé à Souk Msala. \n\nVos économies sont à portée de main !');
+            window.location.href = 'dashboard.html';
+        }
+
+        // Animate route flow
+        let offset = 0;
+        function animateRoute() {
+            offset = (offset + 0.5) % 16;
+            routeLine.setStyle({ dashOffset: -offset });
+            requestAnimationFrame(animateRoute);
+        }
+        animateRoute();
+
+        // Fit map to show both start and end
+        map.fitBounds(routeLine.getBounds(), { padding: [100, 100] });
+    </script>
+</body>
+</html>
