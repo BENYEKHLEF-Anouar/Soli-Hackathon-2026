@@ -1,0 +1,155 @@
+classDiagram
+
+class User {
+  +id
+  +name
+  +email
+  +passwordHash
+  +city
+  +district
+  +level
+  +xpPoints
+  +createdAt
+}
+
+class ShoppingList {
+  +id
+  +title
+  +createdAt
+  +status
+}
+
+class Item {
+  +id
+  +name
+  +quantity
+  +unit
+  +category
+}
+
+class OptimizationResult {
+  +id
+  +totalPrice
+  +savings
+  +ecoScore
+  +estimatedTime
+  +createdAt
+}
+
+class OptimizationOption {
+  +id
+  +rank
+  +totalPrice
+  +routeDescription
+  +ecoScore
+  +timeEstimate
+  +savings
+}
+
+class Store {
+  +id
+  +name
+  +type
+  +locationName
+  +openingHours
+}
+
+class PriceEntry {
+  +id
+  +productName
+  +price
+  +unit
+  +timestamp
+  +validated
+}
+
+class Deal {
+  +id
+  +title
+  +description
+  +price
+  +createdAt
+  +status
+  +validationScore
+}
+
+class MapPin {
+  +id
+  +type
+  +color
+  +latitude
+  +longitude
+  +label
+}
+
+class TicketScan {
+  +id
+  +imageUrl
+  +extractedText
+  +totalAmount
+  +status
+}
+
+class Notification {
+  +id
+  +type
+  +message
+  +createdAt
+  +readStatus
+}
+
+class Badge {
+  +id
+  +name
+  +description
+  +tier
+}
+
+class PointsTransaction {
+  +id
+  +amount
+  +reason
+  +createdAt
+}
+
+class LeaderboardEntry {
+  +id
+  +rank
+  +score
+  +district
+}
+
+class Location {
+  +name
+  +latitude
+  +longitude
+}
+
+%% RELATIONS
+
+User "1" --> "many" ShoppingList : creates
+ShoppingList "1" --> "many" Item : contains
+
+ShoppingList "1" --> "1" OptimizationResult : generates
+OptimizationResult "1" --> "many" OptimizationOption : includes
+
+OptimizationOption "many" --> "many" Store : uses
+Store "1" --> "many" PriceEntry : publishes
+
+User "1" --> "many" Deal : submits
+Deal "many" --> "1" Store : occurs_at
+
+Deal "1" --> "1" MapPin : visualized_as
+
+User "1" --> "many" TicketScan : uploads
+TicketScan "1" --> "many" Deal : generates_or_validates
+
+User "1" --> "many" Notification : receives
+
+User "1" --> "many" PointsTransaction : earns
+User "1" --> "many" Badge : unlocks
+
+User "1" --> "many" LeaderboardEntry : ranked_in
+
+Store "1" --> "1" Location : located_at
+MapPin "1" --> "1" Location : placed_on
