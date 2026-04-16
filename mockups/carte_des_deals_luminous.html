@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#001c5e",
+                    "surface-container-high": "#e0e3e4",
+                    "tertiary": "#5c5b5b",
+                    "on-secondary-container": "#5c5000",
+                    "on-surface-variant": "#595c5d",
+                    "on-primary": "#f1f2ff",
+                    "tertiary-container": "#ffffff",
+                    "surface-dim": "#d1d5d7",
+                    "outline": "#757778",
+                    "on-primary-fixed-variant": "#002572",
+                    "surface": "#f5f6f7",
+                    "surface-variant": "#dadddf",
+                    "on-error-container": "#510017",
+                    "on-background": "#2c2f30",
+                    "secondary": "#695c00",
+                    "on-secondary-fixed-variant": "#675a00",
+                    "on-secondary": "#fff3c0",
+                    "background": "#f5f6f7",
+                    "error-dim": "#a70138",
+                    "primary-fixed": "#7e9cff",
+                    "tertiary-fixed-dim": "#f3f0ef",
+                    "on-tertiary-fixed-variant": "#6e6d6c",
+                    "surface-container": "#e6e8ea",
+                    "on-surface": "#2c2f30",
+                    "surface-tint": "#004edc",
+                    "primary-fixed-dim": "#698dff",
+                    "primary": "#004edc",
+                    "surface-container-low": "#eff1f2",
+                    "inverse-primary": "#658aff",
+                    "secondary-fixed": "#f9e04c",
+                    "on-tertiary-fixed": "#515050",
+                    "surface-bright": "#f5f6f7",
+                    "error-container": "#f74b6d",
+                    "secondary-dim": "#5b5000",
+                    "tertiary-dim": "#504f4f",
+                    "outline-variant": "#abadae",
+                    "on-error": "#ffefef",
+                    "inverse-surface": "#0c0f10",
+                    "secondary-fixed-dim": "#ead23f",
+                    "on-primary-fixed": "#000000",
+                    "error": "#b41340",
+                    "secondary-container": "#f9e04c",
+                    "on-tertiary-container": "#636262",
+                    "tertiary-fixed": "#ffffff",
+                    "primary-container": "#7e9cff",
+                    "primary-dim": "#0043c1",
+                    "on-tertiary": "#f5f2f1",
+                    "surface-container-highest": "#dadddf",
+                    "inverse-on-surface": "#9b9d9e",
+                    "on-secondary-fixed": "#473e00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Shell -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_20px_40px_rgba(44,47,48,0.06)] fixed top-0 w-full z-40">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden">
+<img alt="user profile picture" class="w-full h-full object-cover" data-alt="Professional headshot of a young man with a friendly smile, clean studio background, high quality portrait photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEt9wsO-H4bivFalwn7RM3H21nU4J-5uONAwlcrG4S0PCAouZUZSaRdEjYRMVOZKtO28OkJ7t94WY0X0FPGTL-HwL10k8CUGNhLeHVCgCebwKK_kjcpwzsS5Tdw3qyWbm-88a-FB_jPghsvS25LXnO8islZxuFPfQ89ghLb5fSHqsGuA4KTod7HjXLYwxQH8GhptJ89fbkuIAbcNN8tTICFf8qnkPLXDvfaJm_sSzYz-njROEqsOzXMuWxsU7bMWTCM-f8PwKEk7pj"/>
+</div>
+<h1 class="font-headline font-black text-slate-900 tracking-tighter text-2xl">Hawta</h1>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-100/50 transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-blue-600">notifications</span>
+</button>
+</div>
+<!-- Filter Chips Section -->
+<div class="px-6 pb-4 flex gap-2 overflow-x-auto no-scrollbar">
+<button class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap shadow-md shadow-primary/20">Tous</button>
+<button class="bg-surface-container-lowest text-on-surface px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap border border-outline-variant/10 shadow-sm">Souks</button>
+<button class="bg-surface-container-lowest text-on-surface px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap border border-outline-variant/10 shadow-sm">Supermarchés</button>
+<button class="bg-surface-container-lowest text-on-surface px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap border border-outline-variant/10 shadow-sm">Boulangeries</button>
+</div>
+</header>
+<!-- Main Map Canvas -->
+<main class="flex-grow relative mt-[112px]">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale-[0.5] contrast-[0.9] opacity-80" data-alt="Stylized light silver aerial map view of Tangier coastal city with soft grey streets and subtle blue water textures" data-location="Tangier" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3zqsFYnZDnVpMmBo1710I8dEKH3ORFphlRMkxS6nYCy9n7OEF8YlW4rDu2P2UAh8NB5TSTwsAfSxdMDVyL2Ukueqh4rRVaoc9l9ejTUCx9KxdIgUGNctKLB87WT2l2QVROx-fJCIbvmdJIQ87f7LBjgh_rEzuUE7TMiuKCiu3OM90Tx6BIk4rM-BPm8H85aJEWj_qZFHGSp23sW3FoPjTdzzECVF1LBtWmpwYKyipb-geK4grfPtg3sPvaFyzXqmKarZ2WRDDTuj0"/>
+</div>
+<!-- Custom Markers -->
+<div class="absolute top-1/4 left-1/3 z-10">
+<div class="relative flex flex-col items-center">
+<div class="bg-error shadow-xl shadow-error/30 text-white p-2 rounded-2xl flex items-center gap-2 transform -translate-y-2">
+<span class="font-bold text-xs tracking-tight">3.50 DH</span>
+</div>
+<div class="w-3 h-3 bg-error rounded-full border-2 border-white"></div>
+</div>
+</div>
+<div class="absolute top-1/2 left-1/2 z-10">
+<div class="relative flex flex-col items-center">
+<div class="bg-secondary shadow-xl shadow-secondary/30 text-on-secondary-container p-2 rounded-2xl flex items-center gap-2 transform -translate-y-2 animate-bounce">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+<span class="font-bold text-xs tracking-tight">Tomates</span>
+</div>
+<div class="w-4 h-4 bg-secondary rounded-full border-2 border-white ring-4 ring-secondary/20"></div>
+</div>
+</div>
+<div class="absolute bottom-1/3 right-1/4 z-10">
+<div class="relative flex flex-col items-center">
+<div class="bg-primary shadow-xl shadow-primary/30 text-white p-2 rounded-2xl flex items-center gap-2 transform -translate-y-2">
+<span class="font-bold text-xs tracking-tight">Lait 8DH</span>
+</div>
+<div class="w-3 h-3 bg-primary rounded-full border-2 border-white"></div>
+</div>
+</div>
+<!-- Partially Visible Bottom Sheet -->
+<div class="absolute bottom-0 left-0 w-full z-30 transition-transform duration-500 transform translate-y-4">
+<div class="bg-surface-container-lowest rounded-t-xl shadow-[0_-20px_50px_rgba(0,0,0,0.1)] p-6 pb-32">
+<div class="w-12 h-1 bg-surface-variant rounded-full mx-auto mb-6"></div>
+<div class="flex gap-4 items-start">
+<div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of fresh red organic tomatoes on a rustic wooden market stall in Morocco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7VGYPJerjehaR4nJ2pDld6tRZfDamZn1KYRTCDHuaVZ9hgcfqx-4TSXdCuBdGbPj5CoSuki6YukoMxLmLnjRPA-KZJOxXkLmnSboHBkOjiiOqBLeaCJRe6kN01OXybuj2Xc1IVg4IO32_axgTu7j5QTIRcWm6V-ac_be_n5U_Xs-DbP6ZRUNBCrDTTF42V_aRydqnPiUUoJm3FFzdQ0OtQIkdIWHEDAG9lnJsCrEqTTvMbYVCQXsiFZFhJ72osA0lIOpRNYLAp698"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline font-bold text-lg text-on-surface">Tomates fraîches</h3>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                                    Souk de Casabarata
+                                </p>
+</div>
+<span class="text-error font-bold text-xl tracking-tight">3.50 DH<span class="text-xs text-on-surface-variant font-normal">/kg</span></span>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="bg-surface-container-low px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Qualité A</span>
+<span class="bg-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-on-secondary-container">Offre Flash</span>
+</div>
+</div>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="flex-grow bg-primary text-white font-bold py-4 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">directions</span>
+                        Voir l'itinéraire
+                    </button>
+<button class="w-14 h-14 bg-surface-container-high rounded-full flex items-center justify-center text-on-surface active:scale-95 transition-transform">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-white/70 backdrop-blur-2xl rounded-t-[2rem] shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
+<a class="flex flex-col items-center justify-center text-slate-400 p-3 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-3 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined">format_list_bulleted</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-600 text-white rounded-full p-3 shadow-lg shadow-blue-200 scale-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-3 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-3 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</nav>
+</body></html>

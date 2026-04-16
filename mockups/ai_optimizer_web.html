@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hawta.com | AI Optimizer</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#695c00",
+                        "inverse-on-surface": "#9b9d9e",
+                        "surface-dim": "#d1d5d7",
+                        "primary": "#004edc",
+                        "on-error-container": "#510017",
+                        "surface-container-high": "#e0e3e4",
+                        "tertiary-fixed": "#ffffff",
+                        "surface": "#f5f6f7",
+                        "outline": "#757778",
+                        "on-surface": "#2c2f30",
+                        "error": "#b41340",
+                        "on-primary-fixed-variant": "#002572",
+                        "on-primary": "#f1f2ff",
+                        "tertiary-dim": "#504f4f",
+                        "on-tertiary-fixed-variant": "#6e6d6c",
+                        "surface-bright": "#f5f6f7",
+                        "inverse-primary": "#658aff",
+                        "outline-variant": "#abadae",
+                        "on-secondary-container": "#5c5000",
+                        "error-dim": "#a70138",
+                        "on-tertiary-container": "#636262",
+                        "secondary-fixed": "#f9e04c",
+                        "on-tertiary-fixed": "#515050",
+                        "on-primary-container": "#001c5e",
+                        "primary-fixed-dim": "#698dff",
+                        "surface-container-highest": "#dadddf",
+                        "surface-tint": "#004edc",
+                        "primary-fixed": "#7e9cff",
+                        "surface-container-low": "#eff1f2",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "secondary-container": "#f9e04c",
+                        "on-secondary": "#fff3c0",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#0c0f10",
+                        "tertiary": "#5c5b5b",
+                        "on-surface-variant": "#595c5d",
+                        "surface-variant": "#dadddf",
+                        "on-tertiary": "#f5f2f1",
+                        "secondary-dim": "#5b5000",
+                        "primary-container": "#7e9cff",
+                        "secondary-fixed-dim": "#ead23f",
+                        "on-error": "#ffefef",
+                        "error-container": "#f74b6d",
+                        "tertiary-container": "#ffffff",
+                        "on-background": "#2c2f30",
+                        "primary-dim": "#0043c1",
+                        "on-secondary-fixed": "#473e00",
+                        "on-primary-fixed": "#000000",
+                        "background": "#f5f6f7",
+                        "on-secondary-fixed-variant": "#675a00",
+                        "surface-container": "#e6e8ea"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f5f6f7; color: #2c2f30; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-effect { backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="antialiased overflow-hidden">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="fixed left-0 top-0 h-full w-64 z-50 bg-[#eff1f2] dark:bg-slate-950 flex flex-col p-6 gap-8 border-r border-slate-200/20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-slate-900 dark:text-white font-headline">Hawta</h1>
+<p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase font-label">Tangier Smart Grocery</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-white/50 dark:hover:bg-slate-800/50 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Home</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-white/50 dark:hover:bg-slate-800/50 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span class="font-medium">Price Monitor</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-white/50 dark:hover:bg-slate-800/50 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="font-medium">Markets</span>
+</a>
+<!-- Active Tab: Optimizer -->
+<a class="flex items-center gap-3 text-blue-600 dark:text-blue-400 font-bold bg-white dark:bg-slate-900 rounded-xl px-4 py-3 shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-medium">Optimizer</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-white/50 dark:hover:bg-slate-800/50 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-medium">Wallet</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-4">
+<div class="bg-gradient-to-br from-primary to-primary-container p-5 rounded-2xl text-white relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-20 h-20 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+<p class="text-xs font-bold uppercase tracking-wider mb-2 opacity-80">Premium Access</p>
+<p class="text-sm font-semibold mb-4 leading-tight">Unlock AI-driven cluster routes</p>
+<button class="w-full py-2 bg-white text-primary rounded-full text-xs font-bold hover:shadow-lg transition-all">Upgrade to Premium</button>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 text-slate-500 px-4 py-2 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help">help</span>
+<span class="text-xs font-label font-semibold uppercase tracking-wider">Help Center</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 px-4 py-2 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+<span class="text-xs font-label font-semibold uppercase tracking-wider">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- TopAppBar (Authority: JSON) -->
+<header class="fixed top-0 w-full z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl flex justify-between items-center h-16 px-8 ml-64 w-[calc(100%-16rem)] shadow-[0_20px_40px_rgba(44,47,48,0.06)]">
+<div class="flex items-center gap-8">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="search">search</span>
+</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all" placeholder="Search saved lists..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-8 mr-4">
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-500 transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-500 transition-colors" href="#">Analytics</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-500 transition-colors" href="#">Inventory</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-blue-500 transition-colors" href="#">Savings</a>
+</nav>
+<button class="bg-primary text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg shadow-primary/20 hover:scale-95 active:scale-90 transition-all">Create List</button>
+<div class="flex items-center gap-4 text-slate-500">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="settings">settings</span></button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden ring-2 ring-white shadow-sm">
+<img alt="User profile" data-alt="professional portrait of a young entrepreneur in a clean minimalist setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkqDvbQnBu4QTUB65rJw8aFA9WSIV_GpyfGZTY9nEWo_TCgGT9aAiaumNXUePrv9JxhA0t5q4N_Flnjczk0pAuxcvF9BhUVbOqQyFMna6VeCggfA75WgUMgEWqkWeDbtXMjs1nEfA67Zl_knToHAKg__KejhLjc2aqOt6CAz3n_BpIC09GbbyA1ecBcRiJkXsqJDofkdeP31M3Z1mhubxJJEt2Y_XnxQdWMY34_8wz1YZo8hWZMOPJ1_S_SMTNKD2LydZL11GAI2DX"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-64 pt-16 h-screen overflow-hidden flex bg-surface">
+<!-- Left Panel: Grocery List Builder -->
+<section class="w-1/3 h-full p-8 border-r border-outline-variant/10 flex flex-col gap-8 bg-surface-container-low/30">
+<header>
+<h2 class="text-2xl font-extrabold font-headline tracking-tight text-on-surface">Grocery List Builder</h2>
+<p class="text-on-surface-variant text-sm mt-1">Add items manually or use AI voice dictation.</p>
+</header>
+<!-- Input Section -->
+<div class="flex flex-col gap-4">
+<div class="relative">
+<textarea class="w-full p-6 bg-surface-container-lowest rounded-lg border-none shadow-sm focus:ring-2 focus:ring-primary/10 resize-none h-32 font-body text-on-surface placeholder:text-outline-variant" placeholder="Type your list or speak... (e.g., 2kg tomatoes, skimmed milk, laundry soap)"></textarea>
+<button class="absolute bottom-4 right-4 w-12 h-12 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-2 bg-surface-container-highest/50 text-on-surface-variant text-[10px] font-bold uppercase tracking-wider rounded-full flex items-center gap-2">
+                        Tomatoes 2kg <span class="material-symbols-outlined text-xs cursor-pointer" data-icon="close">close</span>
+</span>
+<span class="px-4 py-2 bg-surface-container-highest/50 text-on-surface-variant text-[10px] font-bold uppercase tracking-wider rounded-full flex items-center gap-2">
+                        Milk 1L <span class="material-symbols-outlined text-xs cursor-pointer" data-icon="close">close</span>
+</span>
+<span class="px-4 py-2 bg-surface-container-highest/50 text-on-surface-variant text-[10px] font-bold uppercase tracking-wider rounded-full flex items-center gap-2">
+                        Chicken Breast <span class="material-symbols-outlined text-xs cursor-pointer" data-icon="close">close</span>
+</span>
+<span class="px-4 py-2 bg-surface-container-highest/50 text-on-surface-variant text-[10px] font-bold uppercase tracking-wider rounded-full flex items-center gap-2">
+                        Detergent <span class="material-symbols-outlined text-xs cursor-pointer" data-icon="close">close</span>
+</span>
+<button class="px-4 py-2 text-primary text-[10px] font-bold uppercase tracking-wider hover:bg-primary/5 rounded-full">+ Add Item</button>
+</div>
+</div>
+<!-- List Preview -->
+<div class="flex-1 overflow-y-auto pr-2 space-y-3">
+<div class="bg-surface-container-lowest p-4 rounded-md flex justify-between items-center group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline-variant" data-icon="drag_indicator">drag_indicator</span>
+<div>
+<p class="font-bold text-on-surface">San Raphael Tomatoes</p>
+<p class="text-xs text-on-surface-variant">Quantity: 2.0 kg</p>
+</div>
+</div>
+<span class="text-primary font-bold">~ 24.00 MAD</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-md flex justify-between items-center group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline-variant" data-icon="drag_indicator">drag_indicator</span>
+<div>
+<p class="font-bold text-on-surface">Centrale Lait Demi-Écrémé</p>
+<p class="text-xs text-on-surface-variant">Quantity: 1 Unit</p>
+</div>
+</div>
+<span class="text-primary font-bold">~ 9.50 MAD</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-md flex justify-between items-center group border-l-4 border-primary">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline-variant" data-icon="drag_indicator">drag_indicator</span>
+<div>
+<p class="font-bold text-on-surface">Ariel Matic 3kg</p>
+<p class="text-xs text-on-surface-variant">Quantity: 1 Unit</p>
+</div>
+</div>
+<span class="text-primary font-bold">~ 85.00 MAD</span>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/10">
+<button class="w-full bg-primary text-white py-4 rounded-full font-bold shadow-xl shadow-primary/20 flex items-center justify-center gap-3 group">
+                    Optimize Selection
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Right Panel: Comparison Column -->
+<section class="flex-1 h-full p-8 flex flex-col gap-8 overflow-y-auto">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-3xl font-black font-headline text-on-surface">Market Comparison</h3>
+<p class="text-on-surface-variant font-medium">AI generated routes based on real-time Tangier stock.</p>
+</div>
+<div class="flex gap-2 bg-surface-container-high p-1 rounded-full">
+<button class="px-6 py-2 bg-white rounded-full text-xs font-bold shadow-sm">All Stores</button>
+<button class="px-6 py-2 text-xs font-bold text-on-surface-variant">Nearby Only</button>
+</div>
+</div>
+<!-- 3-Column Comparison Grid -->
+<div class="grid grid-cols-3 gap-6 flex-1">
+<!-- Confort Column -->
+<div class="flex flex-col gap-4">
+<div class="bg-surface-container-lowest p-8 rounded-lg border-t-8 border-outline shadow-sm hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-bold uppercase tracking-tighter">1 Store Only</span>
+<span class="material-symbols-outlined text-outline" data-icon="spa">spa</span>
+</div>
+<h4 class="text-2xl font-bold font-headline mb-1">Confort</h4>
+<p class="text-on-surface-variant text-sm mb-6">Prioritizes your convenience and saves time.</p>
+<div class="space-y-6">
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold text-outline-variant uppercase tracking-widest">Total Cost</p>
+<p class="text-3xl font-black text-on-surface">582.40 <span class="text-sm font-bold">MAD</span></p>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-md">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="pin_drop">pin_drop</span>
+</div>
+<div>
+<p class="text-sm font-bold">Carrefour City</p>
+<p class="text-xs text-on-surface-variant">Malabata</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-md border border-outline-variant/10">
+<p class="text-[10px] font-bold text-outline-variant uppercase">Time</p>
+<p class="text-lg font-bold">12 min</p>
+</div>
+<div class="p-4 rounded-md border border-outline-variant/10">
+<p class="text-[10px] font-bold text-outline-variant uppercase">Effort</p>
+<p class="text-lg font-bold">Low</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Hawta Column (The Star) -->
+<div class="flex flex-col gap-4">
+<div class="bg-gradient-to-b from-primary to-primary-dim p-8 rounded-lg text-white shadow-2xl shadow-primary/30 transform scale-105 relative overflow-hidden z-10">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-tighter">AI Optimized</span>
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h4 class="text-2xl font-bold font-headline mb-1">Hawta AI</h4>
+<p class="text-white/70 text-sm mb-6">Maximum savings across multiple stores.</p>
+<div class="space-y-6">
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold text-white/50 uppercase tracking-widest">Total Cost</p>
+<p class="text-4xl font-black text-white">412.15 <span class="text-sm font-bold">MAD</span></p>
+<p class="text-xs font-bold text-secondary-fixed mt-1">Save 170.25 MAD (29%)</p>
+</div>
+<div class="space-y-2">
+<p class="text-[10px] font-bold text-white/50 uppercase tracking-widest">Route Schedule</p>
+<div class="flex items-center gap-3 p-3 bg-white/10 rounded-md">
+<span class="text-xs font-black w-5 h-5 rounded-full bg-white text-primary flex items-center justify-center">1</span>
+<div class="flex-1">
+<p class="text-xs font-bold">Bim - Iberia</p>
+<p class="text-[10px] opacity-70">Dairy &amp; Dry Goods</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-white/10 rounded-md">
+<span class="text-xs font-black w-5 h-5 rounded-full bg-white text-primary flex items-center justify-center">2</span>
+<div class="flex-1">
+<p class="text-xs font-bold">Marjane - Route Tetouan</p>
+<p class="text-[10px] opacity-70">Bulk &amp; Laundry</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-white/10 rounded-md">
+<span class="text-xs font-black w-5 h-5 rounded-full bg-white text-primary flex items-center justify-center">3</span>
+<div class="flex-1">
+<p class="text-xs font-bold">Souq - Msallah</p>
+<p class="text-[10px] opacity-70">Fresh Veggies</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-md bg-white/5 border border-white/10">
+<p class="text-[10px] font-bold text-white/50 uppercase">Time</p>
+<p class="text-lg font-bold">48 min</p>
+</div>
+<div class="p-4 rounded-md bg-white/5 border border-white/10">
+<p class="text-[10px] font-bold text-white/50 uppercase">Effort</p>
+<p class="text-lg font-bold">High</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Equilibre Column -->
+<div class="flex flex-col gap-4">
+<div class="bg-surface-container-lowest p-8 rounded-lg border-t-8 border-secondary shadow-sm hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-bold uppercase tracking-tighter">2 Stores</span>
+<span class="material-symbols-outlined text-secondary" data-icon="balance">balance</span>
+</div>
+<h4 class="text-2xl font-bold font-headline mb-1">Équilibré</h4>
+<p class="text-on-surface-variant text-sm mb-6">Balance between smart savings and drive time.</p>
+<div class="space-y-6">
+<div class="flex flex-col gap-1">
+<p class="text-[10px] font-bold text-outline-variant uppercase tracking-widest">Total Cost</p>
+<p class="text-3xl font-black text-on-surface">495.60 <span class="text-sm font-bold">MAD</span></p>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-md">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-secondary shadow-sm">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<div>
+<p class="text-sm font-bold">ASWAK ASSALAM</p>
+<p class="text-xs text-on-surface-variant">Main items</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-md">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-secondary shadow-sm">
+<span class="material-symbols-outlined" data-icon="local_mall">local_mall</span>
+</div>
+<div>
+<p class="text-sm font-bold">Carrefour Market</p>
+<p class="text-xs text-on-surface-variant">Promotions</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-md border border-outline-variant/10">
+<p class="text-[10px] font-bold text-outline-variant uppercase">Time</p>
+<p class="text-lg font-bold">28 min</p>
+</div>
+<div class="p-4 rounded-md border border-outline-variant/10">
+<p class="text-[10px] font-bold text-outline-variant uppercase">Effort</p>
+<p class="text-lg font-bold">Med</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Action Summary / Map Preview -->
+<div class="bg-surface-container-low rounded-lg p-6 flex items-center gap-8 border border-outline-variant/10">
+<div class="w-48 h-32 bg-surface-variant rounded-md overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="clean digital map interface showing city streets of Tangier with glowing blue route lines and circular store markers" data-location="Tangier" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5kLmK77HGCtdXfIHOyh88txEZesy0ssqU7MSAB-_gEzPeMhtquZS89t6sBDmmatcIAeshTouXHDv802dwm2J_zy5m-4e1yMh6SH9t_w8EIPo3pZkof3Ya1jRtRO23B8dv0StUpCiq0onzrMYMyMSq9iAvNAGc7JRtKeu5A3T9Tn6Qi39HoqwmKvc4C3cqVKdO6fsxv1UKy_YSb0ltzV52HHZFUzKhEatponOlIvbIizHBpueZkKlBLpro1fOXV-976_QwnlSmN0IR"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="bg-white px-4 py-2 rounded-full text-xs font-bold text-primary shadow-lg">View Detailed Map</span>
+</div>
+</div>
+<div class="flex-1">
+<h5 class="text-lg font-bold font-headline">Recommended Route: The Hawta Loop</h5>
+<p class="text-sm text-on-surface-variant">Tangier, Morocco • Est. distance: 4.2 km • Gas cost: ~12 MAD</p>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center"><span class="text-[10px] font-bold">BIM</span></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-blue-600 font-bold text-[10px]">M</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-red-600 font-bold text-[10px]">S</div>
+</div>
+<span class="text-xs font-medium text-on-surface-variant">Optimal visiting order: Bim → Marjane → Local Souq</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-3 bg-surface-container-lowest border border-outline-variant/20 rounded-full font-bold text-sm hover:bg-white transition-colors">Save as Draft</button>
+<button class="px-8 py-3 bg-primary text-white rounded-full font-bold text-sm shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all">Send Route to Phone</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating AI Assistant Button -->
+<button class="fixed bottom-8 right-8 w-16 h-16 bg-secondary-container text-on-secondary-container rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-transform group z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="smart_toy">smart_toy</span>
+<span class="absolute right-full mr-4 px-4 py-2 bg-on-surface text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap">Need help with prices?</span>
+</button>
+</body></html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .scan-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #004edc, transparent);
+            box-shadow: 0 0 15px #7e9cff;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 0;
+        }
+        .camera-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.4) 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#675a00",
+                        "primary-container": "#7e9cff",
+                        "on-secondary-fixed": "#473e00",
+                        "tertiary-container": "#ffffff",
+                        "tertiary-fixed": "#ffffff",
+                        "secondary-container": "#f9e04c",
+                        "surface-tint": "#004edc",
+                        "primary-fixed": "#7e9cff",
+                        "on-error-container": "#510017",
+                        "on-tertiary-fixed": "#515050",
+                        "background": "#f5f6f7",
+                        "on-surface": "#2c2f30",
+                        "inverse-on-surface": "#9b9d9e",
+                        "on-tertiary": "#f5f2f1",
+                        "surface-dim": "#d1d5d7",
+                        "outline": "#757778",
+                        "on-error": "#ffefef",
+                        "error": "#b41340",
+                        "secondary": "#695c00",
+                        "surface-container-low": "#eff1f2",
+                        "on-primary-fixed-variant": "#002572",
+                        "on-primary-container": "#001c5e",
+                        "tertiary-fixed-dim": "#f3f0ef",
+                        "inverse-primary": "#658aff",
+                        "surface-variant": "#dadddf",
+                        "inverse-surface": "#0c0f10",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#2c2f30",
+                        "surface-container-highest": "#dadddf",
+                        "surface": "#f5f6f7",
+                        "surface-bright": "#f5f6f7",
+                        "secondary-fixed": "#f9e04c",
+                        "on-tertiary-container": "#636262",
+                        "tertiary-dim": "#504f4f",
+                        "secondary-fixed-dim": "#ead23f",
+                        "on-tertiary-fixed-variant": "#6e6d6c",
+                        "surface-container": "#e6e8ea",
+                        "primary": "#004edc",
+                        "on-secondary-container": "#5c5000",
+                        "on-primary-fixed": "#000000",
+                        "secondary-dim": "#5b5000",
+                        "on-secondary": "#fff3c0",
+                        "surface-container-high": "#e0e3e4",
+                        "outline-variant": "#abadae",
+                        "on-surface-variant": "#595c5d",
+                        "primary-dim": "#0043c1",
+                        "error-dim": "#a70138",
+                        "tertiary": "#5c5b5b",
+                        "on-primary": "#f1f2ff",
+                        "error-container": "#f74b6d",
+                        "primary-fixed-dim": "#698dff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body h-screen w-full overflow-hidden flex flex-col">
+<!-- Camera Viewfinder Background -->
+<div class="fixed inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="POV of a hand holding a shopping receipt in a bright modern grocery store, focused through a camera viewfinder lens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw4hyjZRNW5yQFHzM1kdF6ahJJyf0dM689hoNNxCjqILwE6FyjdQKG3-8ZTcQJGPJl9SGBLwjrUiGDb7hyX8xfz8XymYkLxdiuIhJd94RhI3an-4XoxiYmwyJNcESlgVRYY9l6wrV-M0LrVlZXL_PJ6pnAf8NRChK2O0oIMSP-6TUr6kavbav78BHQPwUzxdRrBim9tnS0kePyKLiO6vTjG1XFbo5XZmRqngB4gHW5YButVzieez3ccS39FSijvV-VTyAWOrwGCYTy"/>
+<div class="fixed inset-0 camera-overlay"></div>
+</div>
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 w-full bg-transparent">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-panel text-blue-600 hover:bg-slate-100/20 transition-colors scale-95 active:duration-100">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-['Manrope'] font-bold text-lg tracking-tight text-white drop-shadow-md">Scan Curator</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-panel text-blue-600 hover:bg-slate-100/20 transition-colors scale-95 active:duration-100">
+<span class="material-symbols-outlined">flash_on</span>
+</button>
+</header>
+<!-- Main Scanning Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center relative z-10 px-8">
+<!-- Instructional Text -->
+<div class="glass-panel px-6 py-3 rounded-full mb-8 flex items-center gap-2 shadow-lg">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<p class="text-on-surface font-label font-medium text-xs uppercase tracking-widest">Alignez votre ticket pour une analyse IA</p>
+</div>
+<!-- Scanning Frame -->
+<div class="relative w-full max-w-sm aspect-[3/4] border-[4px] border-white/30 rounded-lg flex items-center justify-center">
+<!-- Frame Corners -->
+<div class="absolute -top-1 -left-1 w-12 h-12 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+<div class="absolute -top-1 -right-1 w-12 h-12 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+<div class="absolute -bottom-1 -left-1 w-12 h-12 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+<div class="absolute -bottom-1 -right-1 w-12 h-12 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+<!-- Scanning Line (Animated intent) -->
+<div class="scan-line top-[20%] opacity-80"></div>
+<!-- High-tech Overlay Info -->
+<div class="absolute inset-0 flex flex-col justify-between p-4 pointer-events-none">
+<div class="flex justify-between items-start opacity-40">
+<div class="text-[8px] font-mono text-white">RECEPT_SCAN_v2.0</div>
+<div class="text-[8px] font-mono text-white">ISO 400</div>
+</div>
+<div class="flex justify-center items-center opacity-60">
+<span class="material-symbols-outlined text-white text-4xl">center_focus_strong</span>
+</div>
+<div class="flex justify-between items-end opacity-40">
+<div class="text-[8px] font-mono text-white">FRAME_LOCK: TRUE</div>
+<div class="text-[8px] font-mono text-white">BAT: 88%</div>
+</div>
+</div>
+</div>
+<!-- Controls Section -->
+<div class="mt-12 flex flex-col items-center gap-6 w-full">
+<div class="flex items-center gap-8">
+<!-- Gallery Button -->
+<button class="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-on-surface transition-all active:scale-90 shadow-lg">
+<span class="material-symbols-outlined">image</span>
+</button>
+<!-- Primary Photo Action -->
+<button class="w-24 h-24 rounded-full bg-secondary-container border-8 border-white/20 flex items-center justify-center text-on-secondary-container transition-all active:scale-90 shadow-[0_20px_40px_rgba(249,224,76,0.4)]">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</button>
+<!-- Help Button -->
+<button class="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-on-surface transition-all active:scale-90 shadow-lg">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<!-- Secondary Text Link -->
+<button class="text-white font-label text-[10px] uppercase tracking-[0.2em] font-bold drop-shadow-md hover:text-primary transition-colors">
+                Importer depuis la galerie
+            </button>
+</div>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-t-[2rem] z-50 shadow-[0_-20px_40px_rgba(44,47,48,0.06)]">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 p-2 hover:text-blue-500 transition-all scale-90 active:duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Inventory</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-600 text-white rounded-full p-3 -mt-10 shadow-lg shadow-blue-500/30 scale-100" href="#">
+<span class="material-symbols-outlined">filter_center_focus</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Scanner</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 p-2 hover:text-blue-500 transition-all scale-90 active:duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 p-2 hover:text-blue-500 transition-all scale-90 active:duration-150" href="#">
+<span class="material-symbols-outlined">folder_special</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Archive</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hawta Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#0c0f10",
+                    "surface-variant": "#dadddf",
+                    "surface-container-high": "#e0e3e4",
+                    "error-dim": "#a70138",
+                    "on-secondary": "#fff3c0",
+                    "on-primary": "#f1f2ff",
+                    "on-background": "#2c2f30",
+                    "on-error-container": "#510017",
+                    "on-secondary-fixed-variant": "#675a00",
+                    "on-secondary-container": "#5c5000",
+                    "secondary-fixed": "#f9e04c",
+                    "tertiary-fixed-dim": "#f3f0ef",
+                    "inverse-primary": "#658aff",
+                    "primary-dim": "#0043c1",
+                    "primary-fixed": "#7e9cff",
+                    "secondary-dim": "#5b5000",
+                    "on-tertiary-container": "#636262",
+                    "outline": "#757778",
+                    "surface": "#f5f6f7",
+                    "inverse-on-surface": "#9b9d9e",
+                    "on-primary-fixed-variant": "#002572",
+                    "error-container": "#f74b6d",
+                    "secondary-fixed-dim": "#ead23f",
+                    "primary-container": "#7e9cff",
+                    "error": "#b41340",
+                    "primary": "#004edc",
+                    "on-surface-variant": "#595c5d",
+                    "secondary": "#695c00",
+                    "on-tertiary": "#f5f2f1",
+                    "surface-bright": "#f5f6f7",
+                    "surface-tint": "#004edc",
+                    "on-secondary-fixed": "#473e00",
+                    "tertiary-dim": "#504f4f",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#e6e8ea",
+                    "surface-container-highest": "#dadddf",
+                    "tertiary": "#5c5b5b",
+                    "on-surface": "#2c2f30",
+                    "on-tertiary-fixed": "#515050",
+                    "outline-variant": "#abadae",
+                    "on-primary-fixed": "#000000",
+                    "on-primary-container": "#001c5e",
+                    "tertiary-fixed": "#ffffff",
+                    "background": "#f5f6f7",
+                    "secondary-container": "#f9e04c",
+                    "on-error": "#ffefef",
+                    "on-tertiary-fixed-variant": "#6e6d6c",
+                    "tertiary-container": "#ffffff",
+                    "primary-fixed-dim": "#698dff",
+                    "surface-container-low": "#eff1f2",
+                    "surface-dim": "#d1d5d7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        body {
+            background: radial-gradient(circle at 10% 20%, rgba(126, 156, 255, 0.08) 0%, rgba(255, 255, 255, 0) 40%),
+                        radial-gradient(circle at 90% 80%, rgba(249, 224, 76, 0.05) 0%, rgba(255, 255, 255, 0) 40%),
+                        #f5f6f7;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col py-8 px-4 bg-[#f5f6f7] dark:bg-slate-900 tonal-shift bg-[#eff1f2] dark:bg-slate-800/50 font-['Manrope'] tracking-tight z-50">
+<div class="mb-10 px-4">
+<h1 class="text-2xl font-black text-[#2D68FE]">Hawta</h1>
+<p class="text-xs font-bold text-on-surface-variant tracking-widest uppercase mt-1">Smart Savings</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Active: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#2D68FE] font-bold border-r-4 border-[#2D68FE] hover:bg-[#eff1f2] dark:hover:bg-slate-800 transition-colors scale-95 active:duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#2c2f30] dark:text-slate-400 opacity-70 hover:bg-[#eff1f2] dark:hover:bg-slate-800 transition-colors scale-95 active:duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Budgets</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#2c2f30] dark:text-slate-400 opacity-70 hover:bg-[#eff1f2] dark:hover:bg-slate-800 transition-colors scale-95 active:duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="local_offer">local_offer</span>
+<span>Local Deals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#2c2f30] dark:text-slate-400 opacity-70 hover:bg-[#eff1f2] dark:hover:bg-slate-800 transition-colors scale-95 active:duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span>Map Explorer</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#2c2f30] dark:text-slate-400 opacity-70 hover:bg-[#eff1f2] dark:hover:bg-slate-800 transition-colors scale-95 active:duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4">
+<button class="w-full bg-primary text-on-primary font-headline font-bold py-4 rounded-lg flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                New Budget
+            </button>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 h-20 px-8 flex justify-between items-center bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_20px_40px_rgba(44,47,48,0.06)] font-['Inter'] text-sm font-medium ml-64">
+<div class="flex items-center gap-8">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-outline-variant">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</span>
+<input class="pl-10 pr-4 py-2.5 bg-surface-container-low border-none rounded-full w-64 focus:ring-2 focus:ring-[#2D68FE]/20 focus:outline-none transition-all" placeholder="Search deals or areas..." type="text"/>
+</div>
+<nav class="flex gap-6 items-center">
+<a class="text-[#2D68FE] font-bold border-b-2 border-[#2D68FE] pb-1" href="#">Overview</a>
+<a class="text-[#2c2f30] dark:text-slate-400 hover:text-[#2D68FE] transition-all" href="#">Analytics</a>
+<a class="text-[#2c2f30] dark:text-slate-400 hover:text-[#2D68FE] transition-all" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User Profile" data-alt="Close-up headshot of a smiling professional man with clean-cut appearance in a bright corporate office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCniExVGmqrBtG7SFIuq-VxesE2ce0ej-GOhT839_57XScrkb0T2XtatkG1R4jdTQGbfs8CIn7tSgPjKS6aTL3tK3HWTxF7ycXXFzRw5wZ42oX6Z37GuUpLfTonpr6dLb-hyTLeIi6nxboOK2Cu-_tKIWTCtKyX-6cowlmn-JFj0onp9VrRrWuwelv9XpfyUpfJjdxe5tf77dx5RV6HqxHYEYyIk_iKeMrq5OdCpp05kVxsxdtgHvUzMXceiiN1FJ8uD7v2DszVYAQo"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-8 pb-12">
+<!-- Welcome Hero Asymmetry -->
+<section class="mb-10 flex justify-between items-end">
+<div>
+<span class="text-label font-bold text-primary uppercase tracking-[0.2em] text-[0.65rem]">Personal Finance Curator</span>
+<h2 class="font-headline text-5xl font-extrabold text-on-surface mt-2 tracking-tight">Bonjour, <span class="text-primary-dim">Karim</span>.</h2>
+<p class="text-on-surface-variant mt-2 max-w-md">Your budget is performing 12% better than last month. Here is your curated market overview for Tanger.</p>
+</div>
+<div class="flex gap-2 mb-2">
+<div class="bg-surface-container-high px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    Live Updates
+                </div>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6 auto-rows-[200px]">
+<!-- Budget Status - Large Gauge Card -->
+<div class="col-span-12 md:col-span-5 lg:col-span-4 row-span-2 glass-card rounded-lg p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<h3 class="font-headline text-xl font-extrabold">Budget Status</h3>
+<span class="material-symbols-outlined text-primary-dim" data-icon="more_horiz">more_horiz</span>
+</div>
+<div class="relative flex items-center justify-center py-6">
+<svg class="w-48 h-48 transform -rotate-90">
+<circle class="text-surface-container-high" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502.4" stroke-dashoffset="120" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline text-4xl font-black">76%</span>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Utilized</span>
+</div>
+</div>
+<div class="flex justify-between text-sm">
+<div>
+<p class="text-on-surface-variant">Spent</p>
+<p class="font-bold text-lg">12,450 DH</p>
+</div>
+<div class="text-right">
+<p class="text-on-surface-variant">Remaining</p>
+<p class="font-bold text-lg text-primary">3,550 DH</p>
+</div>
+</div>
+</div>
+<!-- Savings Trend Card -->
+<div class="col-span-12 md:col-span-7 lg:col-span-4 row-span-1 glass-card rounded-lg p-6 flex flex-col justify-between">
+<div class="flex justify-between items-center">
+<h3 class="font-headline font-bold text-lg">Savings This Week</h3>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">+18%</span>
+</div>
+<div class="flex items-end justify-between h-16 gap-1">
+<div class="bg-primary-container w-full rounded-t-sm opacity-30 h-1/2"></div>
+<div class="bg-primary-container w-full rounded-t-sm opacity-40 h-2/3"></div>
+<div class="bg-primary-container w-full rounded-t-sm opacity-50 h-1/3"></div>
+<div class="bg-primary-container w-full rounded-t-sm opacity-60 h-4/5"></div>
+<div class="bg-primary-container w-full rounded-t-sm opacity-80 h-3/4"></div>
+<div class="bg-primary-container w-full rounded-t-sm h-full"></div>
+<div class="bg-primary-dim w-full rounded-t-sm h-5/6"></div>
+</div>
+<div class="flex justify-between items-baseline">
+<span class="text-2xl font-black text-on-surface">1,240 <span class="text-sm font-medium">DH</span></span>
+<span class="text-xs text-on-surface-variant font-medium">Aug 14 - Aug 21</span>
+</div>
+</div>
+<!-- Savings Target Card -->
+<div class="col-span-6 lg:col-span-2 row-span-1 bg-primary rounded-lg p-6 text-on-primary flex flex-col justify-between">
+<span class="material-symbols-outlined text-3xl" data-icon="savings">savings</span>
+<div>
+<p class="text-[0.65rem] font-bold uppercase tracking-widest opacity-80">Holiday Fund</p>
+<p class="text-xl font-bold mt-1">4,200 DH</p>
+</div>
+<div class="w-full bg-white/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-white h-full w-[40%]"></div>
+</div>
+</div>
+<!-- Profile Growth Card -->
+<div class="col-span-6 lg:col-span-2 row-span-1 bg-secondary-container rounded-lg p-6 text-on-secondary-container flex flex-col justify-between">
+<span class="material-symbols-outlined text-3xl" data-icon="trending_up">trending_up</span>
+<div>
+<p class="text-[0.65rem] font-bold uppercase tracking-widest opacity-80">Market Power</p>
+<p class="text-xl font-bold mt-1">Elite Tier</p>
+</div>
+<p class="text-xs font-medium">Top 5% in Tanger area</p>
+</div>
+<!-- Map Card - Large -->
+<div class="col-span-12 lg:col-span-8 row-span-2 rounded-lg overflow-hidden relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A stylized aerial vector map of a coastal city with soft blue and green highlights indicating price zones and market locations" data-location="Tanger" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBNEujtc1DlvjSUSPhbTECAAePPkAYYdpei4109jghT_XatTBGtNCg9m3K45SX-WUCbVWXQOqP-PdTIthRsTGE0JNXB36-qIp6V-qgdaOX-wcAdpMKqbAuiSAzTB7ti-90QOU_wd2MSp4-3pK0HDE7giUAdO5EdEvTg2qDTGjYSZIWhRzpO5rZM86hLGF0h6SA6GVF_req_V6Bv2zCKp_aWfod1Dyy8HWJvBdSIA0mSQ3KD759hi7SEvN15ReBUDHoyXEfASI-bc6TA')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute top-6 left-6 right-6 flex justify-between items-start">
+<div class="glass-card px-4 py-2 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<span class="text-xs font-bold text-on-surface">Live Market Map: Tanger</span>
+</div>
+<button class="bg-white p-3 rounded-full text-on-surface shadow-xl">
+<span class="material-symbols-outlined" data-icon="fullscreen">fullscreen</span>
+</button>
+</div>
+<div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+<div>
+<p class="text-white/80 text-sm font-medium">Hotspots detected near</p>
+<h4 class="text-white text-2xl font-black">Marché Central</h4>
+</div>
+<button class="bg-white text-primary font-headline font-bold px-6 py-3 rounded-full shadow-lg">
+                        Explore Area
+                    </button>
+</div>
+</div>
+<!-- Recent Local Deals -->
+<div class="col-span-12 lg:col-span-4 row-span-2 flex flex-col gap-4">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-headline font-extrabold text-xl">Top Deals Nearby</h3>
+<button class="text-primary text-sm font-bold">View All</button>
+</div>
+<!-- Deal Card 1 -->
+<div class="flex-1 glass-card rounded-lg p-4 flex items-center gap-4 group">
+<div class="h-20 w-20 rounded-md overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="Tomatoes" class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close-up of fresh vine-ripened red tomatoes in a rustic wooden basket with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA3-4AALFyj1jQfm_J6qW8LYyA3mivgM-LpujYorg0crbQJ4nnuN-UEIVhIjSobnVE1OqfBaSSux31H_sAiUZZ_LE5FFBEWufIMzexR3fM1HY7umqkE8UkpoJ47pBWyabRyre4EtdXx2N7wLbmKDKbuuoJUz7drvhPVIbE98LSMvxt_dFTZJ8ZPGYAJK4PemgwAlTEbDzJeAXIRtCetvQEyPkyl7ZaqXxQJAl0Bpz5q-rq9Kmx-RJ-MUHFxCDRBxTFaehRZ8ktbc-u"/>
+</div>
+<div class="flex-1">
+<p class="text-[0.65rem] font-bold text-on-surface-variant uppercase tracking-widest">BIM Tanger</p>
+<h4 class="font-bold text-lg leading-tight">Organic Tomatoes</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-primary font-black">4.50 DH</span>
+<span class="text-xs line-through text-outline-variant">7.20 DH</span>
+</div>
+</div>
+<div class="bg-secondary-container h-10 w-10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="add">shopping_cart</span>
+</div>
+</div>
+<!-- Deal Card 2 -->
+<div class="flex-1 glass-card rounded-lg p-4 flex items-center gap-4 group">
+<div class="h-20 w-20 rounded-md overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="Milk" class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Glass bottle of fresh cold milk standing on a marble surface with soft morning light reflection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnoSTlKKgvLXr_1spqETv4ayq0bWX_FrRmOnNEoUDscMAr0aJfCDhfM_zYqGQMnjH2Cu5-4mWvCWxs1raBad1-3GV240YYJOglfM8j4252GeO4PgLLGI5mRbNa5gpzN0jVaF1iuAccrvwD_Zne8njMTNaaR_SAtKvFFIbxEZ1ErubM7c_A-yBrP37MqdiZtqMmftjOa-DqDTkjKVsvs4DT8Smc4pWb1-9ozB4MTSMkRK87xYvNKbl_CpmHWYvRr4v6zeW14pS0PkXQ"/>
+</div>
+<div class="flex-1">
+<p class="text-[0.65rem] font-bold text-on-surface-variant uppercase tracking-widest">Carrefour Market</p>
+<h4 class="font-bold text-lg leading-tight">Whole Milk (1L)</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-primary font-black">7.80 DH</span>
+<span class="text-xs line-through text-outline-variant">9.50 DH</span>
+</div>
+</div>
+<div class="bg-secondary-container h-10 w-10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="add">shopping_cart</span>
+</div>
+</div>
+<!-- Deal Card 3 -->
+<div class="flex-1 glass-card rounded-lg p-4 flex items-center gap-4 group">
+<div class="h-20 w-20 rounded-md overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="Bananas" class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A single bunch of bright yellow ripe bananas on a minimalist white background with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTf_d_dfCOfQNS5mbRgPRKZXCW-hWSlIC5Eqhcsq5SFBv80rVjP9fuyLwsYJEf_sKyZWBDcOdrUWXgbzhXyrUVQDa6jcN1f7gBW9k3hZPTmAywK8TxxRrgxp5RtsEdfIjinPKlCBZGxoAxF3JV-YhRqN17tXVMFo85J_kXcdDLWCDbmCyUKcGEj_FuVbjHYOAz-r8GeegvJiDyjpDj9CJD0DBOkX9jYlzZBh40WedcpIEjFv16y6tb0zEpE1M_npUPURevEuWbjQLs"/>
+</div>
+<div class="flex-1">
+<p class="text-[0.65rem] font-bold text-on-surface-variant uppercase tracking-widest">Atacadao</p>
+<h4 class="font-bold text-lg leading-tight">Canary Bananas</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-primary font-black">11.20 DH</span>
+<span class="text-xs line-through text-outline-variant">14.00 DH</span>
+</div>
+</div>
+<div class="bg-secondary-container h-10 w-10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="add">shopping_cart</span>
+</div>
+</div>
+</div>
+<!-- Spending Breakdown Card -->
+<div class="col-span-12 lg:col-span-12 row-span-1 glass-card rounded-lg p-8 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Category Focus</span>
+<h3 class="font-headline text-2xl font-extrabold mt-1">Grocery Spend</h3>
+</div>
+<div class="h-12 w-px bg-outline-variant opacity-20 hidden md:block"></div>
+<div class="hidden md:flex gap-12">
+<div>
+<p class="text-xs text-on-surface-variant font-medium">This Month</p>
+<p class="text-lg font-bold">2,450 DH</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant font-medium">Last Month</p>
+<p class="text-lg font-bold text-outline-variant">3,120 DH</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant font-medium">Optimization</p>
+<p class="text-lg font-bold text-green-600">Saved 670 DH</p>
+</div>
+</div>
+</div>
+<button class="bg-inverse-surface text-surface py-4 px-8 rounded-full font-bold flex items-center gap-3 hover:bg-on-surface-variant transition-all">
+                    Generate Monthly Report
+                    <span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</button>
+</div>
+</div>
+</main>
+<!-- FAB for New Budget - Mobile Hidden but Desktop contextual -->
+<button class="fixed bottom-8 right-8 bg-primary text-on-primary h-16 w-16 rounded-full shadow-2xl flex items-center justify-center group transition-all hover:scale-110 z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+<span class="absolute right-full mr-4 bg-inverse-surface text-white px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">New Entry</span>
+</button>
+</body></html>

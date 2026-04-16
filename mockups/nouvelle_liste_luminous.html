@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hawta - Nouvelle Liste</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#001c5e",
+                    "surface-container-high": "#e0e3e4",
+                    "tertiary": "#5c5b5b",
+                    "on-secondary-container": "#5c5000",
+                    "on-surface-variant": "#595c5d",
+                    "on-primary": "#f1f2ff",
+                    "tertiary-container": "#ffffff",
+                    "surface-dim": "#d1d5d7",
+                    "outline": "#757778",
+                    "on-primary-fixed-variant": "#002572",
+                    "surface": "#f5f6f7",
+                    "surface-variant": "#dadddf",
+                    "on-error-container": "#510017",
+                    "on-background": "#2c2f30",
+                    "secondary": "#695c00",
+                    "on-secondary-fixed-variant": "#675a00",
+                    "on-secondary": "#fff3c0",
+                    "background": "#f5f6f7",
+                    "error-dim": "#a70138",
+                    "primary-fixed": "#7e9cff",
+                    "tertiary-fixed-dim": "#f3f0ef",
+                    "on-tertiary-fixed-variant": "#6e6d6c",
+                    "surface-container": "#e6e8ea",
+                    "on-surface": "#2c2f30",
+                    "surface-tint": "#004edc",
+                    "primary-fixed-dim": "#698dff",
+                    "primary": "#004edc",
+                    "surface-container-low": "#eff1f2",
+                    "inverse-primary": "#658aff",
+                    "secondary-fixed": "#f9e04c",
+                    "on-tertiary-fixed": "#515050",
+                    "surface-bright": "#f5f6f7",
+                    "error-container": "#f74b6d",
+                    "secondary-dim": "#5b5000",
+                    "tertiary-dim": "#504f4f",
+                    "outline-variant": "#abadae",
+                    "on-error": "#ffefef",
+                    "inverse-surface": "#0c0f10",
+                    "secondary-fixed-dim": "#ead23f",
+                    "on-primary-fixed": "#000000",
+                    "error": "#b41340",
+                    "secondary-container": "#f9e04c",
+                    "on-tertiary-container": "#636262",
+                    "tertiary-fixed": "#ffffff",
+                    "primary-container": "#7e9cff",
+                    "primary-dim": "#0043c1",
+                    "on-tertiary": "#f5f2f1",
+                    "surface-container-highest": "#dadddf",
+                    "inverse-on-surface": "#9b9d9e",
+                    "on-secondary-fixed": "#473e00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-40">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_20px_40px_rgba(44,47,48,0.06)] flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="high-end professional headshot of a smiling man in a clean white studio with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUW0kdv1JNdHTIRhmaWYTNtBiwQRzAqTeQvum5umrtfajOUZPUkYS-0vTTKMKvGcJgOX3-cSQj0Cqe-zBIUnuT9yzazfmBSobXrLFFwPQwrHhvSMy5W-gqFu-j_uvsS9EHbinXSV6ifNmjweyYNMF_dW_c6NWh6yG2ErI1hZfTS5gtJ9xBxjIpIrC4RxFdgIGrI1iOhH_zmsUb_GE-VaWcjTWB6L4N0O97okto_wxAO_jXzeNwcggGKIMhnVqb6g747I1Mg8j9lk7x"/>
+</div>
+<h1 class="text-2xl font-black text-slate-900 dark:text-white tracking-tighter font-headline">Hawta</h1>
+</div>
+<button class="text-blue-600 dark:text-blue-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors p-2 rounded-full scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="px-6 pt-8 space-y-8">
+<!-- Search and Chips Section -->
+<section class="space-y-6">
+<h2 class="text-display-lg font-headline font-extrabold text-on-surface tracking-tight leading-tight">Nouvelle Liste</h2>
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</div>
+<input class="w-full pl-12 pr-14 py-5 bg-surface-container-highest border-none rounded-lg text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 transition-all font-body text-md shadow-sm" placeholder="Ajouter un article..." type="text"/>
+<button class="absolute inset-y-0 right-4 flex items-center text-primary">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-5 py-2.5 bg-surface-container-lowest text-on-surface-variant rounded-sm text-sm font-medium border border-outline-variant/15 hover:bg-surface-bright transition-all flex items-center gap-2">
+<span>Lait</span>
+<span class="material-symbols-outlined text-xs" data-icon="add">add</span>
+</button>
+<button class="px-5 py-2.5 bg-surface-container-lowest text-on-surface-variant rounded-sm text-sm font-medium border border-outline-variant/15 hover:bg-surface-bright transition-all flex items-center gap-2">
+<span>Tomates</span>
+<span class="material-symbols-outlined text-xs" data-icon="add">add</span>
+</button>
+<button class="px-5 py-2.5 bg-surface-container-lowest text-on-surface-variant rounded-sm text-sm font-medium border border-outline-variant/15 hover:bg-surface-bright transition-all flex items-center gap-2">
+<span>Poulet</span>
+<span class="material-symbols-outlined text-xs" data-icon="add">add</span>
+</button>
+</div>
+</section>
+<!-- Current List -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="text-headline-md font-headline font-bold">Articles (3)</h3>
+<span class="text-label-sm font-bold uppercase tracking-widest text-outline">Effacer tout</span>
+</div>
+<div class="space-y-3">
+<!-- List Item 1 -->
+<div class="flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-low rounded-md flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="egg">egg</span>
+</div>
+<div>
+<p class="font-bold text-on-surface font-body">Œufs Frais (12)</p>
+<p class="text-xs text-outline font-label uppercase tracking-wider">Crémerie</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-surface-container rounded-full px-3 py-1.5">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="font-bold text-on-surface font-body">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-low rounded-md flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="water_full">water_full</span>
+</div>
+<div>
+<p class="font-bold text-on-surface font-body">Eau Minérale 1.5L</p>
+<p class="text-xs text-outline font-label uppercase tracking-wider">Boissons</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-surface-container rounded-full px-3 py-1.5">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="font-bold text-on-surface font-body">6</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-low rounded-md flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="bakery_dining">bakery_dining</span>
+</div>
+<div>
+<p class="font-bold text-on-surface font-body">Pain Complet</p>
+<p class="text-xs text-outline font-label uppercase tracking-wider">Boulangerie</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-surface-container rounded-full px-3 py-1.5">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="font-bold text-on-surface font-body">2</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights Bento Mini -->
+<section class="grid grid-cols-2 gap-4">
+<div class="bg-primary p-6 rounded-lg text-white flex flex-col justify-between h-32 relative overflow-hidden">
+<span class="material-symbols-outlined opacity-20 absolute -right-4 -bottom-4 text-8xl" data-icon="savings">savings</span>
+<span class="text-label-sm uppercase tracking-widest opacity-80">Estimation</span>
+<span class="text-2xl font-bold font-headline">12.40 €</span>
+</div>
+<div class="bg-secondary-container p-6 rounded-lg text-on-secondary-container flex flex-col justify-between h-32 relative overflow-hidden">
+<span class="material-symbols-outlined opacity-20 absolute -right-4 -bottom-4 text-8xl" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-label-sm uppercase tracking-widest opacity-80">Précision IA</span>
+<span class="text-2xl font-bold font-headline">94%</span>
+</div>
+</section>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-24 left-0 w-full px-6 z-40">
+<button class="w-full py-5 bg-[#22c55e] hover:bg-[#16a34a] text-white rounded-full font-headline font-bold text-lg shadow-[0_20px_50px_rgba(34,197,94,0.3)] flex items-center justify-center gap-3 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="bolt" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bolt</span>
+            Optimiser avec l'IA
+        </button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl shadow-[0_-10px_30px_rgba(0,0,0,0.03)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 dark:hover:text-blue-300 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-600 dark:bg-blue-500 text-white rounded-full p-3 shadow-lg shadow-blue-200 dark:shadow-blue-900/20 scale-110 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="format_list_bulleted">format_list_bulleted</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 dark:hover:text-blue-300 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 dark:hover:text-blue-300 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-blue-500 dark:hover:text-blue-300 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+</body></html>
