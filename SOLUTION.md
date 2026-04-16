@@ -29,7 +29,6 @@ Les utilisateurs partagent des promos en anonyme → l’IA vérifie et valide �
   - Prix total le plus bas
   - Temps de déplacement estimé
   - Note « éco » (prise en compte distance, impact carbone et fraîcheur des produits)
-- Suggestions automatiques de recettes low-cost basées sur les produits choisis
 - Adaptation selon le profil : Famille de 5, Célibataire, Étudiant, etc.
 - Prise en compte du jour de la semaine, de l’heure actuelle et du quartier de l’utilisateur
 
@@ -141,7 +140,6 @@ Mettre en avant les éléments importants avec des cartes jaunes comme dans l’
 - Note éco : ★★★★☆
 - Bouton “Choisir cet itinéraire”
 
-Suggestions recettes en bas : “Salade tunisienne low-cost” + “Chakchouka express”
 
 ### **Écran 3 : Carte des deals (Killer Feature)**
 - Full screen map (Leaflet/Google)
