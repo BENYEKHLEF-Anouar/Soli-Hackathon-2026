@@ -118,9 +118,9 @@
         function updateTour() {
             const container = document.getElementById('tour-slides');
             const dots = document.querySelectorAll('.tour-dot');
-            
+
             container.style.transform = `translateX(-${currentTourStep * 100}%)`;
-            
+
             dots.forEach((dot, i) => {
                 dot.classList.toggle('bg-primary', i === currentTourStep);
                 dot.classList.toggle('w-6', i === currentTourStep);
@@ -264,7 +264,7 @@
                 <!-- Primary Action -->
                 <div class="pt-4">
                     <button type="submit"
-                        class="w-full bg-primary text-on-primary font-headline font-black py-4 px-8 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 flex justify-center items-center gap-5 uppercase tracking-[0.2em] text-sm border-none">
+                        class="w-full bg-primary text-on-primary font-headline font-black py-4 px-8 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 flex justify-center items-center gap-5 uppercase tracking-[0.2em] text-xs border-none">
                         Se connecter
                         <span class="material-symbols-outlined font-black">arrow_forward</span>
                     </button>
@@ -353,49 +353,65 @@
     </div>
 
     <!-- Onboarding Tour Overlay -->
-    <div id="onboarding-tour" class="hidden fixed inset-0 z-[200] items-center justify-center p-6 bg-slate-900/60 backdrop-blur-md transition-opacity duration-300">
-        <div class="glass-panel w-full max-w-[440px] rounded-[3rem] shadow-2xl border border-white/40 overflow-hidden flex flex-col animate-[scaleIn_0.3s_ease-out]">
+    <div id="onboarding-tour"
+        class="hidden fixed inset-0 z-[200] items-center justify-center p-6 bg-slate-900/60 backdrop-blur-md transition-opacity duration-300">
+        <div
+            class="glass-panel w-full max-w-[440px] rounded-[3rem] shadow-2xl border border-white/40 overflow-hidden flex flex-col animate-[scaleIn_0.3s_ease-out]">
             <div class="relative overflow-hidden flex-grow bg-gradient-to-b from-primary/5 to-transparent">
                 <div id="tour-slides" class="flex transition-transform duration-500 ease-out h-[420px]">
                     <!-- Slide 1 -->
                     <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-10 text-center">
-                        <div class="w-24 h-24 bg-primary/10 rounded-[2.5rem] flex items-center justify-center mb-8 shadow-inner ring-8 ring-primary/5">
-                            <span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                        <div
+                            class="w-24 h-24 bg-primary/10 rounded-[2.5rem] flex items-center justify-center mb-8 shadow-inner ring-8 ring-primary/5">
+                            <span class="material-symbols-outlined text-primary text-5xl"
+                                style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
                         </div>
-                        <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">L'IA au service de votre budget</h3>
-                        <p class="text-on-surface-variant leading-relaxed text-sm">Fini le gaspillage. Hawta analyse Tanger en temps réel pour vous offrir le meilleur de chaque souk et supermarché.</p>
+                        <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">L'IA au
+                            service de votre budget</h3>
+                        <p class="text-on-surface-variant leading-relaxed text-sm">Fini le gaspillage. Hawta analyse
+                            Tanger en temps réel pour vous offrir le meilleur de chaque souk et supermarché.</p>
                     </div>
-                    
+
                     <!-- Slide 2 -->
                     <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-10 text-center">
                         <div class="grid grid-cols-3 gap-3 mb-8 w-full">
-                            <div class="aspect-square rounded-2xl bg-emerald-50 flex flex-col items-center justify-center text-emerald-600 gap-1">
+                            <div
+                                class="aspect-square rounded-2xl bg-emerald-50 flex flex-col items-center justify-center text-emerald-600 gap-1">
                                 <span class="material-symbols-outlined text-xl font-black">payments</span>
                                 <span class="text-[8px] font-black uppercase">Prix</span>
                             </div>
-                            <div class="aspect-square rounded-2xl bg-primary/5 flex flex-col items-center justify-center text-primary gap-1">
+                            <div
+                                class="aspect-square rounded-2xl bg-primary/5 flex flex-col items-center justify-center text-primary gap-1">
                                 <span class="material-symbols-outlined text-xl font-black">eco</span>
                                 <span class="text-[8px] font-black uppercase">Éco</span>
                             </div>
-                            <div class="aspect-square rounded-2xl bg-secondary-container/20 flex flex-col items-center justify-center text-on-secondary-fixed gap-1">
+                            <div
+                                class="aspect-square rounded-2xl bg-secondary-container/20 flex flex-col items-center justify-center text-on-secondary-fixed gap-1">
                                 <span class="material-symbols-outlined text-xl font-black">bolt</span>
                                 <span class="text-[8px] font-black uppercase">Vitesse</span>
                             </div>
                         </div>
-                        <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">3 Chemins, un seul gagnant</h3>
-                        <p class="text-on-surface-variant leading-relaxed text-sm">Prix imbattable, itinéraire éco-responsable ou rapidité maximum ? L'IA Hawta calcule le meilleur compromis pour vous.</p>
+                        <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">3 Chemins,
+                            un seul gagnant</h3>
+                        <p class="text-on-surface-variant leading-relaxed text-sm">Prix imbattable, itinéraire
+                            éco-responsable ou rapidité maximum ? L'IA Hawta calcule le meilleur compromis pour vous.
+                        </p>
                     </div>
 
                     <!-- Slide 3 -->
                     <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-10 text-center">
                         <div class="w-24 h-24 relative mb-8">
                             <div class="absolute inset-0 bg-primary/20 rounded-full animate-ping"></div>
-                            <div class="relative w-24 h-24 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-xl">
-                                <span class="material-symbols-outlined text-4xl font-black" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            <div
+                                class="relative w-24 h-24 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-xl">
+                                <span class="material-symbols-outlined text-4xl font-black"
+                                    style="font-variation-settings: 'FILL' 1;">verified</span>
                             </div>
                         </div>
-                        <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">Prêt à dominer vos courses ?</h3>
-                        <p class="text-on-surface-variant leading-relaxed text-sm">Rejoignez des milliers de Tangérois qui économisent chaque jour sur Hawta.ma</p>
+                        <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">Prêt à
+                            dominer vos courses ?</h3>
+                        <p class="text-on-surface-variant leading-relaxed text-sm">Rejoignez des milliers de Tangérois
+                            qui économisent chaque jour sur Hawta.ma</p>
                     </div>
                 </div>
             </div>
@@ -409,12 +425,15 @@
                     <div class="tour-dot h-2 w-2 bg-primary/20 rounded-full transition-all"></div>
                 </div>
 
-                <button id="tour-next-btn" onclick="nextTourStep()" class="w-full bg-primary text-on-primary font-headline font-black py-4 px-8 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 flex justify-center items-center gap-5 uppercase tracking-[0.2em] text-sm border-none">
+                <button id="tour-next-btn" onclick="nextTourStep()"
+                    class="w-full bg-primary text-on-primary font-headline font-black py-4 px-8 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 flex justify-center items-center gap-5 uppercase tracking-[0.2em] text-sm border-none">
                     Suivant
                     <span class="material-symbols-outlined font-black">arrow_forward</span>
                 </button>
-                
-                <button onclick="closeTour()" class="text-on-surface-variant text-[10px] font-black uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity">Passer l'introduction</button>
+
+                <button onclick="closeTour()"
+                    class="text-on-surface-variant text-[10px] font-black uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity">Passer
+                    l'introduction</button>
             </div>
         </div>
     </div>
