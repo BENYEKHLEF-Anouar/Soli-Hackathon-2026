@@ -1,155 +1,164 @@
 classDiagram
+    direction TB
 
-class User {
-  +id
-  +name
-  +email
-  +passwordHash
-  +city
-  +district
-  +level
-  +xpPoints
-  +createdAt
-}
+    class Utilisateur {
+        +Integer id
+        +String nom
+        +String email
+        +String mot_de_passe
+        +String langue_preference
+        +Integer niveau
+        +Integer points_xp
+        +Decimal economies_totales
+        +DateTime created_at
+    }
 
-class ShoppingList {
-  +id
-  +title
-  +createdAt
-  +status
-}
+    class Quartier {
+        +Integer id
+        +String nom
+        +String ville
+    }
 
-class Item {
-  +id
-  +name
-  +quantity
-  +unit
-  +category
-}
+    class Produit {
+        +Integer id
+        +String nom_commun
+        +String categorie
+        +String unite
+        +String image_miniature
+        +Decimal prix_moyen
+        +DateTime derniere_mise_a_jour
+    }
 
-class OptimizationResult {
-  +id
-  +totalPrice
-  +savings
-  +ecoScore
-  +estimatedTime
-  +createdAt
-}
+    class Magasin {
+        +Integer id
+        +String nom
+        +String type
+        +Float latitude
+        +Float longitude
+        +String horaires_ouverture
+        +Float score_fiabilite
+    }
 
-class OptimizationOption {
-  +id
-  +rank
-  +totalPrice
-  +routeDescription
-  +ecoScore
-  +timeEstimate
-  +savings
-}
+    class ListeCourses {
+        +Integer id
+        +String titre
+        +DateTime created_at
+        +String statut
+    }
 
-class Store {
-  +id
-  +name
-  +type
-  +locationName
-  +openingHours
-}
+    class Item {
+        +Integer id
+        +Decimal quantite
+        +String unite
+        +String marque_preferee
+        +Boolean est_achete
+    }
 
-class PriceEntry {
-  +id
-  +productName
-  +price
-  +unit
-  +timestamp
-  +validated
-}
+    class ResultatOptimisation {
+        +Integer id
+        +Decimal prix_total
+        +Decimal economies
+        +Integer score_eco
+        +Integer temps_estime_minutes
+        +DateTime created_at
+    }
 
-class Deal {
-  +id
-  +title
-  +description
-  +price
-  +createdAt
-  +status
-  +validationScore
-}
+    class OptionOptimisation {
+        +Integer id
+        +Integer rang
+        +Decimal prix_total
+        +String description_itineraire
+        +Integer score_eco
+        +Integer temps_estime_minutes
+        +Decimal economies
+    }
 
-class MapPin {
-  +id
-  +type
-  +color
-  +latitude
-  +longitude
-  +label
-}
+    class EntreePrix {
+        +Integer id
+        +Decimal prix
+        +String unite
+        +DateTime timestamp
+        +Boolean est_valide
+        +String source
+    }
 
-class TicketScan {
-  +id
-  +imageUrl
-  +extractedText
-  +totalAmount
-  +status
-}
+    class Deal {
+        +Integer id
+        +Decimal prix
+        +String titre
+        +String description
+        +String image_url
+        +Float score_validation
+        +String statut
+        +DateTime created_at
+    }
 
-class Notification {
-  +id
-  +type
-  +message
-  +createdAt
-  +readStatus
-}
+    class ScanTicket {
+        +Integer id
+        +String image_url
+        +String texte_extrait
+        +String statut
+        +DateTime created_at
+    }
 
-class Badge {
-  +id
-  +name
-  +description
-  +tier
-}
+    class Badge {
+        +Integer id
+        +String nom
+        +String description
+        +String niveau
+        +String icone_url
+    }
 
-class PointsTransaction {
-  +id
-  +amount
-  +reason
-  +createdAt
-}
+    class TransactionPoints {
+        +Integer id
+        +Integer montant
+        +String raison
+        +DateTime created_at
+    }
 
-class LeaderboardEntry {
-  +id
-  +rank
-  +score
-  +district
-}
+    class Notification {
+        +Integer id
+        +String type
+        +String message
+        +DateTime created_at
+        +Boolean lue
+    }
 
-class Location {
-  +name
-  +latitude
-  +longitude
-}
+    %% ==================== RELATIONS ====================
 
-%% RELATIONS
+    Utilisateur "1" --> "*" ListeCourses : cree
+    Utilisateur "1" --> "1" Quartier : habite_dans
+    Utilisateur "1" --> "*" Deal : partage
+    Utilisateur "1" --> "*" ScanTicket : effectue
+    Utilisateur "1" --> "*" TransactionPoints : gagne
+    Utilisateur "1" --> "*" Badge : debloque
+    Utilisateur "1" --> "*" Notification : recoit
 
-User "1" --> "many" ShoppingList : creates
-ShoppingList "1" --> "many" Item : contains
+    ListeCourses "1" --> "*" Item : contient
+    Item "1" --> "1" Produit : concerne
 
-ShoppingList "1" --> "1" OptimizationResult : generates
-OptimizationResult "1" --> "many" OptimizationOption : includes
+    ListeCourses "1" --> "1" ResultatOptimisation : genere
+    ResultatOptimisation "1" --> "*" OptionOptimisation : propose
 
-OptimizationOption "many" --> "many" Store : uses
-Store "1" --> "many" PriceEntry : publishes
+    OptionOptimisation "1" --> "*" Magasin : utilise
 
-User "1" --> "many" Deal : submits
-Deal "many" --> "1" Store : occurs_at
+    Magasin "1" --> "1" Quartier : situe_dans
 
-Deal "1" --> "1" MapPin : visualized_as
+    Produit "1" <-- "*" EntreePrix : enregistre_prix
+    Magasin "1" --> "*" EntreePrix : fournit_prix
 
-User "1" --> "many" TicketScan : uploads
-TicketScan "1" --> "many" Deal : generates_or_validates
+    Deal "1" --> "1" Produit : concerne
+    Deal "1" --> "1" Magasin : se_deroule_a
+    Deal "1" --> "1" Utilisateur : soumis_par
+    ScanTicket "1" --> "*" Deal : genere
 
-User "1" --> "many" Notification : receives
+    %% ==================== NOTES ====================
 
-User "1" --> "many" PointsTransaction : earns
-User "1" --> "many" Badge : unlocks
+    note for OptionOptimisation "Top 3 options générées par l'IA (meilleur prix / temps / localisation)"
+    note for Deal "Deals communautaires validés automatiquement par l'IA"
+    note for ResultatOptimisation "Résultat global d'une optimisation de liste de courses"
 
-User "1" --> "many" LeaderboardEntry : ranked_in
-
-Store "1" --> "1" Location : located_at
-MapPin "1" --> "1" Location : placed_on
+    %% Commentaires supplémentaires
+    %% Magasin.type : "Supermarche" | "Souk" | "Marche"
+    %% ListeCourses.statut : "active" | "terminee" | "optimisee"
+    %% Deal.statut : "en_attente" | "valide" | "rejete"
