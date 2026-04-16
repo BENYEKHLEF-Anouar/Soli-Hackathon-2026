@@ -1,0 +1,90 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Utilisateur" as User
+
+package "Gestion des Courses" {
+    usecase "Créer / Modifier liste de courses" as UC_List
+    usecase "Utiliser dictée vocale" as UC_Voice
+    usecase "Voir recommandations d'optimisation" as UC_Optimize
+    usecase "Choisir une option (Top 3)" as UC_Select
+}
+
+package "Exploration & Deals" {
+    usecase "Explorer la carte des deals" as UC_Map
+    usecase "Voir détails d’un deal" as UC_Detail
+    usecase "Filtrer les deals" as UC_Filter
+}
+
+package "Communauté" {
+    usecase "Partager un deal" as UC_Share
+    usecase "Scanner ticket / produit" as UC_Scan
+}
+
+package "Profil & Suivi" {
+    usecase "Consulter profil" as UC_Profile
+    usecase "Voir points, badges & leaderboard" as UC_Game
+    usecase "Consulter économies réalisées" as UC_Savings
+    usecase "Recevoir alertes prix" as UC_Alert
+}
+
+package "Sécurité" {
+    usecase "S'authentifier" as UC_Auth
+}
+
+' ================= Actor links (NO arrows) =================
+User -- UC_List
+User -- UC_Voice
+User -- UC_Optimize
+User -- UC_Select
+
+User -- UC_Map
+User -- UC_Detail
+User -- UC_Filter
+
+User -- UC_Share
+User -- UC_Scan
+
+User -- UC_Profile
+User -- UC_Game
+User -- UC_Savings
+User -- UC_Alert
+
+' ================= Auth required =================
+UC_List ..> UC_Auth : <<include>>
+UC_Voice ..> UC_Auth : <<include>>
+UC_Optimize ..> UC_Auth : <<include>>
+UC_Select ..> UC_Auth : <<include>>
+
+UC_Map ..> UC_Auth : <<include>>
+UC_Detail ..> UC_Auth : <<include>>
+UC_Filter ..> UC_Auth : <<include>>
+
+UC_Share ..> UC_Auth : <<include>>
+UC_Scan ..> UC_Auth : <<include>>
+
+UC_Profile ..> UC_Auth : <<include>>
+UC_Game ..> UC_Auth : <<include>>
+UC_Savings ..> UC_Auth : <<include>>
+UC_Alert ..> UC_Auth : <<include>>
+
+note right of UC_Optimize
+L'utilisateur ne calcule pas lui-même.
+L'IA propose 3 options :
+- Moins cher
+- Plus rapide
+- Meilleur équilibre
+end note
+
+note right of UC_Select
+L'utilisateur choisit
+une des 3 options proposées
+end note
+
+note right of UC_Share
+Le deal est vérifié automatiquement par l'IA
+avant publication
+end note
+
+@enduml

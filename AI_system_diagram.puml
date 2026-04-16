@@ -1,0 +1,49 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "IA Hawta" as IA
+
+package "Traitement Intelligent" {
+    usecase "Analyse liste de courses" as IA_List
+}
+
+package "Optimisation" {
+    usecase "Comparaison des prix (souks & magasins)" as IA_Compare
+    usecase "Calcul des trajets & temps" as IA_Time
+    usecase "Génération Top 3 options" as IA_Engine
+}
+
+package "Vision & Validation" {
+    usecase "OCR (scan ticket / image)" as IA_OCR
+    usecase "Extraction produits & prix" as IA_Extract
+    usecase "Validation des deals" as IA_Validate
+}
+
+package "Recommandation" {
+    usecase "Détection variations de prix" as IA_Detect
+    usecase "Envoi alertes personnalisées" as IA_Alert
+}
+
+' ================= Associations simples =================
+IA -- IA_List
+IA -- IA_Compare
+IA -- IA_Time
+IA -- IA_Engine
+IA -- IA_OCR
+IA -- IA_Extract
+IA -- IA_Validate
+IA -- IA_Detect
+IA -- IA_Alert
+
+note right of IA
+Compréhension du langage naturel :
+(Darija / Français / Arabe)
+end note
+
+note bottom of IA
+L'IA analyse les données utilisateurs
+et améliore continuellement les résultats.
+end note
+
+@enduml
