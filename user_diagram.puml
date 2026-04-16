@@ -2,7 +2,7 @@
 left to right direction
 skinparam packageStyle rectangle
 
-actor "Utilisateur" as User
+actor "Consommateur" as User
 
 package "Gestion des Courses" {
     usecase "Créer / Modifier liste de courses" as UC_List
