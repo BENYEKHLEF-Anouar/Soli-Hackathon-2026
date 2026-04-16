@@ -1,7 +1,7 @@
 classDiagram
     direction TB
 
-    class Utilisateur {
+    class Consommateur {
         +Integer id
         +String nom
         +String email
@@ -44,14 +44,6 @@ classDiagram
         +String titre
         +DateTime created_at
         +String statut
-    }
-
-    class Item {
-        +Integer id
-        +Decimal quantite
-        +String unite
-        +String marque_preferee
-        +Boolean est_achete
     }
 
     class ResultatOptimisation {
@@ -126,16 +118,15 @@ classDiagram
 
     %% ==================== RELATIONS ====================
 
-    Utilisateur "1" --> "*" ListeCourses : cree
-    Utilisateur "1" --> "1" Quartier : habite_dans
-    Utilisateur "1" --> "*" Deal : partage
-    Utilisateur "1" --> "*" ScanTicket : effectue
-    Utilisateur "1" --> "*" TransactionPoints : gagne
-    Utilisateur "1" --> "*" Badge : debloque
-    Utilisateur "1" --> "*" Notification : recoit
+    Consommateur "1" --> "*" ListeCourses : cree
+    Consommateur "1" --> "1" Quartier : habite_dans
+    Consommateur "1" --> "*" Deal : partage
+    Consommateur "1" --> "*" ScanTicket : effectue
+    Consommateur "1" --> "*" TransactionPoints : gagne
+    Consommateur "1" --> "*" Badge : debloque
+    Consommateur "1" --> "*" Notification : recoit
 
-    ListeCourses "1" --> "*" Item : contient
-    Item "1" --> "1" Produit : concerne
+    ListeCourses "1" --> "*" Produit : contient  
 
     ListeCourses "1" --> "1" ResultatOptimisation : genere
     ResultatOptimisation "1" --> "*" OptionOptimisation : propose
@@ -149,16 +140,16 @@ classDiagram
 
     Deal "1" --> "1" Produit : concerne
     Deal "1" --> "1" Magasin : se_deroule_a
-    Deal "1" --> "1" Utilisateur : soumis_par
+    Deal "1" --> "1" Consommateur : soumis_par
     ScanTicket "1" --> "*" Deal : genere
 
     %% ==================== NOTES ====================
 
-    note for OptionOptimisation "Top 3 options générées par l'IA (meilleur prix / temps / localisation)"
+    note for OptionOptimisation "Top 3 options générées par l'IA (meilleur prix / temps / éco)"
     note for Deal "Deals communautaires validés automatiquement par l'IA"
     note for ResultatOptimisation "Résultat global d'une optimisation de liste de courses"
 
-    %% Commentaires supplémentaires
+    %% Commentaires
     %% Magasin.type : "Supermarche" | "Souk" | "Marche"
     %% ListeCourses.statut : "active" | "terminee" | "optimisee"
     %% Deal.statut : "en_attente" | "valide" | "rejete"
