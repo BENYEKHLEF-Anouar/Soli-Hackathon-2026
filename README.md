@@ -1,2 +1,22 @@
-# Soli-Hackathon-2026
-About Collaborative repository for our Soli-Hackathon project. Each team member will work on individual feature branches and submit pull requests for merging into the main branch. This setup ensures smooth collaboration, task management, and code integration throughout the development process.
+# Soli-Hackathon 2025 
+
+Welcome to the collaborative repository for our **Soli-Hackathon 2025** project!  
+This repo is the central hub where our team will build, collaborate, and innovate together.
+
+---
+
+## Overview
+
+This project is part of the Soli-Hackathon 2025. Each team member is responsible for specific features and will contribute through dedicated branches and pull requests. Our goal is to ensure clean, manageable, and scalable development as we bring our idea to life.
+
+---
+
+## Team
+
+- [Anouar Benyekhlef]
+- [Mohamed Ouallou]
+- [Salma Akajou]
+  
+---
+
+Let’s build something amazing! 
