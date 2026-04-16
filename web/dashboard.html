@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord | Hawta.ma Web</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: "#695c00",
+                        primary: "#004edc",
+                        surface: "#f5f6f7",
+                        "on-surface": "#2c2f30",
+                        "on-surface-variant": "#595c5d",
+                        "primary-dim": "#0043c1"
+                    },
+                    spacing: {
+                        '4.5': '1.125rem',
+                        '5.5': '1.375rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        * { font-family: 'Manrope', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen">
+    
+    <!-- Sidebar (Desktop) -->
+    <aside class="hidden lg:flex fixed left-0 top-0 h-screen w-72 bg-white border-r border-slate-100 flex-col z-50">
+        <div class="p-8">
+            <a href="dashboard.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                </div>
+                <span class="text-2xl font-black text-slate-900 tracking-tighter">Hawta.ma</span>
+            </a>
+        </div>
+
+        <nav class="flex-grow px-4 space-y-2 mt-4">
+            <a href="dashboard.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-primary/5 text-primary font-black transition-all">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+                <span class="text-sm">Tableau de bord</span>
+            </a>
+            <a href="liste.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">format_list_bulleted</span>
+                <span class="text-sm">Mes Listes</span>
+                <span class="ml-auto bg-slate-100 text-[10px] px-2 py-0.5 rounded-full">3</span>
+            </a>
+            <a href="carte.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">map</span>
+                <span class="text-sm">Carte des Deals</span>
+            </a>
+            <a href="communaute.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">group</span>
+                <span class="text-sm">Communauté</span>
+            </a>
+            <a href="profil.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
+                <span class="material-symbols-outlined">person</span>
+                <span class="text-sm">Mon Profil</span>
+            </a>
+        </nav>
+
+        <!-- Sidebar Footer: Budget Quick View -->
+        <div class="p-6 mt-auto">
+            <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Statut Budget</p>
+                <div class="flex items-end justify-between mb-2">
+                    <span class="text-xl font-black text-slate-900">49%</span>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase">Utilisé</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-primary rounded-full" style="width: 49%"></div>
+                </div>
+                <button onclick="openBudgetModal()" class="w-full mt-4 py-2 text-[10px] font-black uppercase tracking-widest text-primary hover:underline transition-all">
+                    Ajuster le budget
+                </button>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-slate-50 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-grow">
+                <p class="text-xs font-black text-slate-900">Fatima Benali</p>
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Niveau 7</p>
+            </div>
+            <a href="index.html" class="text-slate-300 hover:text-error transition-colors">
+                <span class="material-symbols-outlined text-xl">logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="lg:ml-72 min-h-screen">
+        <!-- Top App Bar (Mobile & Desktop Contextual actions) -->
+        <div class="sticky top-0 bg-white/80 backdrop-blur-xl border-b border-slate-100 z-40 px-8 py-4 flex justify-between items-center transition-all">
+            <h1 class="text-xl font-black tracking-tight text-slate-900 lg:block hidden">Tableau de Bord</h1>
+            
+            <!-- Mobile Logo -->
+            <div class="lg:hidden flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                <span class="text-xl font-black tracking-tighter">Hawta.ma</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-50 transition-colors relative">
+                    <span class="material-symbols-outlined text-slate-500">notifications</span>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+                </button>
+                <div class="h-6 w-px bg-slate-200 lg:block hidden"></div>
+                <!-- Search (Contextual) -->
+                <div class="relative lg:block hidden">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                    <input type="text" placeholder="Rechercher un deal..." class="bg-slate-50 border-none rounded-xl pl-10 pr-4 py-2 text-xs w-64 focus:ring-2 focus:ring-primary/10 transition-all">
+                </div>
+                <a href="scanner.html" class="bg-primary text-white font-black text-[10px] uppercase tracking-widest px-6 py-3 rounded-full shadow-lg shadow-primary/20 hover:scale-105 transition-transform flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">add_a_photo</span>
+                    Nouveau Deal
+                </a>
+            </div>
+        </div>
+
+        <div class="p-8 max-w-7xl mx-auto space-y-8">
+            <!-- Hero Section -->
+            <header class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Welcome -->
+                <div class="lg:col-span-2 bg-slate-900 rounded-[2.5rem] p-10 text-white relative overflow-hidden group">
+                    <img  class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-1000">
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <div>
+                            <h2 class="text-4xl font-black tracking-tighter mb-4">Bonjour, Fatima ! 👋</h2>
+                            <p class="text-slate-400 font-medium max-w-md">De nouveaux deals ont été partagés à **Msala** et **Malabata** depuis votre dernière visite.</p>
+                        </div>
+                        <div class="mt-12 flex gap-4">
+                            <a href="communaute.html" class="bg-white text-slate-900 font-black px-6 py-3 rounded-2xl text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Explorer les deals</a>
+                            <a href="liste.html" class="bg-white/10 backdrop-blur-md text-white font-black px-6 py-3 rounded-2xl text-xs uppercase tracking-widest hover:bg-white/20 transition-colors">Optimiser mes courses</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XP / Level Card -->
+                <div class="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-xl shadow-slate-200/40 flex flex-col items-center text-center justify-center group overflow-hidden relative">
+                    <div class="absolute -top-12 -right-12 w-40 h-40 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="w-20 h-20 bg-secondary-container rounded-2xl flex items-center justify-center text-on-secondary-fixed mb-6 shadow-xl shadow-secondary/20">
+                            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+                        </div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Niveau Actuel</p>
+                        <p class="text-5xl font-black text-slate-900 tracking-tighter mb-4">LVL 7</p>
+                        <div class="w-48 h-2 bg-slate-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-primary" style="width: 72%"></div>
+                        </div>
+                        <p class="text-[9px] font-bold text-primary mt-3 uppercase tracking-widest">2,750 XP avant LVL 8</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats & Quick Actions Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <!-- Stat 1 -->
+                <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-lg shadow-slate-200/20 flex flex-col gap-4">
+                    <div class="w-12 h-12 bg-primary/5 rounded-2xl flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined font-black">savings</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Économies (Avril)</p>
+                        <p class="text-3xl font-black text-slate-900 tracking-tighter">1,260 <span class="text-sm font-bold opacity-30">DH</span></p>
+                    </div>
+                </div>
+                <!-- Stat 2 -->
+                <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-lg shadow-slate-200/20 flex flex-col gap-4">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
+                        <span class="material-symbols-outlined font-black">trending_up</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Performance</p>
+                        <p class="text-3xl font-black text-emerald-600 tracking-tighter">+12% <span class="text-xs font-bold opacity-30">vs Mars</span></p>
+                    </div>
+                </div>
+                <!-- Stat 3 (Budget Gauge) -->
+                <div class="lg:col-span-2 bg-white p-8 rounded-[2rem] border border-slate-100 shadow-lg shadow-slate-200/20 flex items-center gap-10">
+                    <div class="relative w-24 h-24 flex-shrink-0">
+                        <svg class="w-full h-full" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" stroke="#f1f5f9" stroke-width="8" fill="transparent"/>
+                            <circle cx="50" cy="50" r="45" stroke="#004edc" stroke-width="8" fill="transparent" stroke-dasharray="283" stroke-dashoffset="144" stroke-linecap="round"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center font-black text-xl">49%</div>
+                    </div>
+                    <div class="flex-grow space-y-2">
+                        <div class="flex justify-between items-end">
+                            <h3 class="text-xs font-black uppercase tracking-widest text-slate-400">Budget d'Avril</h3>
+                            <button onclick="openBudgetModal()" class="text-[10px] font-bold text-primary hover:underline">MODIFIER</button>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-2xl font-black text-slate-900">1,240</span>
+                            <span class="text-xs font-bold text-slate-400 uppercase">DH Dépensés</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-medium">Il vous reste <span class="text-primary font-black">1,260 DH</span> pour finir le mois sereinement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid 2: Main Features -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left: Recent Deals -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="flex justify-between items-end">
+                        <h3 class="text-2xl font-black tracking-tight">Deals Récents à Tanger ⚓</h3>
+                        <a href="communaute.html" class="text-xs font-black uppercase tracking-widest text-primary hover:underline">Voir tout le flux</a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Deal 1 -->
+                        <div class="bg-white rounded-3xl overflow-hidden group border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <span class="absolute top-4 left-4 bg-error text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">-38%</span>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Marjane Tanger City Mall</p>
+                                <h4 class="text-lg font-black text-slate-900 mb-3">Tomates Bio (Prix au kg)</h4>
+                                <div class="flex items-end gap-3">
+                                    <span class="text-3xl font-black text-primary">6.50 <span class="text-xs">DH</span></span>
+                                    <span class="text-xs text-slate-400 line-through mb-1">9.80 DH</span>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Deal 2 -->
+                         <div class="bg-white rounded-3xl overflow-hidden group border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <span class="absolute top-4 left-4 bg-secondary-container text-on-secondary-fixed text-[10px] font-black px-3 py-1 rounded-full uppercase">VIP DEAL</span>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Aswak Assalam</p>
+                                <h4 class="text-lg font-black text-slate-900 mb-3">Poulet Entier Préparé</h4>
+                                <div class="flex items-end gap-3">
+                                    <span class="text-3xl font-black text-primary">42.00 <span class="text-xs">DH</span></span>
+                                    <span class="text-xs text-slate-400 line-through mb-1">58.00 DH</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Map Preview & Community Leaders -->
+                <div class="space-y-8">
+                    <!-- Map Preview -->
+                    <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-lg shadow-slate-200/20 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-black text-lg tracking-tight">Zone Active</h3>
+                            <a href="carte.html" class="text-[10px] font-black text-primary uppercase tracking-widest">Ouvrir Carte</a>
+                        </div>
+                        <div class="h-48 bg-slate-50 rounded-2xl relative overflow-hidden border border-slate-100">
+                             <!-- Mock Map Illustration -->
+                             <img src="https://api.mapbox.com/styles/v1/mapbox/light-v10/static/5.8499,35.7595,13/400x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.r_68_f3WyR_8Uu9_9qT69w" class="w-full h-full object-cover opacity-60">
+                             <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <div class="w-4 h-4 bg-primary rounded-full animate-ping"></div>
+                                <div class="w-4 h-4 bg-primary rounded-full absolute"></div>
+                             </div>
+                        </div>
+                        <p class="text-[11px] text-slate-400 font-medium text-center">**Moussa Ibn Noussair** est la zone la plus "Hawta" en ce moment avec 12 deals actifs !</p>
+                    </div>
+
+                    <!-- Community Leaders -->
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-lg shadow-slate-200/20">
+                        <h3 class="font-black text-lg tracking-tight mb-6">Top Chasseurs 🏆</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=50&h=50&fit=crop" class="w-10 h-10 rounded-full">
+                                <div class="flex-grow">
+                                    <p class="text-xs font-black">Sara T.</p>
+                                    <p class="text-[9px] text-slate-400 uppercase font-black tracking-widest">1,240 DH Économisés</p>
+                                </div>
+                                <span class="text-primary font-black">#1</span>
+                            </div>
+                            <div class="flex items-center gap-4 opacity-70">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop" class="w-10 h-10 rounded-full">
+                                <div class="flex-grow">
+                                    <p class="text-xs font-black">Bilal M.</p>
+                                    <p class="text-[9px] text-slate-400 uppercase font-black tracking-widest">850 DH Économisés</p>
+                                </div>
+                                <span class="text-slate-400 font-black">#2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Budget -->
+    <div id="budget-modal" class="hidden fixed inset-0 z-[200] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+        <div class="bg-white/90 backdrop-blur-2xl w-full max-w-md p-10 rounded-[2.5rem] shadow-2xl border border-white animate-[scaleIn_0.3s_ease-out] relative">
+            <button onclick="closeBudgetModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="flex flex-col items-center text-center">
+                <div class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mb-8">
+                    <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+                </div>
+                <h3 class="font-headline font-black text-3xl text-on-surface mb-2 tracking-tighter">Votre Budget Mensuel</h3>
+                <p class="text-on-surface-variant leading-relaxed text-sm mb-10">Combien souhaitez-vous dépenser au maximum ce mois-ci pour vos courses à **Tanger** ?</p>
+                
+                <div class="w-full space-y-6 mb-10 text-left">
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-6 flex items-center pointer-events-none text-primary/50 group-focus-within:text-primary transition-colors">
+                            <span class="material-symbols-outlined font-black">payments</span>
+                        </div>
+                        <input id="budget-input" type="number" value="2500" class="w-full bg-slate-50 border-none rounded-3xl py-6 pl-16 pr-20 text-3xl font-black text-on-surface focus:ring-8 focus:ring-primary/5 transition-all shadow-inner" placeholder="Ex: 3000">
+                        <div class="absolute inset-y-0 right-6 flex items-center pointer-events-none text-slate-400 font-black text-xl">
+                            DH
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="closeBudgetModal()" class="w-full bg-primary text-on-primary font-headline font-black py-6 rounded-3xl shadow-2xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
+                    Enregistrer les modifications
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Nav (Visible only on mobile) -->
+    <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-8 pt-2 pointer-events-none lg:hidden">
+        <div class="max-w-lg mx-auto bg-white/80 backdrop-blur-2xl rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/20 flex justify-around items-center px-2 py-2 pointer-events-auto">
+            <a href="dashboard.html" class="w-14 h-14 bg-primary text-white rounded-full flex flex-col items-center justify-center shadow-lg">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+                <span class="text-[8px] font-black uppercase mt-1">Home</span>
+            </a>
+            <a href="liste.html" class="w-14 h-14 text-slate-400 flex flex-col items-center justify-center">
+                <span class="material-symbols-outlined">format_list_bulleted</span>
+                <span class="text-[8px] font-black uppercase mt-1">Listes</span>
+            </a>
+            <a href="communaute.html" class="w-14 h-14 text-slate-400 flex flex-col items-center justify-center">
+                <span class="material-symbols-outlined">group</span>
+                <span class="text-[8px] font-black uppercase mt-1">Social</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        function openBudgetModal() {
+            document.getElementById('budget-modal').classList.remove('hidden');
+            document.getElementById('budget-modal').classList.add('flex');
+        }
+        function closeBudgetModal() {
+            document.getElementById('budget-modal').classList.add('hidden');
+            document.getElementById('budget-modal').classList.remove('flex');
+        }
+    </script>
+</body>
+</html>

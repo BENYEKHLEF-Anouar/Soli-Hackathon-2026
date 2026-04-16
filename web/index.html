@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | Hawta.ma Web</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: "#695c00",
+                        primary: "#004edc",
+                        surface: "#f5f6f7",
+                        "on-surface": "#2c2f30",
+                        "on-surface-variant": "#595c5d",
+                        "primary-dim": "#0043c1"
+                    },
+                    spacing: {
+                        '4.5': '1.125rem',
+                        '5.5': '1.375rem',
+                    }
+                }
+            }
+        }
+        function simulateLogin(event) {
+            event.preventDefault();
+            document.getElementById('location-modal').classList.remove('hidden');
+            document.getElementById('location-modal').classList.add('flex');
+        }
+        function closeLocationModal() {
+            document.getElementById('location-modal').classList.add('hidden');
+            document.getElementById('location-modal').classList.remove('flex');
+        }
+        function confirmLocation() {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        * { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+    <div class="flex min-h-screen">
+        <!-- Left Side: Marketing / Hero (Desktop Only) -->
+        <div class="hidden lg:flex lg:w-1/2 bg-primary relative overflow-hidden items-center justify-center p-12">
+            <!-- Background Decoration -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1539667468225-eebb663053e6?w=1200&h=1600&fit=crop" class="w-full h-full object-cover opacity-40 mix-blend-overlay">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary/80 to-transparent"></div>
+            </div>
+            
+            <div class="relative z-10 max-w-lg text-white">
+                <div class="w-24 h-24 bg-white/10 backdrop-blur-md rounded-[2.5rem] flex items-center justify-center mb-10 border border-white/20 shadow-2xl">
+                    <span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                </div>
+                <h1 class="text-6xl font-black mb-6 tracking-tighter leading-none">Vivez Tanger avec Hawta.</h1>
+                <p class="text-xl text-primary-fixed/80 leading-relaxed font-medium mb-12">Découvrez les prix en temps réel dans vos souks et supermarchés préférés. Économisez jusqu'à 30% sur vos courses quotidiennes.</p>
+                
+                <!-- Trust Badges -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                        <p class="text-3xl font-black mb-1">+45k</p>
+                        <p class="text-[10px] uppercase font-bold tracking-widest opacity-60">Tangérois actifs</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                        <p class="text-3xl font-black mb-1">120</p>
+                        <p class="text-[10px] uppercase font-bold tracking-widest opacity-60">Points de vente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 lg:p-24 relative bg-white">
+            <!-- Background Pattern (Mobile Style) -->
+            <div class="absolute inset-0 z-0 opacity-10 pointer-events-none lg:hidden">
+                <span class="material-symbols-outlined absolute text-primary/10 text-[120px] top-[10%] left-[5%]">shopping_basket</span>
+                <span class="material-symbols-outlined absolute text-primary/10 text-[80px] top-[40%] right-[10%]">shopping_basket</span>
+            </div>
+
+            <div class="w-full max-w-[440px] relative z-10">
+                <div class="mb-12 flex flex-col items-center lg:items-start lg:mb-16">
+                    <div class="lg:hidden w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+                    </div>
+                    <h2 class="text-4xl font-headline font-black text-slate-900 tracking-tighter mb-2">Bienvenue</h2>
+                    <p class="text-on-surface-variant font-medium">Connectez-vous pour voir les deals du jour à Tanger.</p>
+                </div>
+
+                <form class="space-y-6" onsubmit="simulateLogin(event)">
+                    <div class="space-y-2">
+                        <label class="font-label text-xs font-black uppercase tracking-widest text-on-surface-variant ml-1" for="email">Adresse Email</label>
+                        <input class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4.5 px-6 text-on-surface placeholder:text-outline focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all shadow-sm" id="email" placeholder="nom@exemple.com" type="email" required>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center ml-1">
+                            <label class="font-label text-xs font-black uppercase tracking-widest text-on-surface-variant" for="password">Mot de passe</label>
+                            <a class="text-xs font-black text-primary hover:text-primary-dim transition-colors" href="#">Oublié ?</a>
+                        </div>
+                        <input class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4.5 px-6 text-on-surface placeholder:text-outline focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all shadow-sm" id="password" placeholder="********" type="password" required>
+                    </div>
+
+                    <button type="submit" class="w-full bg-primary text-on-primary font-headline font-black py-5.5 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 flex justify-center items-center gap-4 uppercase tracking-[0.2em] text-sm mt-10">
+                        Se connecter
+                        <span class="material-symbols-outlined font-black">arrow_forward</span>
+                    </button>
+                </form>
+
+                <footer class="mt-12 text-center lg:text-left">
+                    <p class="text-on-surface-variant text-sm font-medium mb-4">Nouveau sur Hawta.ma ?</p>
+                    <button class="w-full lg:w-auto px-12 border-2 border-primary/20 text-primary font-headline font-black py-5 rounded-2xl hover:bg-primary/5 active:scale-95 transition-all duration-300 uppercase tracking-widest text-xs">
+                        Créer un compte
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Warning Modal -->
+    <div id="location-modal" class="hidden fixed inset-0 z-[100] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+        <div class="glass-panel w-full max-w-sm p-10 rounded-[2.5rem] shadow-2xl border border-white animate-[scaleIn_0.3s_ease-out]">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-24 h-24 bg-primary/10 rounded-[2.5rem] flex items-center justify-center mb-8 shadow-inner ring-8 ring-primary/5">
+                    <span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                </div>
+                <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">Votre Position</h3>
+                <p class="text-on-surface-variant leading-relaxed text-sm mb-10">Hawta.ma a besoin de votre position pour identifier les deals les plus proches dans **Tanger**.</p>
+                
+                <div class="flex flex-col w-full gap-4">
+                    <button onclick="confirmLocation()" class="w-full bg-primary text-on-primary font-headline font-black py-5 rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
+                        Autoriser
+                    </button>
+                    <button onclick="closeLocationModal()" class="w-full bg-surface-container-low text-on-surface-variant font-headline font-black py-5 rounded-2xl hover:bg-surface-container-high active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
+                        Plus tard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</body>
+</html>
