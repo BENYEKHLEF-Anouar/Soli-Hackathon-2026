@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partager un Deal | Hawta.ma Web</title>
+    <title>Scanner IA | Hawta.ma Web Premium</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -14,269 +14,231 @@
                 extend: {
                     colors: {
                         primary: "#004edc",
-                        surface: "#f5f6f7",
-                        "on-surface": "#2c2f30",
-                        "on-surface-variant": "#595c5d",
-                        "primary-dim": "#0043c1"
+                        secondary: "#695c00",
+                        surface: "#f8fafc",
+                        "on-surface": "#0f172a",
+                        "on-surface-variant": "#64748b",
+                        error: "#b41340"
                     },
-                    spacing: {
-                        '4.5': '1.125rem',
-                        '5.5': '1.375rem',
+                    borderRadius: {
+                        '3xl': '2rem',
+                        '4xl': '2.5rem',
+                        '5xl': '3rem'
                     }
                 }
             }
         }
     </script>
     <style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-        }
+        .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }
+        .material-symbols-fill { font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24; }
         * { font-family: 'Manrope', sans-serif; }
-        .scan-line {
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #004edc, transparent);
-            box-shadow: 0 0 20px #004edc;
-            width: 100%;
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        .scanner-glow {
             position: absolute;
-            animation: scan 2s linear infinite;
+            height: 2px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, #004edc, transparent);
+            box-shadow: 0 0 15px #004edc;
+            animation: scan 3s linear infinite;
+            z-index: 20;
         }
-        @keyframes scan { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
     </style>
 </head>
-<body class="bg-surface text-on-surface antialiased min-h-screen">
-    
-    <!-- Sidebar -->
-    <aside class="hidden lg:flex fixed left-0 top-0 h-screen w-72 bg-white border-r border-slate-100 flex-col z-50">
-        <div class="p-8">
-            <a href="dashboard.html" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
-                </div>
-                <span class="text-2xl font-black text-slate-900 tracking-tighter">Hawta.ma</span>
-            </a>
-        </div>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex">
 
-        <nav class="flex-grow px-4 space-y-2 mt-4">
-            <a href="dashboard.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">home</span>
+    <!-- SIDEBAR (Shared) -->
+    <aside class="w-80 h-screen sticky top-0 bg-white border-r border-slate-100 flex flex-col z-50 p-8">
+        <a href="dashboard.html" class="flex items-center gap-4 mb-12 group">
+            <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary transition-transform group-hover:scale-110 shadow-sm">
+                <span class="material-symbols-outlined text-3xl material-symbols-fill">shopping_basket</span>
+            </div>
+            <div>
+                <h1 class="text-2xl font-black tracking-tighter leading-none italic">Hawta<span class="text-primary NOT-italic">.ma</span></h1>
+                <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 mt-1">Smart Shopping • Tanger</p>
+            </div>
+        </a>
+
+        <nav class="space-y-3 flex-grow">
+            <a href="dashboard.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl text-slate-400 hover:bg-slate-50 transition-all font-bold">
+                <span class="material-symbols-outlined">grid_view</span>
                 <span class="text-sm">Tableau de bord</span>
             </a>
-            <a href="liste.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">format_list_bulleted</span>
+            <a href="liste.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl text-slate-400 hover:bg-slate-50 transition-all font-bold">
+                <span class="material-symbols-outlined">receipt_long</span>
                 <span class="text-sm">Mes Listes</span>
             </a>
-            <a href="carte.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">map</span>
-                <span class="text-sm">Carte des Deals</span>
+            <a href="carte.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl text-slate-400 hover:bg-slate-50 transition-all font-bold">
+                <span class="material-symbols-outlined">explore</span>
+                <span class="text-sm">Carte Interactive</span>
             </a>
-            <a href="communaute.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">group</span>
-                <span class="text-sm">Communauté</span>
+            <a href="communaute.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl text-slate-400 hover:bg-slate-50 transition-all font-bold">
+                <span class="material-symbols-outlined">forum</span>
+                <span class="text-sm">Flux Communauté</span>
             </a>
-            <a href="#" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-primary/5 text-primary font-black transition-all">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_a_photo</span>
-                <span class="text-sm">Poster un deal</span>
+            <a href="scanner.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl bg-primary/10 text-primary font-black transition-all">
+                <span class="material-symbols-outlined material-symbols-fill">document_scanner</span>
+                <span class="text-sm">Scanner un Deal</span>
             </a>
         </nav>
 
-        <div class="p-6 border-t border-slate-50 flex items-center gap-3 mt-auto">
-            <div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-grow">
-                <p class="text-xs font-black text-slate-900">Fatima Benali</p>
-                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Niveau 7</p>
+        <div class="mt-auto flex flex-col gap-4">
+            <div class="p-6 bg-slate-900 rounded-[2.5rem] text-white">
+                <p class="text-[9px] font-black uppercase text-slate-400 tracking-widest mb-2">Statut IA</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                    <p class="text-xs font-black uppercase tracking-widest">Optimiseur Prêt</p>
+                </div>
             </div>
         </div>
     </aside>
 
-    <main class="lg:ml-72 min-h-screen">
-        <!-- Header -->
-        <header class="sticky top-0 bg-white/80 backdrop-blur-xl border-b border-slate-100 z-40 px-8 py-6">
-            <h1 class="text-3xl font-black tracking-tighter text-slate-900">Partager un Deal 🏷️</h1>
-             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Aidez la communauté de Tanger à économiser</p>
+    <!-- CONTENT -->
+    <main class="flex-grow flex flex-col h-screen overflow-hidden">
+        <!-- HEADER -->
+        <header class="h-24 bg-white/80 backdrop-blur-xl border-b border-slate-100 z-40 px-12 flex items-center justify-between flex-shrink-0">
+            <div>
+                <h2 class="text-2xl font-black tracking-tighter text-slate-900 leading-none mb-1">Scanner de Tickets IA ⚡</h2>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic">Analyse automatique des prix • Tanger Smart Engine</p>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button class="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-slate-50 transition-all border border-slate-100">
+                    <span class="material-symbols-outlined text-slate-500">settings</span>
+                </button>
+                <button onclick="window.history.back()" class="bg-slate-900 text-white px-8 py-3.5 rounded-2xl shadow-xl font-black text-[10px] uppercase tracking-widest hover:scale-[1.02] transition-all">Quitter</button>
+            </div>
         </header>
 
-        <div class="p-8 max-w-7xl mx-auto">
-            <div id="view-selection" class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <!-- Left: Scanner IA -->
-                <button onclick="startScanning()" class="bg-white p-12 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/20 text-left group hover:border-primary transition-all active:scale-[0.98]">
-                    <div class="w-24 h-24 bg-primary/5 text-primary rounded-[2rem] flex items-center justify-center mb-10 group-hover:bg-primary group-hover:text-white transition-all">
-                        <span class="material-symbols-outlined text-5xl">document_scanner</span>
-                    </div>
-                    <h3 class="text-3xl font-black tracking-tighter mb-4">Scanner IA de Ticket</h3>
-                    <p class="text-slate-400 leading-relaxed font-medium mb-12">Prenez une photo de votre ticket de caisse. Notre IA se charge d'extraire les prix et les produits automatiquement.</p>
-                    <div class="flex items-center gap-2 text-primary font-black uppercase text-xs tracking-widest">
-                        Lancer le scan <span class="material-symbols-outlined">arrow_forward</span>
-                    </div>
-                </button>
-
-                <!-- Right: Manual Photo -->
-                <button onclick="startScanning()" class="bg-white p-12 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/20 text-left group hover:border-primary transition-all active:scale-[0.98]">
-                    <div class="w-24 h-24 bg-emerald-50 text-emerald-600 rounded-[2rem] flex items-center justify-center mb-10 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                        <span class="material-symbols-outlined text-5xl">photo_camera</span>
-                    </div>
-                    <h3 class="text-3xl font-black tracking-tighter mb-4">Photo d'un Produit</h3>
-                    <p class="text-slate-400 leading-relaxed font-medium mb-12">Vous avez vu un prix incroyable en rayon ? Prenez une photo directe du produit et de son étiquette.</p>
-                    <div class="flex items-center gap-2 text-emerald-600 font-black uppercase text-xs tracking-widest">
-                        Prendre une photo <span class="material-symbols-outlined">arrow_forward</span>
-                    </div>
-                </button>
-            </div>
-
-            <!-- View: Active Scan UI -->
-            <div id="view-scan" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-10 animate-[scaleIn_0.3s_ease-out]">
-                <!-- Camera / Upload Viewfinder -->
-                <div class="bg-slate-900 rounded-[3rem] p-10 flex flex-col items-center justify-center relative overflow-hidden aspect-[4/3] lg:aspect-square">
-                    <img id="preview-img" class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=800">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40"></div>
+        <!-- SCANNER INTERFACE -->
+        <div class="flex-grow flex p-10 gap-10 overflow-hidden bg-slate-50/50">
+            
+            <!-- LEFT: DROPZONE / CAMERA -->
+            <div class="flex-[1.2] flex flex-col gap-8 h-full overflow-hidden">
+                <section class="flex-grow bg-white border-2 border-dashed border-slate-200 rounded-[3rem] relative overflow-hidden flex flex-col items-center justify-center group hover:border-primary transition-all cursor-pointer">
+                    <div id="scanner-line" class="scanner-glow hidden"></div>
                     
-                    <div class="relative z-10 w-full max-w-sm aspect-[3/4] border-4 border-dashed border-white/20 rounded-2xl flex items-center justify-center">
-                        <div class="scan-line"></div>
-                        <div class="text-center text-white/40">
-                            <span class="material-symbols-outlined text-8xl mb-4">add_a_photo</span>
-                            <p class="text-xs font-black uppercase tracking-widest">Placer le ticket ici</p>
+                    <div id="dropzone-content" class="flex flex-col items-center text-center p-12 space-y-8">
+                        <div class="w-32 h-32 bg-primary/5 rounded-[2.5rem] flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
+                            <span class="material-symbols-outlined text-5xl">cloud_upload</span>
                         </div>
+                        <div>
+                            <h3 class="text-3xl font-black tracking-tighter text-slate-900 mb-2">Déposez votre ticket</h3>
+                            <p class="text-slate-400 font-medium text-lg max-w-sm">Glissez un ticket de caisse ou une capture d'écran d'un deal.</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <button onclick="startScanning()" class="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-primary transition-all">Ouvrir Caméra</button>
+                            <button class="bg-white border border-slate-200 text-slate-900 px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all hover:bg-slate-50">Explorateur</button>
+                        </div>
+                        <p class="text-[10px] text-slate-300 font-black uppercase tracking-[0.2em]">Formats supportés : JPG, PNG, PDF</p>
                     </div>
 
-                    <div class="mt-12 relative z-10 flex gap-6">
-                        <button onclick="simulateProcess()" class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-slate-900 shadow-2xl active:scale-90 transition-all">
-                            <span class="material-symbols-outlined text-3xl">camera_rounded</span>
-                        </button>
+                    <!-- Scanning Simulation Placeholder -->
+                    <div id="scanning-visual" class="hidden absolute inset-0 bg-slate-900/10 flex items-center justify-center backdrop-blur-sm">
+                         <div class="bg-white/90 backdrop-blur-2xl p-10 rounded-full shadow-2xl flex items-center gap-4">
+                             <div class="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                             <span class="text-lg font-black tracking-tighter">Analyse IA en cours...</span>
+                         </div>
                     </div>
-                </div>
-
-                <!-- Guidance / Status -->
-                <div class="flex flex-col justify-center space-y-10">
-                    <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl">
-                        <div class="flex items-center gap-5 mb-8">
-                            <div class="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center">
-                                <span class="material-symbols-outlined text-2xl animate-pulse">auto_awesome</span>
-                            </div>
-                            <h4 class="text-xl font-black tracking-tight leading-tight">L'IA de Hawta analyse <br>votre ticket...</h4>
-                        </div>
-                        <ul class="space-y-6">
-                            <li class="flex items-center gap-4 text-sm font-medium text-slate-600">
-                                <span class="material-symbols-outlined text-emerald-500 font-black">check_circle</span>
-                                Netteté de l'image : Excellente
-                            </li>
-                            <li class="flex items-center gap-4 text-sm font-medium text-slate-400">
-                                <span class="material-symbols-outlined text-slate-200">radio_button_unchecked</span>
-                                Extraction des noms de produits...
-                            </li>
-                        </ul>
+                </section>
+                
+                <!-- Tips -->
+                <div class="p-8 bg-primary/5 rounded-[2.5rem] border border-primary/10 flex items-center gap-8">
+                    <div class="w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined material-symbols-fill">lightbulb</span>
                     </div>
-                    <button onclick="switchView('view-selection')" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-slate-900">Annuler et revenir</button>
+                    <p class="text-sm font-medium text-slate-600 leading-relaxed italic">
+                        **Conseil IA :** Assurez-vous que le nom du magasin et les prix sont bien visibles pour une extraction à 100%. Les tickets Marjane et Carrefour sont optimisés par défaut.
+                    </p>
                 </div>
             </div>
 
-            <!-- View: Verification -->
-            <div id="view-verification" class="hidden max-w-4xl mx-auto space-y-10 animate-[scaleIn_0.3s_ease-out]">
-                <div class="flex items-center gap-6">
-                    <div class="w-16 h-16 bg-emerald-500 text-white rounded-[1.5rem] flex items-center justify-center shadow-lg">
-                        <span class="material-symbols-outlined text-3xl font-black">verified</span>
+            <!-- RIGHT: EXTRACTION RESULTS -->
+            <aside class="flex-grow flex flex-col gap-8 h-full overflow-hidden">
+                <section class="flex-grow bg-white border border-slate-100 rounded-[3rem] shadow-xl shadow-slate-200/20 flex flex-col overflow-hidden">
+                    <div class="p-10 border-b border-slate-50 flex justify-between items-center">
+                        <h3 class="text-2xl font-black tracking-tighter leading-none italic">Résultats de l'Extraction</h3>
+                        <span id="extraction-status" class="bg-slate-100 text-slate-400 text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">En attente</span>
                     </div>
-                    <div>
-                        <h2 class="text-3xl font-black tracking-tighter">Vérification du Deal ✅</h2>
-                        <p class="text-sm font-medium text-slate-400">L'IA a détecté ces articles. Confirmez les prix pour publier d'un clic.</p>
-                    </div>
-                </div>
-
-                <div class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-xl space-y-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="space-y-4">
-                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Magasin</label>
-                            <select class="w-full bg-slate-50 border-none rounded-2xl py-5 px-6 font-black text-slate-900 focus:ring-8 focus:ring-primary/5">
-                                <option>Marjane Tanger City Mall</option>
-                                <option>Souk Msala</option>
-                                <option>Aswak Assalam</option>
-                            </select>
+                    
+                    <div class="flex-grow overflow-y-auto p-10 space-y-8 no-scrollbar">
+                        <!-- Field 1 -->
+                        <div class="space-y-3">
+                            <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest px-2">Identification Magasin</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-primary material-symbols-fill">storefront</span>
+                                <input type="text" placeholder="Détecté automatiquement..." class="w-full bg-slate-50 border-none rounded-2xl py-5 pl-14 pr-6 font-black text-slate-900 focus:ring-8 focus:ring-primary/5 transition-all text-xl tracking-tight italic" id="result-store">
+                            </div>
                         </div>
-                        <div class="space-y-4">
-                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Produit Détecté</label>
-                            <div class="flex items-center gap-4 bg-slate-50 rounded-2xl py-5 px-6">
-                                <input type="text" value="Tomates Bio 1kg" class="bg-transparent border-none p-0 flex-grow font-black text-slate-900 focus:ring-0">
-                                <div class="flex items-center gap-2">
-                                    <input type="text" value="6.50" class="bg-transparent border-none p-0 w-16 text-right font-black text-primary focus:ring-0">
-                                    <span class="text-xs font-black text-primary">DH</span>
+
+                        <!-- Field 2 -->
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="space-y-3">
+                                <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest px-2">Total Ticket</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">payments</span>
+                                    <input type="text" placeholder="0.00 DH" class="w-full bg-slate-50 border-none rounded-2xl py-5 pl-14 pr-6 font-black text-slate-900 focus:ring-8 focus:ring-primary/5 transition-all text-xl italic" id="result-total">
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest px-2">Date d'Achat</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+                                    <input type="text" placeholder="JJ/MM/AAAA" class="w-full bg-slate-50 border-none rounded-2xl py-5 pl-14 pr-6 font-black text-slate-900 focus:ring-8 focus:ring-primary/5 transition-all text-xl italic" id="result-date">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <button onclick="switchView('view-success')" class="w-full bg-primary text-white font-black py-6 rounded-full shadow-2xl shadow-primary/20 uppercase tracking-widest text-sm hover:scale-[1.01] transition-all">
-                        Publier ce deal sur Tanger
-                    </button>
-                </div>
-            </div>
 
-            <!-- View: Success -->
-            <div id="view-success" class="hidden flex flex-col items-center py-20 text-center animate-[scaleIn_0.3s_ease-out]">
-                <div class="w-40 h-40 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mb-10 shadow-2xl relative">
-                    <span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">stars</span>
-                    <div class="absolute inset-0 bg-emerald-500 opacity-20 blur-3xl rounded-full"></div>
-                </div>
-                <h2 class="text-5xl font-black tracking-tighter mb-4">Félicitations ! 🎉</h2>
-                <p class="text-lg text-slate-400 font-medium mb-12">Votre deal a été publié. Vous avez gagné <span class="text-slate-900 font-bold">+50 XP</span>.</p>
-                <div class="flex gap-6">
-                    <a href="dashboard.html" class="px-10 py-5 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-widest text-xs">Tableau de bord</a>
-                    <a href="communaute.html" class="px-10 py-5 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black uppercase tracking-widest text-xs">Voir dans le flux</a>
-                </div>
-            </div>
+                        <!-- Items List Placeholder -->
+                        <div class="space-y-4">
+                            <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest px-2">Articles Détectés (Top Deals)</label>
+                            <div class="bg-slate-50 rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center opacity-30 border-2 border-dashed border-slate-200 border-spacing-4">
+                                <span class="material-symbols-outlined text-4xl mb-4 text-slate-300">view_list</span>
+                                <p class="text-[11px] font-bold text-slate-400 italic">La liste détaillée apparaîtra après l'analyse...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-10 border-t border-slate-50">
+                        <button class="w-full py-6 bg-primary text-white rounded-3xl font-black shadow-2xl shadow-primary/30 uppercase tracking-[0.2em] text-xs hover:bg-slate-950 transition-all active:scale-95">Confirmer et Enregistrer</button>
+                    </div>
+                </section>
+            </aside>
         </div>
     </main>
 
-    <!-- Processing Overlay -->
-    <div id="processing" class="hidden fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-xl flex items-center justify-center">
-        <div class="text-center space-y-10 w-full max-w-sm">
-            <div class="w-32 h-32 bg-primary/20 rounded-full flex items-center justify-center mx-auto shadow-2xl relative overflow-hidden">
-                <span class="material-symbols-outlined text-primary text-6xl animate-spin">sync</span>
-            </div>
-            <div class="space-y-2">
-                <h3 class="text-3xl font-black text-white tracking-tighter">Analyse IA en cours</h3>
-                <p class="text-slate-400 font-medium">Extraction des données de Tanger...</p>
-            </div>
-            <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
-                <div id="progress-bar" class="bg-primary h-full w-0 transition-all duration-300"></div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        function switchView(viewId) {
-            ['view-selection', 'view-scan', 'view-verification', 'view-success'].forEach(v => {
-                document.getElementById(v).classList.add('hidden');
-            });
-            document.getElementById(viewId).classList.remove('hidden');
-        }
-
         function startScanning() {
-            switchView('view-scan');
-        }
+            const visual = document.getElementById('scanning-visual');
+            const line = document.getElementById('scanner-line');
+            const status = document.getElementById('extraction-status');
+            
+            visual.classList.remove('hidden');
+            line.classList.remove('hidden');
+            status.textContent = "Extraction en cours...";
+            status.classList.remove('bg-slate-100', 'text-slate-400');
+            status.classList.add('bg-primary/10', 'text-primary');
 
-        function simulateProcess() {
-            document.getElementById('processing').classList.remove('hidden');
-            let progress = 0;
-            const bar = document.getElementById('progress-bar');
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        document.getElementById('processing').classList.add('hidden');
-                        switchView('view-verification');
-                    }, 500);
-                }
-                bar.style.width = progress + '%';
-            }, 200);
+            // Simulate result after 3 seconds
+            setTimeout(() => {
+                visual.classList.add('hidden');
+                line.classList.add('hidden');
+                status.textContent = "Analysé à 98%";
+                status.classList.remove('bg-primary/10', 'text-primary');
+                status.classList.add('bg-emerald-500/10', 'text-emerald-500');
+
+                document.getElementById('result-store').value = "Marjane Tanger Mall";
+                document.getElementById('result-total').value = "482.50 DH";
+                document.getElementById('result-date').value = "17/04/2026";
+            }, 3000);
         }
     </script>
-
-    <style>
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    </style>
 </body>
 </html>

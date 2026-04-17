@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion | Hawta.ma Web</title>
+    <title>Hawta.ma | Le shopping intelligent à Tanger ⚓</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -13,147 +13,190 @@
             theme: {
                 extend: {
                     colors: {
-                        secondary: "#695c00",
                         primary: "#004edc",
-                        surface: "#f5f6f7",
-                        "on-surface": "#2c2f30",
-                        "on-surface-variant": "#595c5d",
-                        "primary-dim": "#0043c1"
+                        secondary: "#695c00",
+                        surface: "#ffffff",
+                        "on-surface": "#0f172a",
+                        "on-surface-variant": "#64748b"
                     },
-                    spacing: {
-                        '4.5': '1.125rem',
-                        '5.5': '1.375rem',
+                    borderRadius: {
+                        '3xl': '2rem',
+                        '4xl': '2.5rem',
+                        '5xl': '3rem'
                     }
                 }
             }
         }
-        function simulateLogin(event) {
-            event.preventDefault();
-            document.getElementById('location-modal').classList.remove('hidden');
-            document.getElementById('location-modal').classList.add('flex');
-        }
-        function closeLocationModal() {
-            document.getElementById('location-modal').classList.add('hidden');
-            document.getElementById('location-modal').classList.remove('flex');
-        }
-        function confirmLocation() {
-            window.location.href = 'dashboard.html';
-        }
     </script>
     <style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-        }
+        .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }
+        .material-symbols-fill { font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24; }
         * { font-family: 'Manrope', sans-serif; }
+        
+        .floating { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .hero-grain {
+            background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+            opacity: 0.05;
+        }
     </style>
 </head>
-<body class="bg-surface font-body text-on-surface antialiased">
-    <div class="flex min-h-screen">
-        <!-- Left Side: Marketing / Hero (Desktop Only) -->
-        <div class="hidden lg:flex lg:w-1/2 bg-primary relative overflow-hidden items-center justify-center p-12">
-            <!-- Background Decoration -->
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1539667468225-eebb663053e6?w=1200&h=1600&fit=crop" class="w-full h-full object-cover opacity-40 mix-blend-overlay">
-                <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary/80 to-transparent"></div>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 left-0 w-full z-[100] px-12 py-8 flex justify-between items-center bg-white/80 backdrop-blur-xl border-b border-slate-50">
+        <div class="flex items-center gap-4 group cursor-pointer">
+            <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm">
+                <span class="material-symbols-outlined text-3xl material-symbols-fill">shopping_basket</span>
             </div>
+            <h1 class="text-2xl font-black tracking-tighter leading-none italic">Hawta<span class="text-primary NOT-italic">.ma</span></h1>
+        </div>
+
+        <div class="flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+            <a href="#" class="hover:text-primary transition-colors">Découvrir</a>
+            <a href="#" class="hover:text-primary transition-colors">Fonctionnalités</a>
+            <a href="#" class="hover:text-primary transition-colors">Communauté</a>
+            <a href="dashboard.html" class="bg-slate-900 text-white px-10 py-4 rounded-2xl shadow-2xl hover:bg-primary transition-all">Accéder à l'App</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <main class="pt-48 pb-24 px-12 max-w-[1600px] mx-auto min-h-screen flex flex-col justify-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             
-            <div class="relative z-10 max-w-lg text-white">
-                <div class="w-24 h-24 bg-white/10 backdrop-blur-md rounded-[2.5rem] flex items-center justify-center mb-10 border border-white/20 shadow-2xl">
-                    <span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+            <!-- Hero Text -->
+            <div class="space-y-12">
+                <div class="inline-flex items-center gap-3 bg-secondary-container/20 text-secondary px-6 py-2.5 rounded-full border border-secondary/10">
+                    <span class="w-2 h-2 bg-secondary rounded-full animate-pulse shadow-lg"></span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em]">Exclusivité Tanger ⛴️</span>
                 </div>
-                <h1 class="text-6xl font-black mb-6 tracking-tighter leading-none">Vivez Tanger avec Hawta.</h1>
-                <p class="text-xl text-primary-fixed/80 leading-relaxed font-medium mb-12">Découvrez les prix en temps réel dans vos souks et supermarchés préférés. Économisez jusqu'à 30% sur vos courses quotidiennes.</p>
                 
-                <!-- Trust Badges -->
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-                        <p class="text-3xl font-black mb-1">+45k</p>
-                        <p class="text-[10px] uppercase font-bold tracking-widest opacity-60">Tangérois actifs</p>
+                <h2 class="text-[7rem] font-black tracking-[-0.04em] leading-[0.85] text-slate-900">
+                    Optimisez vos <br> 
+                    <span class="text-primary italic">Courses</span> avec <br>
+                    <span class="relative">
+                        l'IA.
+                        <svg class="absolute -bottom-4 left-0 w-full h-8 text-secondary/30 -z-10" viewBox="0 0 400 30" fill="none">
+                            <path d="M5 25C100 5 300 5 395 25" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                </h2>
+
+                <p class="text-xl font-medium text-slate-400 max-w-xl leading-relaxed">
+                    Découvrez les meilleurs deals à Tanger en temps réel, optimisez votre budget avec notre IA et partagez vos "Hawtas" avec la communauté locale.
+                </p>
+
+                <div class="flex gap-6 items-center">
+                    <a href="dashboard.html" class="bg-primary text-white px-12 py-6 rounded-[2rem] font-black text-xs uppercase tracking-[0.2em] shadow-[0_25px_60px_-15px_rgba(0,78,220,0.4)] hover:scale-[1.02] transition-all flex items-center gap-4">
+                        Démarrer l'expérience
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                    <button class="bg-white border-2 border-slate-100 text-slate-900 px-12 py-6 rounded-[2rem] font-black text-xs uppercase tracking-[0.2em] hover:bg-slate-50 transition-all">Regarder la démo</button>
+                </div>
+
+                <!-- Trust Badge -->
+                <div class="pt-8 flex items-center gap-10">
+                    <div class="flex -space-x-4">
+                        <img class="w-12 h-12 rounded-full border-4 border-white shadow-lg" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop">
+                        <img class="w-12 h-12 rounded-full border-4 border-white shadow-lg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop">
+                        <img class="w-12 h-12 rounded-full border-4 border-white shadow-lg" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop">
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-                        <p class="text-3xl font-black mb-1">120</p>
-                        <p class="text-[10px] uppercase font-bold tracking-widest opacity-60">Points de vente</p>
+                    <div>
+                        <p class="text-sm font-black text-slate-900 leading-none mb-1">+12,400 Tangérois</p>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Utilisent Hawta.ma chaque mois</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Image Interface Mockup -->
+            <div class="relative group">
+                <div class="absolute inset-0 bg-primary/10 rounded-[4rem] group-hover:scale-105 transition-transform duration-1000 blur-3xl opacity-30"></div>
+                <div class="relative bg-slate-900 rounded-[3.5rem] p-4 shadow-2xl shadow-slate-900/40 border-[12px] border-slate-800 floating">
+                    <div class="bg-slate-50 rounded-[2.5rem] overflow-hidden aspect-[4/3] relative">
+                         <!-- Simplified Mockup Content -->
+                         <div class="p-8 space-y-8">
+                             <div class="flex justify-between items-center">
+                                 <div class="w-32 h-6 bg-slate-200 rounded-full"></div>
+                                 <div class="flex gap-2">
+                                     <div class="w-8 h-8 bg-slate-200 rounded-full"></div>
+                                     <div class="w-8 h-8 bg-slate-200 rounded-full"></div>
+                                 </div>
+                             </div>
+                             <div class="grid grid-cols-2 gap-6">
+                                 <div class="h-48 bg-white border border-slate-100 rounded-3xl shadow-sm p-6 flex flex-col justify-end">
+                                     <div class="w-4/5 h-4 bg-slate-100 rounded-full mb-2"></div>
+                                     <div class="w-1/2 h-8 bg-primary/10 rounded-xl"></div>
+                                 </div>
+                                 <div class="h-48 bg-primary rounded-3xl shadow-xl shadow-primary/20 p-6 flex flex-col justify-end">
+                                     <div class="w-4/5 h-4 bg-white/20 rounded-full mb-2"></div>
+                                     <div class="w-1/2 h-8 bg-white rounded-xl"></div>
+                                 </div>
+                             </div>
+                             <div class="h-40 bg-white border border-slate-100 rounded-3xl shadow-sm p-8 flex items-center justify-between">
+                                  <div class="flex gap-4 items-center">
+                                      <div class="w-14 h-14 bg-slate-100 rounded-2xl"></div>
+                                      <div class="space-y-2">
+                                          <div class="w-32 h-4 bg-slate-200 rounded-full"></div>
+                                          <div class="w-20 h-3 bg-slate-100 rounded-full"></div>
+                                      </div>
+                                  </div>
+                                  <div class="w-24 h-10 bg-emerald-500/10 rounded-xl"></div>
+                             </div>
+                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </main>
 
-        <!-- Right Side: Login Form -->
-        <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 lg:p-24 relative bg-white">
-            <!-- Background Pattern (Mobile Style) -->
-            <div class="absolute inset-0 z-0 opacity-10 pointer-events-none lg:hidden">
-                <span class="material-symbols-outlined absolute text-primary/10 text-[120px] top-[10%] left-[5%]">shopping_basket</span>
-                <span class="material-symbols-outlined absolute text-primary/10 text-[80px] top-[40%] right-[10%]">shopping_basket</span>
+    <!-- FEATURES BENTO -->
+    <section class="py-48 bg-slate-50 relative overflow-hidden">
+        <div class="max-w-[1600px] mx-auto px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Box 1 -->
+            <div class="bg-white p-12 rounded-[3.5rem] border border-slate-100 shadow-xl shadow-slate-200/20 space-y-8 group hover:scale-[1.02] transition-all">
+                <div class="w-16 h-16 bg-primary/5 rounded-[1.5rem] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <span class="material-symbols-outlined text-4xl">document_scanner</span>
+                </div>
+                <h3 class="text-3xl font-black tracking-tighter leading-none italic">Scanner IA Précis</h3>
+                <p class="text-lg font-medium text-slate-400">Prenez une photo de votre ticket, notre IA extrait les prix et met à jour la communauté automatiquement.</p>
             </div>
-
-            <div class="w-full max-w-[440px] relative z-10">
-                <div class="mb-12 flex flex-col items-center lg:items-start lg:mb-16">
-                    <div class="lg:hidden w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
-                    </div>
-                    <h2 class="text-4xl font-headline font-black text-slate-900 tracking-tighter mb-2">Bienvenue</h2>
-                    <p class="text-on-surface-variant font-medium">Connectez-vous pour voir les deals du jour à Tanger.</p>
+            <!-- Box 2 -->
+            <div class="bg-slate-900 p-12 rounded-[3.5rem] text-white shadow-2xl shadow-slate-900/20 space-y-8 relative overflow-hidden group hover:scale-[1.02] transition-all">
+                <div class="absolute -right-6 -top-6 w-32 h-32 bg-primary rounded-full blur-[80px] opacity-30"></div>
+                <div class="w-16 h-16 bg-white/10 rounded-[1.5rem] flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-4xl material-symbols-fill">auto_awesome</span>
                 </div>
-
-                <form class="space-y-6" onsubmit="simulateLogin(event)">
-                    <div class="space-y-2">
-                        <label class="font-label text-xs font-black uppercase tracking-widest text-on-surface-variant ml-1" for="email">Adresse Email</label>
-                        <input class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4.5 px-6 text-on-surface placeholder:text-outline focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all shadow-sm" id="email" placeholder="nom@exemple.com" type="email" required>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center ml-1">
-                            <label class="font-label text-xs font-black uppercase tracking-widest text-on-surface-variant" for="password">Mot de passe</label>
-                            <a class="text-xs font-black text-primary hover:text-primary-dim transition-colors" href="#">Oublié ?</a>
-                        </div>
-                        <input class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4.5 px-6 text-on-surface placeholder:text-outline focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all shadow-sm" id="password" placeholder="********" type="password" required>
-                    </div>
-
-                    <button type="submit" class="w-full bg-primary text-on-primary font-headline font-black py-5.5 rounded-full shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 flex justify-center items-center gap-4 uppercase tracking-[0.2em] text-sm mt-10">
-                        Se connecter
-                        <span class="material-symbols-outlined font-black">arrow_forward</span>
-                    </button>
-                </form>
-
-                <footer class="mt-12 text-center lg:text-left">
-                    <p class="text-on-surface-variant text-sm font-medium mb-4">Nouveau sur Hawta.ma ?</p>
-                    <button class="w-full lg:w-auto px-12 border-2 border-primary/20 text-primary font-headline font-black py-5 rounded-2xl hover:bg-primary/5 active:scale-95 transition-all duration-300 uppercase tracking-widest text-xs">
-                        Créer un compte
-                    </button>
+                <h3 class="text-3xl font-black tracking-tighter leading-none italic">Conseils de Chasse</h3>
+                <p class="text-lg font-medium text-slate-400 opacity-60">L'IA Hawta analyse vos habitudes pour vous suggérer les meilleurs horaires et magasins à Tanger.</p>
+            </div>
+            <!-- Box 3 -->
+            <div class="bg-white p-12 rounded-[3.5rem] border border-slate-100 shadow-xl shadow-slate-200/20 space-y-8 group hover:scale-[1.02] transition-all">
+                <div class="w-16 h-16 bg-secondary-container/20 rounded-[1.5rem] flex items-center justify-center text-secondary">
+                    <span class="material-symbols-outlined text-4xl">explore</span>
                 </div>
+                <h3 class="text-3xl font-black tracking-tighter leading-none italic">Carte en Direct</h3>
+                <p class="text-lg font-medium text-slate-400">Visualisez les hawtas autour de vous à Msala, Malabata ou la Médina sur une carte interactive.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Location Warning Modal -->
-    <div id="location-modal" class="hidden fixed inset-0 z-[100] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
-        <div class="glass-panel w-full max-w-sm p-10 rounded-[2.5rem] shadow-2xl border border-white animate-[scaleIn_0.3s_ease-out]">
-            <div class="flex flex-col items-center text-center">
-                <div class="w-24 h-24 bg-primary/10 rounded-[2.5rem] flex items-center justify-center mb-8 shadow-inner ring-8 ring-primary/5">
-                    <span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+    <!-- FOOTER -->
+    <footer class="py-24 px-12 bg-white border-t border-slate-50">
+        <div class="max-w-[1600px] mx-auto flex flex-col items-center text-center space-y-12">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-2xl material-symbols-fill">shopping_basket</span>
                 </div>
-                <h3 class="font-headline font-black text-3xl text-on-surface mb-4 tracking-tighter">Votre Position</h3>
-                <p class="text-on-surface-variant leading-relaxed text-sm mb-10">Hawta.ma a besoin de votre position pour identifier les deals les plus proches dans **Tanger**.</p>
-                
-                <div class="flex flex-col w-full gap-4">
-                    <button onclick="confirmLocation()" class="w-full bg-primary text-on-primary font-headline font-black py-5 rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary-dim active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
-                        Autoriser
-                    </button>
-                    <button onclick="closeLocationModal()" class="w-full bg-surface-container-low text-on-surface-variant font-headline font-black py-5 rounded-2xl hover:bg-surface-container-high active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm">
-                        Plus tard
-                    </button>
-                </div>
+                <h1 class="text-xl font-black tracking-tighter leading-none italic">Hawta<span class="text-primary NOT-italic">.ma</span></h1>
             </div>
+            <p class="text-slate-400 font-bold text-[10px] uppercase tracking-[0.3em]">© 2026 Hawta.ma • Fabriqué à Tanger avec ❤️</p>
         </div>
-    </div>
+    </footer>
 
-    <style>
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-    </style>
 </body>
 </html>

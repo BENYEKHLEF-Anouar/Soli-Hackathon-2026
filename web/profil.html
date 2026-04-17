@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Profil | Hawta.ma Web</title>
+    <title>Mon Profil | Hawta.ma Web Premium</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -14,224 +14,233 @@
                 extend: {
                     colors: {
                         primary: "#004edc",
-                        surface: "#f5f6f7",
-                        "on-surface": "#2c2f30",
-                        "on-surface-variant": "#595c5d",
-                        "primary-dim": "#0043c1"
+                        secondary: "#695c00",
+                        surface: "#f8fafc",
+                        "on-surface": "#0f172a",
+                        "on-surface-variant": "#64748b"
                     },
-                    spacing: {
-                        '4.5': '1.125rem',
-                        '5.5': '1.375rem',
+                    borderRadius: {
+                        '3xl': '2rem',
+                        '4xl': '2.5rem',
+                        '5xl': '3rem'
                     }
                 }
             }
         }
     </script>
     <style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-        }
+        .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }
+        .material-symbols-fill { font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24; }
         * { font-family: 'Manrope', sans-serif; }
     </style>
 </head>
-<body class="bg-surface text-on-surface antialiased min-h-screen">
-    
-    <!-- Sidebar -->
-    <aside class="hidden lg:flex fixed left-0 top-0 h-screen w-72 bg-white border-r border-slate-100 flex-col z-50">
-        <div class="p-8">
-            <a href="dashboard.html" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
-                </div>
-                <span class="text-2xl font-black text-slate-900 tracking-tighter">Hawta.ma</span>
-            </a>
-        </div>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex">
 
-        <nav class="flex-grow px-4 space-y-2 mt-4">
-            <a href="dashboard.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">home</span>
+    <!-- SIDEBAR (Shared) -->
+    <aside class="w-80 h-screen sticky top-0 bg-white border-r border-slate-100 flex flex-col z-50 p-8">
+        <a href="dashboard.html" class="flex items-center gap-4 mb-12 group">
+            <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary transition-transform group-hover:scale-110 shadow-sm">
+                <span class="material-symbols-outlined text-3xl material-symbols-fill">shopping_basket</span>
+            </div>
+            <div>
+                <h1 class="text-2xl font-black tracking-tighter leading-none italic">Hawta<span class="text-primary NOT-italic">.ma</span></h1>
+                <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 mt-1">Smart Shopping • Tanger</p>
+            </div>
+        </a>
+
+        <nav class="space-y-3 flex-grow">
+            <a href="dashboard.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl text-slate-400 hover:bg-slate-50 transition-all font-bold">
+                <span class="material-symbols-outlined">grid_view</span>
                 <span class="text-sm">Tableau de bord</span>
             </a>
-            <a href="liste.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">format_list_bulleted</span>
+            <a href="liste.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl text-slate-400 hover:bg-slate-50 transition-all font-bold">
+                <span class="material-symbols-outlined">receipt_long</span>
                 <span class="text-sm">Mes Listes</span>
             </a>
-            <a href="carte.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">map</span>
-                <span class="text-sm">Carte des Deals</span>
+            <a href="carte.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl text-slate-400 hover:bg-slate-50 transition-all font-bold">
+                <span class="material-symbols-outlined">explore</span>
+                <span class="text-sm">Carte Interactive</span>
             </a>
-            <a href="communaute.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">group</span>
-                <span class="text-sm">Communauté</span>
+            <a href="communaute.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl text-slate-400 hover:bg-slate-50 transition-all font-bold">
+                <span class="material-symbols-outlined">forum</span>
+                <span class="text-sm">Flux Communauté</span>
             </a>
-            <a href="profil.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-primary/5 text-primary font-black transition-all">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+            <a href="profil.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl bg-primary/10 text-primary font-black transition-all">
+                <span class="material-symbols-outlined material-symbols-fill">face_6</span>
                 <span class="text-sm">Mon Profil</span>
             </a>
         </nav>
 
-        <div class="p-6 border-t border-slate-50 mt-auto">
-             <a href="index.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-error hover:bg-error/5 transition-all font-bold">
-                <span class="material-symbols-outlined">logout</span>
-                <span class="text-sm uppercase tracking-widest">Déconnexion</span>
-            </a>
+        <div class="mt-auto p-6 bg-slate-50 rounded-[2rem] border border-slate-100">
+             <div class="flex items-center justify-between mb-4">
+                 <p class="text-[9px] font-black uppercase text-slate-400 tracking-widest">Compte</p>
+                 <span class="text-primary font-black text-[10px]">VERIFIÉ</span>
+             </div>
+             <p class="text-sm font-black text-slate-900 leading-none">Fatima Zohra</p>
+             <p class="text-[9px] font-bold text-slate-400 mt-1 uppercase">ID: HWTA-9421-TZ</p>
         </div>
     </aside>
 
-    <main class="lg:ml-72 min-h-screen">
-        <!-- Header -->
-        <header class="sticky top-0 bg-white/80 backdrop-blur-xl border-b border-slate-100 z-40 px-8 py-6">
-            <h1 class="text-2xl font-black tracking-tighter text-slate-900">Mon Profil 👤</h1>
-        </header>
-
-        <div class="p-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <!-- Left: Identity Card -->
-            <div class="space-y-8">
-                <div class="bg-white rounded-[3rem] p-10 border border-slate-100 shadow-xl shadow-slate-200/40 text-center relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-full h-24 bg-primary opacity-5 group-hover:h-32 transition-all duration-700"></div>
-                    
-                    <div class="relative z-10">
-                        <div class="inline-block relative mb-6">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" class="w-28 h-28 rounded-full border-4 border-white shadow-2xl object-cover">
-                            <button class="absolute bottom-1 right-1 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-sm">camera_alt</span>
-                            </button>
-                        </div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tighter">Fatima Benali</h2>
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 mt-1">Chasseuse Experte • Tanger</p>
-                        
-                        <div class="mt-10 pt-8 border-t border-slate-50 grid grid-cols-2 gap-4">
-                            <div>
-                                <p class="text-xl font-black text-slate-900 leading-none">124</p>
-                                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">Deals Partagés</p>
-                            </div>
-                            <div class="border-l border-slate-50">
-                                <p class="text-xl font-black text-slate-900 leading-none">2,850</p>
-                                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">XP Total</p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- CONTENT -->
+    <main class="flex-grow flex flex-col h-screen overflow-y-auto no-scrollbar">
+        <!-- HEADER PROFILE -->
+        <header class="h-64 bg-slate-900 relative flex items-center px-16 group overflow-hidden flex-shrink-0">
+            <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+            <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-primary/20 to-transparent"></div>
+            
+            <div class="relative z-10 flex items-center gap-10">
+                <div class="w-32 h-32 rounded-[3.5rem] overflow-hidden border-4 border-white/20 shadow-2xl ring-8 ring-black/10">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" class="w-full h-full object-cover">
                 </div>
-
-                <!-- Achievements -->
-                <div class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
-                    <h3 class="font-black text-lg tracking-tight mb-6 px-2">Accomplissements</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl group hover:bg-white hover:shadow-lg transition-all">
-                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                                <span class="material-symbols-outlined">trending_down</span>
-                            </div>
-                            <div>
-                                <p class="text-xs font-black">King of Souk Msala</p>
-                                <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Partagé 50 deals à Msala</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl group hover:bg-white hover:shadow-lg transition-all">
-                            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                                <span class="material-symbols-outlined uppercase">shopping_basket</span>
-                            </div>
-                            <div>
-                                <p class="text-xs font-black">Dénicheur de Pépites</p>
-                                <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Trouver 10 prix imbattables</p>
-                            </div>
-                        </div>
+                <div class="text-white">
+                    <div class="flex items-center gap-4 mb-3">
+                        <h2 class="text-4xl font-black tracking-tighter">Fatima Zohra Benali</h2>
+                        <span class="bg-primary text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-xl">Master Chasseur</span>
                     </div>
+                    <p class="text-slate-400 font-medium text-lg leading-none">Membre Hawta depuis Juin 2023 • Tanger, Maroc</p>
                 </div>
             </div>
 
-            <!-- Right: Settings & Configuration -->
-            <div class="lg:col-span-2 space-y-10">
-                <!-- Profile Settings -->
+            <div class="absolute bottom-10 right-16 flex gap-4">
+                <button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white/20 transition-all">Modifier le profil</button>
+                <button class="bg-primary text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-primary/30 hover:scale-105 transition-all">Paramètres</button>
+            </div>
+        </header>
+
+        <!-- DASHBOARD CONTAINER -->
+        <div class="p-16 max-w-[1600px] w-full mx-auto grid grid-cols-1 xl:grid-cols-3 gap-16">
+            
+            <!-- LEFT: STATS (2 Cols) -->
+            <div class="xl:col-span-2 space-y-16">
+                
+                <!-- Stat Cards Grid -->
+                <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/20">
+                        <div class="w-12 h-12 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined material-symbols-fill">savings</span>
+                        </div>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Impact Total</p>
+                        <p class="text-3xl font-black text-slate-900 tracking-tighter italic">2,480 <span class="text-sm opacity-30">DH</span></p>
+                        <p class="text-[9px] font-bold text-emerald-500 mt-2 uppercase">+14% ce mois</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/20">
+                        <div class="w-12 h-12 bg-secondary-container/20 rounded-2xl flex items-center justify-center text-secondary mb-6">
+                            <span class="material-symbols-outlined material-symbols-fill">stars</span>
+                        </div>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Points Hawta</p>
+                        <p class="text-3xl font-black text-slate-900 tracking-tighter italic">14,250 <span class="text-sm opacity-30">PTS</span></p>
+                        <p class="text-[9px] font-bold text-primary mt-2 uppercase">Prochain Rang : #11</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/20">
+                        <div class="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 mb-6">
+                            <span class="material-symbols-outlined material-symbols-fill">forum</span>
+                        </div>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Deals Partagés</p>
+                        <p class="text-3xl font-black text-slate-900 tracking-tighter italic">52 <span class="text-sm opacity-30">POSTS</span></p>
+                        <p class="text-[9px] font-bold text-slate-400 mt-2 uppercase">1.2k likes reçus</p>
+                    </div>
+                </section>
+
+                <!-- History / Activity -->
                 <section>
-                    <h3 class="text-sm font-black uppercase tracking-[0.2em] text-slate-400 mb-6 font-label">Configuration du compte</h3>
-                    <div class="bg-white rounded-[3rem] border border-slate-100 shadow-xl shadow-slate-200/40 overflow-hidden">
-                        <div class="divide-y divide-slate-50">
-                            <!-- Field 1 -->
-                            <div class="p-8 hover:bg-slate-50 transition-colors flex justify-between items-center group cursor-pointer">
-                                <div class="flex items-center gap-6">
-                                    <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-all">
-                                        <span class="material-symbols-outlined">account_balance_wallet</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-black text-xs uppercase tracking-widest text-slate-900 mb-1">Gestion du Budget</p>
-                                        <p class="text-[11px] font-bold text-slate-400">Objectif : 2,500 DH / mois</p>
-                                    </div>
-                                </div>
-                                <span class="material-symbols-outlined text-slate-300 group-hover:translate-x-1 transition-transform">chevron_right</span>
-                            </div>
-                            <!-- Field 2 -->
-                            <div class="p-8 hover:bg-slate-50 transition-colors flex justify-between items-center group cursor-pointer">
-                                <div class="flex items-center gap-6">
-                                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-all">
-                                        <span class="material-symbols-outlined">notifications_active</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-black text-xs uppercase tracking-widest text-slate-900 mb-1">Alertes Prix</p>
-                                        <p class="text-[11px] font-bold text-slate-400">Activé (Push & Email)</p>
-                                    </div>
-                                </div>
-                                <span class="material-symbols-outlined text-slate-300 group-hover:translate-x-1 transition-transform">chevron_right</span>
-                            </div>
-                             <!-- Field 3 -->
-                             <div class="p-8 hover:bg-slate-50 transition-colors flex justify-between items-center group cursor-pointer">
-                                <div class="flex items-center gap-6">
-                                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-all">
-                                        <span class="material-symbols-outlined">language</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-black text-xs uppercase tracking-widest text-slate-900 mb-1">Langue de l'app</p>
-                                        <p class="text-[11px] font-bold text-slate-400">Français (FR)</p>
-                                    </div>
-                                </div>
-                                <span class="material-symbols-outlined text-slate-300 group-hover:translate-x-1 transition-transform">chevron_right</span>
-                            </div>
-                             <!-- Field 4 -->
-                             <div class="p-8 hover:bg-slate-50 transition-colors flex justify-between items-center group cursor-pointer">
-                                <div class="flex items-center gap-6">
-                                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-all">
-                                        <span class="material-symbols-outlined">security</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-black text-xs uppercase tracking-widest text-slate-900 mb-1">Confidentialité</p>
-                                        <p class="text-[11px] font-bold text-slate-400">Masquer mon profil public</p>
-                                    </div>
-                                </div>
-                                <div class="w-12 h-6 bg-slate-200 rounded-full relative p-1 cursor-pointer">
-                                    <div class="w-4 h-4 bg-white rounded-full shadow-md"></div>
-                                </div>
-                            </div>
+                    <h3 class="text-2xl font-black tracking-tighter mb-8 leading-none italic">Activité Récente</h3>
+                    <div class="bg-white rounded-[4rem] border border-slate-100 shadow-xl shadow-slate-200/20 overflow-hidden">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-slate-50/50 border-b border-slate-100">
+                                    <th class="px-10 py-6 text-[10px] font-black uppercase text-slate-400 tracking-widest">Type</th>
+                                    <th class="px-10 py-6 text-[10px] font-black uppercase text-slate-400 tracking-widest">Détail</th>
+                                    <th class="px-10 py-6 text-[10px] font-black uppercase text-slate-400 tracking-widest">Économie</th>
+                                    <th class="px-10 py-6 text-[10px] font-black uppercase text-slate-400 tracking-widest">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-50">
+                                <tr class="hover:bg-slate-50 transition-colors cursor-pointer">
+                                    <td class="px-10 py-8">
+                                        <div class="w-10 h-10 bg-primary/5 rounded-xl flex items-center justify-center text-primary">
+                                            <span class="material-symbols-outlined text-xl">shopping_cart</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-10 py-8">
+                                        <p class="text-sm font-black text-slate-900">Liste Courses Semaine #42</p>
+                                        <p class="text-[11px] text-slate-400 font-medium italic">Optimisé par IA</p>
+                                    </td>
+                                    <td class="px-10 py-8">
+                                        <p class="text-lg font-black text-emerald-500 italic">-42.50 DH</p>
+                                    </td>
+                                    <td class="px-10 py-8 text-xs font-bold text-slate-400">16 Oct 2026</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors cursor-pointer">
+                                    <td class="px-10 py-8">
+                                        <div class="w-10 h-10 bg-secondary-container/20 rounded-xl flex items-center justify-center text-secondary">
+                                            <span class="material-symbols-outlined text-xl">forum</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-10 py-8">
+                                        <p class="text-sm font-black text-slate-900">Partage Deal : Poulet Bim</p>
+                                        <p class="text-[11px] text-slate-400 font-medium italic">+24 XP Gagnés</p>
+                                    </td>
+                                    <td class="px-10 py-8">
+                                        <p class="text-lg font-black text-slate-300 italic">--</p>
+                                    </td>
+                                    <td class="px-10 py-8 text-xs font-bold text-slate-400">14 Oct 2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- RIGHT: ACHIEVEMENTS (1 Col) -->
+            <aside class="space-y-12">
+                
+                <!-- Success Gallery -->
+                <section class="bg-white rounded-[3rem] p-10 border border-slate-100 shadow-xl shadow-slate-200/20">
+                    <h3 class="text-2xl font-black tracking-tighter mb-8 leading-none italic">Succès 🏆</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="aspect-square bg-slate-50 rounded-[2rem] flex flex-col items-center justify-center p-6 text-center border-2 border-white group hover:border-primary transition-all cursor-pointer shadow-sm">
+                            <span class="material-symbols-outlined text-4xl text-primary mb-3 material-symbols-fill">workspace_premium</span>
+                            <p class="text-[9px] font-black uppercase text-slate-400 tracking-widest leading-tight">Expert des Souks</p>
+                        </div>
+                        <div class="aspect-square bg-slate-50 rounded-[2rem] flex flex-col items-center justify-center p-6 text-center border-2 border-white grayscale opacity-50 shadow-sm">
+                            <span class="material-symbols-outlined text-4xl text-slate-400 mb-3">volunteer_activism</span>
+                            <p class="text-[9px] font-black uppercase text-slate-400 tracking-widest leading-tight">Top Donateur</p>
+                        </div>
+                        <div class="aspect-square bg-slate-50 rounded-[2rem] flex flex-col items-center justify-center p-6 text-center border-2 border-white group hover:border-primary transition-all cursor-pointer shadow-sm">
+                            <span class="material-symbols-outlined text-4xl text-secondary mb-3 material-symbols-fill">bolt</span>
+                            <p class="text-[9px] font-black uppercase text-slate-400 tracking-widest leading-tight">Vitesse IA</p>
+                        </div>
+                         <div class="aspect-square bg-slate-50 rounded-[2rem] flex flex-col items-center justify-center p-6 text-center border-2 border-dashed border-slate-200 shadow-sm">
+                            <span class="material-symbols-outlined text-xl text-slate-300 mb-2">add</span>
+                            <p class="text-[9px] font-black uppercase text-slate-300 tracking-widest">Voir tout</p>
                         </div>
                     </div>
                 </section>
 
-                <div class="flex justify-end pt-10">
-                    <button class="px-10 py-5 bg-primary text-white font-black rounded-full shadow-2xl shadow-primary/20 text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">
-                        Enregistrer tous les changements
-                    </button>
-                </div>
-            </div>
+                <!-- Social Stats Sidebar -->
+                <section class="bg-slate-900 rounded-[3rem] p-12 text-white shadow-2xl shadow-slate-300/40 relative overflow-hidden group">
+                     <div class="absolute -right-6 -top-6 w-32 h-32 bg-primary rounded-full blur-[80px] opacity-30"></div>
+                     <div class="relative z-10">
+                         <h4 class="text-xl font-black tracking-tighter mb-8">Réseau Tanger</h4>
+                         <div class="space-y-8">
+                             <div class="flex items-center justify-between">
+                                 <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Abonnés</p>
+                                 <p class="text-2xl font-black italic">1,240</p>
+                             </div>
+                             <div class="flex items-center justify-between">
+                                 <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Abonnements</p>
+                                 <p class="text-2xl font-black italic">842</p>
+                             </div>
+                         </div>
+                         <button class="w-full mt-10 py-5 bg-white/10 border border-white/5 hover:bg-white/20 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest transition-all">Gérer mon réseau</button>
+                     </div>
+                </section>
+
+            </aside>
         </div>
     </main>
-
-    <!-- Mobile Bottom Nav -->
-    <nav class="fixed bottom-0 left-0 w-full z-[100] px-6 pb-8 pt-2 pointer-events-none lg:hidden">
-        <div class="max-w-lg mx-auto bg-white/80 backdrop-blur-2xl rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/20 flex justify-around items-center px-2 py-2 pointer-events-auto">
-            <a href="dashboard.html" class="w-14 h-14 text-slate-400 flex flex-col items-center justify-center">
-                <span class="material-symbols-outlined">home</span>
-                <span class="text-[8px] font-black uppercase mt-1">Home</span>
-            </a>
-            <a href="liste.html" class="w-14 h-14 text-slate-400 flex flex-col items-center justify-center">
-                <span class="material-symbols-outlined">format_list_bulleted</span>
-                <span class="text-[8px] font-black uppercase mt-1">Listes</span>
-            </a>
-             <a href="profil.html" class="w-14 h-14 bg-primary text-white rounded-full flex flex-col items-center justify-center shadow-lg">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
-                <span class="text-[8px] font-black uppercase mt-1">Profil</span>
-            </a>
-        </div>
-    </nav>
 
 </body>
 </html>

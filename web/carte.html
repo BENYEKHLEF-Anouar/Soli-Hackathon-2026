@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carte des Deals | Hawta.ma Web</title>
+    <title>Carte Interactive | Hawta.ma Web Premium</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -16,264 +16,247 @@
                 extend: {
                     colors: {
                         primary: "#004edc",
-                        surface: "#f5f6f7",
-                        "on-surface": "#2c2f30",
-                        "on-surface-variant": "#595c5d",
-                        "primary-dim": "#0043c1"
+                        secondary: "#695c00",
+                        surface: "#f8fafc",
+                        "on-surface": "#0f172a"
                     },
-                    spacing: {
-                        '4.5': '1.125rem',
-                        '5.5': '1.375rem',
+                    borderRadius: {
+                        '3xl': '2rem',
+                        '4xl': '2.5rem'
                     }
                 }
             }
         }
     </script>
     <style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-        }
+        .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }
+        .material-symbols-fill { font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24; }
         * { font-family: 'Manrope', sans-serif; }
-        #map { height: 100%; width: 100%; z-index: 0; }
+        #map { height: 100%; width: 100%; z-index: 10; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
         .custom-marker { background: none; border: none; }
         .marker-pin {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: 50% 50% 50% 0;
             transform: rotate(-45deg);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-            border: 3px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .marker-pin span {
-            transform: rotate(45deg);
-            font-size: 22px;
-        }
+        .marker-pin:hover { transform: rotate(-45deg) scale(1.15); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .marker-pin span { transform: rotate(45deg); font-size: 24px; }
     </style>
 </head>
-<body class="bg-surface text-on-surface antialiased overflow-hidden h-screen flex">
-    
-    <!-- Sidebar -->
-    <aside class="hidden lg:flex fixed left-0 top-0 h-screen w-72 bg-white border-r border-slate-100 flex-col z-[100]">
-        <div class="p-8">
-            <a href="dashboard.html" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
-                </div>
-                <span class="text-2xl font-black text-slate-900 tracking-tighter">Hawta.ma</span>
-            </a>
-        </div>
+<body class="bg-surface text-on-surface antialiased h-screen flex overflow-hidden">
 
-        <nav class="flex-grow px-4 space-y-2 mt-4">
-            <a href="dashboard.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">home</span>
-                <span class="text-sm">Tableau de bord</span>
+    <!-- SIDEBAR (Fixed) -->
+    <aside class="w-24 h-screen bg-white border-r border-slate-100 flex flex-col z-[100] items-center py-8 flex-shrink-0">
+        <a href="dashboard.html" class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-12 hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl material-symbols-fill">shopping_basket</span>
+        </a>
+        <nav class="space-y-6">
+            <a href="dashboard.html" class="w-12 h-12 flex items-center justify-center rounded-2xl text-slate-300 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <span class="material-symbols-outlined">grid_view</span>
             </a>
-            <a href="liste.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">format_list_bulleted</span>
-                <span class="text-sm">Mes Listes</span>
+            <a href="liste.html" class="w-12 h-12 flex items-center justify-center rounded-2xl text-slate-300 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <span class="material-symbols-outlined">receipt_long</span>
             </a>
-            <a href="carte.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl bg-primary/5 text-primary font-black transition-all">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
-                <span class="text-sm">Carte des Deals</span>
+            <a href="carte.html" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-primary text-white shadow-xl shadow-primary/20">
+                <span class="material-symbols-outlined material-symbols-fill">explore</span>
             </a>
-            <a href="communaute.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">group</span>
-                <span class="text-sm">Communauté</span>
-            </a>
-            <a href="profil.html" class="flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all font-bold">
-                <span class="material-symbols-outlined">person</span>
-                <span class="text-sm">Mon Profil</span>
+            <a href="communaute.html" class="w-12 h-12 flex items-center justify-center rounded-2xl text-slate-300 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                <span class="material-symbols-outlined">forum</span>
             </a>
         </nav>
-
-        <div class="p-6 border-t border-slate-50 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-grow">
-                <p class="text-xs font-black text-slate-900">Fatima Benali</p>
-                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Niveau 7</p>
-            </div>
-            <a href="index.html" class="text-slate-300 hover:text-error transition-colors">
-                <span class="material-symbols-outlined text-xl">logout</span>
-            </a>
-        </div>
     </aside>
 
-    <!-- Main Content (Map + Overlays) -->
-    <main class="lg:ml-72 flex-grow relative flex flex-col h-screen">
+    <!-- MAP INTERFACE -->
+    <main class="flex-grow flex h-screen overflow-hidden relative">
         
-        <!-- Top App Bar (Map Controls) -->
-        <header class="absolute top-0 left-0 w-full z-10 px-8 py-6 flex justify-between items-start pointer-events-none">
-            <div class="flex flex-col gap-4 pointer-events-auto">
-                <div class="glass-panel p-2 rounded-2xl shadow-xl border border-white/40 flex items-center gap-2">
-                    <div class="relative">
-                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
-                        <input type="text" placeholder="Rechercher à Tanger..." class="bg-white border-none rounded-xl pl-12 pr-6 py-4 text-xs w-80 shadow-inner focus:ring-8 focus:ring-primary/5 transition-all">
-                    </div>
+        <!-- LEFT PANEL (Discover) -->
+        <aside class="w-[450px] bg-white h-full border-r border-slate-100 flex flex-col z-20 shadow-2xl overflow-hidden">
+            <!-- Panel Header -->
+            <div class="p-8 border-b border-slate-100">
+                <h2 class="text-3xl font-black tracking-tighter mb-6">Explorer Tanger Hub ⚓</h2>
+                <div class="relative group">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-primary transition-colors">search</span>
+                    <input type="text" placeholder="Rechercher une zone ou un deal..." class="w-full bg-slate-50 border-none rounded-2xl py-4 pl-12 pr-4 text-sm font-bold focus:ring-8 focus:ring-primary/5 transition-all">
                 </div>
-                <div class="flex gap-2">
-                    <button class="bg-primary text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-primary/20">Tous</button>
-                    <button class="glass-panel text-slate-900 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest border border-white hover:bg-white transition-all">Souks</button>
-                    <button class="glass-panel text-slate-900 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest border border-white hover:bg-white transition-all">Supermarchés</button>
-                </div>
-            </div>
-
-            <div class="pointer-events-auto space-y-4">
-                <div class="glass-panel p-6 rounded-[2rem] shadow-xl border border-white/40 w-72">
-                    <h3 class="font-black text-xs uppercase tracking-widest text-slate-400 mb-4">Zones Actives</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold">Souk Msala</span>
-                            <span class="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[9px] font-black">12 Deals</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold">Malabata</span>
-                            <span class="bg-emerald-500/10 text-emerald-600 px-2 py-0.5 rounded-full text-[9px] font-black">5 Deals</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold">Caserne</span>
-                            <span class="bg-slate-100 text-slate-400 px-2 py-0.5 rounded-full text-[9px] font-black">2 Deals</span>
-                        </div>
-                    </div>
+                <!-- Filter Chips -->
+                <div class="flex gap-2 mt-6 overflow-x-auto no-scrollbar">
+                    <button class="bg-primary text-white px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest whitespace-nowrap shadow-lg shadow-primary/20 transition-all">Tous</button>
+                    <button class="bg-slate-50 text-slate-400 px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest whitespace-nowrap border border-slate-100 hover:border-primary hover:text-primary transition-all">Souks</button>
+                    <button class="bg-slate-50 text-slate-400 px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest whitespace-nowrap border border-slate-100 hover:border-primary hover:text-primary transition-all">Promos IA</button>
                 </div>
             </div>
-        </header>
 
-        <!-- The Map Container -->
-        <div id="map"></div>
-
-        <!-- Selected Deal Detail Card (Right Side Desktop) -->
-        <div id="deal-detail" class="hidden absolute top-24 right-8 z-20 w-96 transform transition-all duration-300 translate-x-full lg:block">
-            <div class="glass-panel rounded-[2.5rem] shadow-2xl border border-white/60 p-8">
-                <button onclick="hideDealDetail()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900"><span class="material-symbols-outlined">close</span></button>
-                
-                <div class="h-48 rounded-3xl overflow-hidden mb-6 relative">
-                    <img id="detail-img" src="" class="w-full h-full object-cover">
-                    <span id="detail-badge" class="absolute top-4 left-4 bg-error text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">-30%</span>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 id="detail-title" class="text-2xl font-black tracking-tight text-slate-900">Tomates Fraîches</h3>
-                            <p id="detail-loc" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5 mt-1">
-                                <span class="material-symbols-outlined text-sm text-primary">location_on</span>
-                                Souk Msala, Tanger
-                            </p>
+            <!-- Scrollable List -->
+            <div class="flex-grow overflow-y-auto p-8 space-y-8 no-scrollbar bg-slate-50/30">
+                <!-- Deal Card 1 -->
+                <div onclick="centerOnDeal(35.7820, -5.8100)" class="bg-white p-5 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all cursor-pointer group active:scale-95">
+                    <div class="flex gap-5">
+                        <div class="w-24 h-24 rounded-3xl overflow-hidden flex-shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=200&h=200&fit=crop">
                         </div>
-                        <div class="text-right">
-                             <p id="detail-price" class="text-2xl font-black text-primary">3.50 DH</p>
-                             <p class="text-[9px] font-bold text-slate-300 line-through">5.00 DH</p>
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-slate-50/50 rounded-2xl border border-slate-100/50 flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop" class="w-8 h-8 rounded-full">
+                        <div class="flex-grow flex flex-col justify-between py-1">
                             <div>
-                                <p class="text-[10px] font-black">Mehdi K.</p>
-                                <p class="text-[8px] text-slate-400 uppercase font-bold">Il y a 15 min</p>
+                                <h4 class="font-black text-on-surface text-lg tracking-tight leading-none mb-1">Tomates Bio</h4>
+                                <p class="text-[9px] text-primary font-black uppercase tracking-widest opacity-60">Souk Msala • il y a 5 min</p>
+                            </div>
+                            <div class="flex items-end justify-between">
+                                <span class="text-2xl font-black text-primary italic">5.50 <span class="text-xs">DH/kg</span></span>
+                                <span class="bg-secondary-container/30 text-secondary text-[8px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px] material-symbols-fill">bolt</span> -38%
+                                </span>
                             </div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
-                            <span class="text-[9px] font-black uppercase tracking-widest text-primary">Vérifié</span>
+                    </div>
+                </div>
+
+                <!-- Deal Card 2 -->
+                <div onclick="centerOnDeal(35.7780, -5.8160)" class="bg-white p-5 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all cursor-pointer group active:scale-95">
+                    <div class="flex gap-5">
+                        <div class="w-24 h-24 rounded-3xl overflow-hidden flex-shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=200&h=200&fit=crop">
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between py-1">
+                            <div>
+                                <h4 class="font-black text-on-surface text-lg tracking-tight leading-none mb-1">Lait Entier 2L</h4>
+                                <p class="text-[9px] text-primary font-black uppercase tracking-widest opacity-60">Marjane Tanger • il y a 12 min</p>
+                            </div>
+                            <div class="flex items-end justify-between">
+                                <span class="text-2xl font-black text-primary italic">14.00 <span class="text-xs">DH</span></span>
+                                <span class="bg-primary/10 text-primary text-[8px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest">VERIFIÉ</span>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="pt-4 flex gap-4">
-                        <button class="flex-grow bg-primary text-white font-black py-5 rounded-2xl text-xs uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-[1.02] transition-all">Y Aller (Itinéraire)</button>
-                        <button class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-slate-300 hover:text-error transition-all shadow-md"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span></button>
+                <!-- Zone Highlight Card -->
+                <div class="bg-slate-900 p-8 rounded-[3rem] text-white relative overflow-hidden group">
+                    <div class="absolute -right-6 -top-6 w-32 h-32 bg-primary rounded-full blur-3xl opacity-30 group-hover:scale-150 transition-transform duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="material-symbols-outlined text-primary text-xl material-symbols-fill">local_fire_department</span>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-primary">Zone Très Active</span>
+                        </div>
+                        <h4 class="text-2xl font-black tracking-tighter mb-2">Boulevard Mohamed V</h4>
+                        <p class="text-xs text-white/60 leading-relaxed font-medium">Réduction massive détectée sur les produits laitiers dans 3 magasins différents.</p>
+                        <button class="mt-6 w-full py-3.5 bg-white text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:scale-[0.98] transition-all">Filtrer cette zone</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
 
-        <!-- Mobile Contextual Controls -->
-        <div class="lg:hidden absolute bottom-32 left-0 w-full px-6 flex justify-between items-end z-20 pointer-events-none">
-             <button class="w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center text-primary pointer-events-auto active:scale-95"><span class="material-symbols-outlined">my_location</span></button>
-             <div class="pointer-events-auto translate-y-4">
-                 <div id="mobile-card" class="hidden animate-[scaleIn_0.3s_ease-out] w-72">
-                    <div class="glass-panel p-4 rounded-3xl shadow-2xl border border-white flex gap-4">
-                        <img id="mob-img" class="w-20 h-20 rounded-2xl object-cover">
-                        <div class="flex-grow">
-                            <h4 id="mob-title" class="text-xs font-black">Lait Central</h4>
-                            <p id="mob-price" class="text-sm font-black text-primary mt-1">8 DH</p>
-                            <button class="mt-2 text-[8px] font-black uppercase text-primary underline">Itinéraire</button>
+        <!-- RIGHT AREA (Map) -->
+        <div class="flex-grow relative h-screen">
+            <div id="map"></div>
+            
+            <!-- Map Layers/Legend Overlay (Desktop) -->
+            <div class="absolute top-8 right-8 z-30 flex flex-col gap-3">
+                <div class="bg-white/90 backdrop-blur-xl p-6 rounded-3xl shadow-2xl border border-white/40 space-y-4 w-64">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 px-1">Légende des Deals</p>
+                    <div class="flex items-center justify-between group cursor-pointer">
+                        <div class="flex items-center gap-3 font-bold text-xs">
+                            <span class="w-3 h-3 bg-secondary-container rounded-full shadow-[0_0_10px_rgba(249,224,76,0.5)]"></span>
+                            <span>Affaires Souk</span>
                         </div>
+                        <span class="text-[9px] font-black text-slate-300">124</span>
                     </div>
-                 </div>
-             </div>
-        </div>
+                    <div class="flex items-center justify-between group cursor-pointer">
+                        <div class="flex items-center gap-3 font-bold text-xs">
+                            <span class="w-3 h-3 bg-primary rounded-full shadow-[0_0_10px_rgba(0,78,220,0.5)]"></span>
+                            <span>Supermarchés</span>
+                        </div>
+                        <span class="text-[9px] font-black text-slate-300">42</span>
+                    </div>
+                </div>
+                
+                <button class="bg-white text-slate-900 w-14 h-14 rounded-2xl flex items-center justify-center shadow-xl hover:bg-slate-50 transition-all active:scale-95 border border-slate-100">
+                    <span class="material-symbols-outlined">my_location</span>
+                </button>
+            </div>
 
-        <!-- Desktop Map Legend -->
-        <div class="absolute bottom-8 right-8 z-10 glass-panel p-4 rounded-2xl shadow-xl border border-white/40 lg:block hidden">
-            <div class="flex flex-col gap-3 text-[9px] font-black uppercase tracking-widest">
-                <div class="flex items-center gap-2"><span class="w-2 h-2 bg-error rounded-full"></span> Promo Flash</div>
-                <div class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Souk Actif</div>
-                <div class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Meilleur Prix</div>
+            <!-- Mini Bottom HUD for selection -->
+            <div id="selection-card" class="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 bg-white/95 backdrop-blur-2xl px-10 py-6 rounded-[2.5rem] shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-white/40 border-t flex items-center gap-10 opacity-0 pointer-events-none transition-all duration-500 translate-y-10">
+                <div class="flex items-center gap-6">
+                    <div class="w-20 h-20 rounded-3xl overflow-hidden shadow-xl ring-2 ring-primary/10">
+                        <img id="hud-img" class="w-full h-full object-cover" src="">
+                    </div>
+                    <div>
+                        <h3 id="hud-title" class="text-2xl font-black tracking-tighter text-slate-900 mb-1 leading-none"></h3>
+                        <p class="text-xs font-black text-primary uppercase tracking-widest opacity-60">Deal Vérifié • Stock OK</p>
+                    </div>
+                </div>
+                <div class="h-12 w-px bg-slate-100 mx-4"></div>
+                <div class="flex items-end gap-3">
+                    <p id="hud-price" class="text-4xl font-black text-primary tracking-tighter italic"></p>
+                    <p class="text-xs text-slate-400 line-through font-bold mb-1 opacity-40">12.00 DH</p>
+                </div>
+                <button class="bg-slate-900 text-white px-10 py-5 rounded-2xl shadow-xl font-black text-[10px] uppercase tracking-widest hover:scale-[1.02] transition-all">Consulter</button>
+                <button onclick="closeHUD()" class="text-slate-300 hover:text-slate-900 transition-colors ml-4">
+                    <span class="material-symbols-outlined text-2xl">close</span>
+                </button>
             </div>
         </div>
     </main>
 
-    <!-- Script Section -->
     <script>
-        // Use custom map style (simulated with Leaflet)
         const map = L.map('map', { zoomControl: false }).setView([35.7806, -5.8136], 14);
+        
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
         const deals = [
-            { id: 1, lat: 35.7820, lng: -5.8100, title: 'Tomates Fraîches', loc: 'Souk Msalah', price: '3.50 DH', color: '#004edc', icon: 'shopping_basket', img: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop' },
-            { id: 2, lat: 35.7780, lng: -5.8160, title: 'Lait Central 1L', loc: 'Marjane', price: '8 DH', color: '#22c55e', icon: 'local_drink', img: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=300&fit=crop' },
-            { id: 3, lat: 35.7850, lng: -5.8200, title: 'Poulet Fermier', loc: 'Bim El Harti', price: '42 DH/kg', color: '#b41340', icon: 'restaurant', img: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop' }
+            { id: 1, lat: 35.7820, lng: -5.8100, title: 'Tomates Bio', price: '5.50 DH', type: 'souk', color: '#f9e04c', icon: 'shopping_basket', img: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=200&h=200&fit=crop' },
+            { id: 2, lat: 35.7780, lng: -5.8160, title: 'Lait Entier 2L', price: '14.00 DH', type: 'super', color: '#004edc', icon: 'local_drink', img: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=200&h=200&fit=crop' }
         ];
+
+        const markers = [];
 
         deals.forEach(deal => {
             const icon = L.divIcon({
                 className: 'custom-marker',
-                html: `<div class="marker-pin" style="background: ${deal.color};"><span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">${deal.icon}</span></div>`,
-                iconSize: [44, 44],
-                iconAnchor: [22, 44]
+                html: `<div class="marker-pin" style="background: ${deal.color}; border: 3px solid white;"><span class="material-symbols-outlined text-white material-symbols-fill">${deal.icon}</span></div>`,
+                iconSize: [48, 48],
+                iconAnchor: [24, 48]
             });
+            
             const marker = L.marker([deal.lat, deal.lng], { icon }).addTo(map);
-            marker.on('click', () => showDealDetail(deal));
+            marker.on('click', () => showHUD(deal));
+            markers.push({ id: deal.id, marker });
         });
 
-        function showDealDetail(deal) {
-            // Desktop Detail
-            const detail = document.getElementById('deal-detail');
-            document.getElementById('detail-img').src = deal.img;
-            document.getElementById('detail-title').textContent = deal.title;
-            document.getElementById('detail-loc').innerHTML = `<span class="material-symbols-outlined text-sm text-primary">location_on</span> ${deal.loc}, Tanger`;
-            document.getElementById('detail-price').textContent = deal.price;
-            detail.classList.remove('hidden', 'translate-x-full');
-
-            // Mobile Card
-            const mob = document.getElementById('mobile-card');
-            document.getElementById('mob-img').src = deal.img;
-            document.getElementById('mob-title').textContent = deal.title;
-            document.getElementById('mob-price').textContent = deal.price;
-            mob.classList.remove('hidden');
+        function showHUD(deal) {
+            const hud = document.getElementById('selection-card');
+            document.getElementById('hud-title').textContent = deal.title;
+            document.getElementById('hud-price').textContent = deal.price;
+            document.getElementById('hud-img').src = deal.img;
+            
+            hud.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+            hud.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+            
+            map.flyTo([deal.lat, deal.lng], 15, { duration: 1.5 });
         }
 
-        function hideDealDetail() {
-            document.getElementById('deal-detail').classList.add('translate-x-full');
-            document.getElementById('mobile-card').classList.add('hidden');
+        function closeHUD() {
+            const hud = document.getElementById('selection-card');
+            hud.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+            hud.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
         }
 
-        map.on('click', hideDealDetail);
+        function centerOnDeal(lat, lng) {
+            map.flyTo([lat, lng], 15, { duration: 1.5 });
+            // Simulate click to show HUD
+            const deal = deals.find(d => d.lat === lat);
+            if (deal) showHUD(deal);
+        }
+
+        map.on('click', closeHUD);
     </script>
-
-    <style>
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    </style>
 </body>
 </html>
